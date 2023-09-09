@@ -1,0 +1,8 @@
+@use "sass:math";
+@use "../utilities/functions";
+
+@mixin flexBasisMixin($columns: 1, $gap: 0) {
+    $targetWidth: math.div(1, $columns);
+    $gutter: ((1-$targetWidth)*$gap);
+    flex-basis: calc(#{math.percentage($targetWidth)} - #{functions.str-replace($gutter, "px")}px);
+}

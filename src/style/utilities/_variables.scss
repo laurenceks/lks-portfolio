@@ -1,0 +1,16 @@
+$gaps: (1rem, 2rem, 3rem, 4rem, 5rem, 6rem, 7rem, 8rem);
+$maxColumnsGrid: 3;
+$maxColumnsFlex: 3;
+$breakpoints: (
+        "xl": 1024px,
+        "lg": 920px,
+        "md": 720px,
+        "sm": 540px,
+        "xs": 448px,
+        "xxs": 360px
+);
+
+$maxWidth: 1200px;
+$paddingGutter: max(2.4rem, (100% - #{$maxWidth}) / 2);
+$defaultEasing: cubic-bezier(0.25, 1, 0.5, 1);
+$defaultTransitionDuration: 0.6s;

@@ -1,0 +1,192 @@
+@use "colours";
+@use "variables";
+@use "../mixins/pseudo";
+@use "../mixins/backgroundMask";
+@use "functions";
+@forward "../utilities/margins";
+
+$propertyMap: (
+        ("label":"d", "property":display, "applyBreakpoints": true, "values":(grid, flex, inline, inline-block, inline-grid, inline-flex, block, none)),
+        ("label":"justify-content", "property":justify-content, "applyBreakpoints": true, "values": (start, center, end, space-evenly, space-around, space-between)),
+        ("label":"align-items", "property":align-items, "applyBreakpoints": true, "values": (start, center, end, baseline)),
+        ("label":"align-self", "property":align-self, "applyBreakpoints": true, "values": (start, center, end, baseline)),
+        ("label":"justify-self", "property":justify-self, "applyBreakpoints": true, "values": (start, center, end, baseline)),
+        ("label":"ta", "property":text-align, "applyBreakpoints": true, "values": (left, center, right, justify)),
+        ("label":"fw", "property":font-weight, "values": (400 !important, 700 !important)),
+        ("label":"w", "property":width, "values": (25%, 50%, 75%, 100%, auto)),
+        ("label":"h", "property":height, "values": (25%, 50%, 75%, 100%, auto)),
+        ("label":"cursor", "property":cursor, "values": (pointer, auto)),
+        ("label":"overflow", "property":overflow, "values": (hidden, scroll)),
+        ("label":"overflow-x", "property":overflow-x, "values": (hidden, scroll)),
+        ("label":"overflow-y", "property":overflow-y, "values": (hidden, scroll)),
+        ("label":"position", "property":position, "values": (relative, absolute, fixed, static)),
+        ("label":"r", "property":right, "values": (0)),
+        ("label":"l", "property":left, "values": (0)),
+        ("label":"t", "property":top, "values": (0)),
+        ("label":"b", "property":bottom, "values": (0)),
+);
+
+@each $colour, $hex in colours.$colours {
+  .bg-#{$colour} {
+    background-color: $hex !important;
+  }
+  .text-#{$colour} {
+    color: $hex !important;
+  }
+  .border-#{$colour} {
+    border: 1px solid $hex !important;
+  }
+}
+
+@for $gapLabel from 1 through length(variables.$gaps) {
+  $gap: nth(variables.$gaps, $gapLabel);
+  .gap-#{$gapLabel} {
+    gap: #{$gap};
+  }
+  .gap-column-#{$gapLabel} {
+    column-gap: #{$gap};
+  }
+  .gap-row-#{$gapLabel} {
+    row-gap: #{$gap};
+  }
+}
+
+.max-width {
+  &-none {
+    max-width: none;
+  }
+
+  &-content {
+    max-width: variables.$maxWidth;
+  }
+}
+
+@each $map in $propertyMap {
+  @each $value in map-get($map, "values") {
+    $propertyLabel: functions.str-replace(functions.str-replace($value, " !important"), "%");
+    .#{map-get($map, "label")}-#{$propertyLabel} {
+      #{map-get($map, "property")} : $value;
+    }
+  }
+}
+
+@each $breakpointLabel, $breakpointValue in variables.$breakpoints {
+
+  //max-width-xs
+  .max-width-#{$breakpointLabel} {
+    max-width: $breakpointValue;
+  }
+
+  @media screen and (max-width: $breakpointValue) {
+    @each $map in $propertyMap {
+      @if (map-get($map, "applyBreakpoints")) {
+        @each $value in map-get($map, "values") {
+          //d-sm-block
+          .#{map-get($map, "label")}-#{$breakpointLabel}-#{functions.str-replace(functions.str-replace($value, " !important"), "%")} {
+            #{map-get($map, "property")} : $value;
+          }
+        }
+      }
+    }
+
+    @for $gapLabel from 1 through length(variables.$gaps) {
+      $gap: nth(variables.$gaps, $gapLabel);
+      //gap-sm-8
+      .gap-#{$breakpointLabel}-#{$gapLabel} {
+        gap: #{$gap};
+      }
+      .gap-column-#{$breakpointLabel}-#{$gapLabel} {
+        column-gap: #{$gap};
+      }
+      .gap-row-#{$breakpointLabel}-#{$gapLabel} {
+        row-gap: #{$gap};
+      }
+    }
+  }
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.hidden-transition {
+  transition-property: opacity, visibility;
+  transition-duration: variables.$defaultTransitionDuration;
+  transition-timing-function: variables.$defaultEasing;
+}
+
+.shown {
+  visibility: visible;
+  opacity: 1;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.no-transition {
+  transition: none !important;
+}
+
+.border-pill {
+  border-radius: 10000px;
+}
+
+.shadow {
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.05));
+}
+
+.aspect-ratio-square {
+  aspect-ratio: 1;
+}
+
+.img-cover > img, .img-contain > img {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.img-cover > img {
+  object-fit: cover;
+}
+
+.img-contain > img {
+  object-fit: contain;
+}
+
+.img-centre > img {
+  object-position: center;
+}
+
+.img-centre-top > img {
+  object-position: center top;
+}
+
+.img-centre-bottom > img {
+  object-position: center bottom;
+}
+
+.img-left-centre > img {
+  object-position: left center;
+}
+
+.img-right-centre > img {
+  object-position: right center;
+}
+
+.img-left-bottom > img {
+  object-position: left bottom;
+}
+
+.img-right-bottom > img {
+  object-position: right bottom;
+}
+
+.img-left-top > img {
+  object-position: left top;
+}
+
+.img-right-top > img {
+  object-position: right top;
+}

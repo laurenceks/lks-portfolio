@@ -1,0 +1,479 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+);
+import "./style/main.scss";
+import Hero from "./components/hero/Hero.tsx";
+import Nav from "./components/nav/Nav.tsx";
+
+function App() {
+    return (
+        <>
+            <header></header>
+            <main>
+                <Hero />
+                <Nav />
+            </main>
+            <footer></footer>
+        </>
+    );
+}
+
+export default App;
+import { useCallback } from "react";
+import { Container, Engine } from "tsparticles-engine";
+import { loadSlim } from "tsparticles-slim";
+import Particles from "react-particles";
+
+const ParticleBar = () => {
+    const particlesInit = useCallback(async (engine: Engine) => {
+        console.log(engine);
+
+        // you can initialize the tsParticles instance (engine) here, adding custom shapes or presets
+        // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+        // starting from v2 you can add only the features you need reducing the bundle size
+        // await loadFull(engine);
+        await loadSlim(engine);
+    }, []);
+
+    const particlesLoaded = useCallback(
+        async (container: Container | undefined) => {
+            await console.log(container);
+        },
+        []
+    );
+    return (
+        <Particles
+            id="tsparticles"
+            init={particlesInit}
+            loaded={particlesLoaded}
+            options={{
+                background: {
+                    color: {
+                        value: "#0c0c0c",
+                    },
+                },
+                fpsLimit: 120,
+                interactivity: {
+                    events: {
+                        onClick: {
+                            enable: true,
+                            mode: "push",
+                        },
+                        onHover: {
+                            enable: true,
+                            mode: "repulse",
+                        },
+                        resize: true,
+                    },
+                    modes: {
+                        push: {
+                            quantity: 4,
+                        },
+                        repulse: {
+                            distance: 200,
+                            duration: 0.4,
+                        },
+                    },
+                },
+                particles: {
+                    color: {
+                        value: "#788AA3",
+                    },
+                    links: {
+                        color: "#788AA3",
+                        distance: 150,
+                        enable: true,
+                        opacity: 0.5,
+                        width: 1,
+                    },
+                    move: {
+                        direction: "none",
+                        enable: true,
+                        outModes: {
+                            default: "bounce",
+                        },
+                        random: false,
+                        speed: 1,
+                        straight: false,
+                    },
+                    number: {
+                        density: {
+                            enable: true,
+                            area: 800,
+                        },
+                        value: 80,
+                    },
+                    opacity: {
+                        value: 0.5,
+                    },
+                    shape: {
+                        type: "circle",
+                    },
+                    size: {
+                        value: { min: 1, max: 5 },
+                    },
+                },
+                detectRetina: true,
+            }}
+        />
+    );
+};
+
+export default ParticleBar;
+import { useCallback } from "react";
+import { Container, Engine } from "tsparticles-engine";
+import { loadSlim } from "tsparticles-slim";
+import Particles from "react-particles";
+
+const ParticleBar = () => {
+    const particlesInit = useCallback(async (engine: Engine) => {
+        console.log(engine);
+
+        // you can initialize the tsParticles instance (engine) here, adding custom shapes or presets
+        // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+        // starting from v2 you can add only the features you need reducing the bundle size
+        // await loadFull(engine);
+        await loadSlim(engine);
+    }, []);
+
+    const particlesLoaded = useCallback(
+        async (container: Container | undefined) => {
+            await console.log(container);
+        },
+        []
+    );
+    return (
+        <div className={"hero-particles-background"}>
+            <Particles
+                init={particlesInit}
+                loaded={particlesLoaded}
+                options={{
+                    fullScreen: {
+                        enable: false,
+                        zIndex: 0,
+                    },
+                    background: {
+                        color: {
+                            value: "#0c0c0c",
+                        },
+                    },
+                    fpsLimit: 120,
+                    interactivity: {
+                        events: {
+                            onClick: {
+                                enable: true,
+                                mode: "repulse",
+                            },
+                            onHover: {
+                                enable: true,
+                                mode: "attract",
+                            },
+                            resize: true,
+                        },
+                        modes: {
+                            repulse: {
+                                distance: 200,
+                                duration: 3,
+                            },
+                            attract: {
+                                distance: 100,
+                                duration: 3,
+                            },
+                        },
+                    },
+                    particles: {
+                        color: {
+                            value: "#788AA3",
+                        },
+                        links: {
+                            color: "#788AA3",
+                            distance: 150,
+                            enable: true,
+                            opacity: 0.1,
+                            width: 1,
+                        },
+                        move: {
+                            direction: "none",
+                            enable: true,
+                            outModes: {
+                                default: "bounce",
+                            },
+                            random: false,
+                            speed: 0.2,
+                            straight: false,
+                        },
+                        number: {
+                            density: {
+                                enable: true,
+                                area: 1000,
+                            },
+                            value: 80,
+                        },
+                        opacity: {
+                            value: 0.25,
+                        },
+                        shape: {
+                            type: "circle",
+                        },
+                        size: {
+                            value: { min: 1, max: 5 },
+                        },
+                    },
+                    detectRetina: true,
+                }}
+            />
+        </div>
+    );
+};
+
+export default ParticleBar;
+const Nav = () => (
+    <nav>
+        <div>Home</div>
+        <div>Portfolio</div>
+        <div>About</div>
+        <div>Contact</div>
+    </nav>
+);
+
+export default Nav;
+const TypingHeroBracketSVG = () => {
+    return (
+        <svg viewBox={"0 0 228 455"}>
+            <path fill={"#ffffff"} d={"M 54.5 226.1 C 97.7 205.2 184.7 163.3 228 142.4 L 228 97 C 171.2 126 56.8 184.3 0 213.3 L 0 241.7 C 56.8 270.7 171.2 329 228 358 L 228 312.6 C 184.8 291.7 97.8 249.7 54.5 228.9 L 54.5 226.1 Z"}>
+                <animate
+                    id={"first"}
+                    begin={"indefinite"}
+                    attributeName={"d"}
+                    fill={"freeze"}
+                    from={"M 54.5 226.1 C 97.7 205.2 184.7 163.3 228 142.4 L 228 97 C 171.2 126 56.8 184.3 0 213.3 L 0 241.7 C 56.8 270.7 171.2 329 228 358 L 228 312.6 C 184.8 291.7 97.8 249.7 54.5 228.9 L 54.5 226.1 Z"}
+                    to={"M 41.9 224.9 C 149.1 214.2 32.5 32.4 145.6 34.9 L 145.6 0 C -29.5 -1.9 123.5 211.2 0 206.2 L 0 248.9 C 123.5 243.9 -29.5 457 145.6 455.1 L 145.6 420.3 C 32.5 422.8 149.1 241 41.9 230.3 L 41.9 224.9 Z"}
+                    dur={"0.4s"}/>
+                <animate
+                    id={"second"}
+                    begin={"indefinite"}
+                    attributeName={"d"}
+                    fill={"freeze"}
+                    from={"M 41.9 230.3 C 149.1 241 32.5 422.8 145.6 420.3 L 145.6 455.1 C -29.5 457 123.5 243.9 0 248.9 L 0 206.2 C 123.5 211.2 -29.5 -1.9 145.6 0 L 145.6 34.9 C 32.5 32.4 149.1 214.2 41.9 224.9 L 41.9 224.9 L 41.9 230.3"}
+                    to={"M 40.1 420.2 C 62.067 420.2 84.033 420.2 106 420.2 L 106 455 C 70.667 455 35.333 455 0 455 L 0 0 C 35.333 0 70.667 0 106 0 L 106 34.8 C 84.033 34.8 62.067 34.8 40.1 34.8 L 40.1 420.2 L 40.1 420.2"}
+                    dur={"0.4s"}/>
+                <animate
+                    id={"third"}
+                    begin={"indefinite"}
+                    attributeName={"d"}
+                    fill={"freeze"}
+                    from={"M 40.1 34.8 C 62.067 34.8 84.033 34.8 106 34.8 L 106 0 C 70.667 0 35.333 0 0 0 L 0 455 C 35.333 455 70.667 455 106 455 L 106 420.2 C 84.033 420.2 62.067 420.2 40.1 420.2 L 40.1 420.2 L 40.1 34.8"}
+                    to={"M 54.5 226.1 C 97.7 205.2 184.7 163.3 228 142.4 L 228 97 C 171.2 126 56.8 184.3 0 213.3 L 0 241.7 C 56.8 270.7 171.2 329 228 358 L 228 312.6 C 184.8 291.7 97.8 249.7 54.5 228.9 L 54.5 226.1 L 54.5 226.1"}
+                    dur={"0.4s"}/>
+            </path>
+        </svg>
+    );
+};
+export default TypingHeroBracketSVG;
+import { TypeAnimation } from "react-type-animation";
+import heroConfig from "./heroConfig.ts";
+import { TypingHeroStartProps } from "../../types/heroTypes.ts";
+
+const HeroTypingOpenTag = ({ nextHeroTypingStage }: TypingHeroStartProps) => (
+    <TypeAnimation
+        sequence={["<hello> ", 1000, () => nextHeroTypingStage()]}
+        {...heroConfig}
+    />
+);
+export default HeroTypingOpenTag;
+import { TypeAnimation } from "react-type-animation";
+import heroConfig from "./heroConfig.ts";
+
+const HeroTypingTagClose = () => (
+    <TypeAnimation sequence={["</hello>"]} {...heroConfig} cursor={false} />
+);
+export default HeroTypingTagClose;
+import { TypeAnimation } from "react-type-animation";
+import heroConfig from "./heroConfig.ts";
+import { TypingHeroStartProps } from "../../types/heroTypes.ts";
+
+const HeroTypingBodyOpen = ({ nextHeroTypingStage }: TypingHeroStartProps) => (
+    <TypeAnimation sequence={["", 2000, nextHeroTypingStage]} {...heroConfig} />
+);
+export default HeroTypingBodyOpen;
+import { TypeAnimation } from "react-type-animation";
+import heroConfig from "./heroConfig.ts";
+
+const HeroTypingBody = () => (
+    <TypeAnimation
+        sequence={[
+            "I'm Laurence and I make websites",
+            2000,
+            "I'm Laurence and I innovate solutions",
+            2000,
+            "I'm Laurence and I build what you need",
+            2000,
+        ]}
+        {...heroConfig}
+        repeat={Infinity}
+    />
+);
+export default HeroTypingBody;
+import { useState } from "react";
+import HeroStageOne from "./stages/HeroStageOne.tsx";
+import HeroStageTwo from "./stages/HeroStageTwo.tsx";
+import HeroBackground from "./HeroBackground.tsx";
+import HeroHidden from "./HeroHidden.tsx";
+import HeroStageThree from "./stages/HeroStageThree.tsx";
+
+const HeroTyping = () => {
+    const [heroTypingStage, setHeroTypingStage] = useState(0);
+
+    const nextHeroTypingStage = () => {
+        setHeroTypingStage((currentStage) => currentStage + 1);
+    };
+
+    const stageElements = [
+        <HeroStageOne nextHeroTypingStage={nextHeroTypingStage} />,
+        <HeroStageTwo nextHeroTypingStage={nextHeroTypingStage} />,
+        <HeroStageThree />,
+    ];
+
+    return (
+        <div className={"hero"}>
+            <div className={"hero-typing"}>
+                {stageElements[heroTypingStage]}
+                <HeroHidden />
+                <HeroBackground />
+            </div>
+        </div>
+    );
+};
+export default HeroTyping;
+const HeroHidden = () => (
+    <div className={"hidden"}>
+        <p className={"hero-tag"}>{`<hello>`}</p>
+        <p className={"hero-main"}>I'm Laurence and I build solutions</p>
+        <p className={"hero-tag"}>{`</hello>`}</p>
+    </div>
+);
+export default HeroHidden;
+import HeroTyping from "./HeroTyping.tsx";
+
+const HeroContent = () => (
+    <div className={"hero"}>
+        <HeroTyping />
+    </div>
+);
+export default HeroContent;
+import { TypeAnimation } from "react-type-animation";
+import heroConfig from "./heroConfig.ts";
+
+const HeroBackground = () => (
+    <TypeAnimation
+        sequence={[
+            `import { useState } from "react";
+import HeroStageOne from "./stages/HeroStageOne.tsx";
+import HeroStageTwo from "./stages/HeroStageTwo.tsx";
+import HeroBackground from "./HeroBackground.tsx";
+
+const HeroContent = () => {
+\tconst [heroStage, setHeroStage] = useState(0);
+
+\tconst nextHeroStage = () => {
+\t\tsetHeroStage(2);
+\t};
+
+\treturn (
+\t\t<div className={"hero-typing"}>
+\t\t\t{heroStage === 0 ? (
+\t\t\t\t<HeroStageOne nextHeroStage={nextHeroStage} />
+\t\t\t) : (
+\t\t\t\t<HeroStageTwo />
+\t\t\t)}
+\t\t\t<div className={"hidden"}>
+\t\t\t\t<p className={"hero-tag"}>{\`<hello>\`}</p>
+\t\t\t\t<p className={"hero-main"}>
+\t\t\t\t\tI'm Laurence and I build solutions
+\t\t\t\t</p>
+\t\t\t\t<p className={"hero-tag"}>{\`</hello>\`}</p>
+\t\t\t</div>
+\t\t\t<HeroBackground />
+\t\t</div>
+\t);
+};
+export default HeroContent;
+`,
+        ]}
+        {...heroConfig}
+        wrapper={"div"}
+        className={"hero-typing-background"}
+    />
+);
+export default HeroBackground;
+import HeroContent from "./HeroContent.tsx";
+import ParticleBackground from "../particles/ParticleBackground.tsx";
+
+const Hero = () => (
+    <section id="hero" className={"hero"}>
+        <HeroContent />
+        <ParticleBackground />
+    </section>
+);
+export default Hero;
+import HeroTypingBodyOpen from "../HeroTypingBodyOpen.tsx";
+import { TypingHeroStartProps } from "../../../types/heroTypes.ts";
+
+const HeroStageTwo = ({ nextHeroTypingStage }: TypingHeroStartProps) => (
+    <div>
+        <p className={"hero-tag"}>{"<hello> "}</p>
+        <p className={"hero-main"}>
+            <HeroTypingBodyOpen nextHeroTypingStage={nextHeroTypingStage} />
+        </p>
+        <p className={"hero-tag"}>{"</hello>"}</p>
+    </div>
+);
+
+export default HeroStageTwo;
+import HeroTypingBody from "../HeroTypingBody.tsx";
+
+const HeroStageTwo = () => (
+    <div>
+        <p className={"hero-tag"}>{"<hello> "}</p>
+        <p className={"hero-main"}>
+            <HeroTypingBody />
+        </p>
+        <p className={"hero-tag"}>{"</hello>"}</p>
+    </div>
+);
+
+export default HeroStageTwo;
+import HeroTypingOpenTag from "../HeroTypingTagOpen.tsx";
+import HeroTypingTagClose from "../HeroTypingTagClose.tsx";
+import { TypingHeroStartProps } from "../../../types/heroTypes.ts";
+
+const HeroStageOne = ({ nextHeroTypingStage }: TypingHeroStartProps) => (
+    <div>
+        <p className="hero-tag">
+            <HeroTypingOpenTag nextHeroTypingStage={nextHeroTypingStage} />
+        </p>
+        <p className="hero-tag">
+            <HeroTypingTagClose />
+        </p>
+    </div>
+);
+
+export default HeroStageOne;
+// import { ReactNode } from "react";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Window = ({ headerText, children }: any) => (
+    <div className={"window"}>
+        <div className={"window-header"}>{headerText}</div>
+        <div className={"window-icons"}></div>
+        <div className={"window-content"}>{children}</div>
+    </div>
+);
+export default Window;

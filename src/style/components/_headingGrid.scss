@@ -1,0 +1,43 @@
+@use "../utilities/variables";
+@use "../mixins/pseudo";
+@use "../mixins/backgroundMask";
+
+section.heading-grid {
+
+  &.nav-background {
+    position: relative;
+
+    &:before {
+      @include pseudo.pseudoMixinAbsolute($right: 0);
+      @include backgroundMask.backgroundMaskMixin("navBgMask.svg", $repeat: repeat, $size: 65px, $maskPosition: center top);
+      background-color: var(--light);
+      height: 20rem;
+    }
+
+    &:after {
+      @include pseudo.pseudoMixinAbsolute($right: 0);
+      z-index: 0;
+      background: radial-gradient(ellipse farthest-side at top right, transparent 0%, var(--dark) 100%);
+      background-position: center -6.4rem;
+      background-repeat: no-repeat;
+      background-size: 100% 26.4rem;
+      height: 20rem;
+    }
+
+    > * {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  > h1 {
+    max-width: 50rem;
+    font-size: 6rem;
+    font-weight: 500;
+  }
+
+  > p {
+    max-width: 70rem;
+    font-size: 1.5rem;
+  }
+}

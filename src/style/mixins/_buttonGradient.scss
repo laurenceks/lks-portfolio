@@ -1,0 +1,45 @@
+@use "../mixins/pseudo";
+@use "sass:math";
+
+@mixin buttonGradientMixin() {
+    $gradient: linear-gradient(60deg, #006633, #006738, #006844, #006b56, #006c69, #006d7a, #006d85, #2d6c8b, #496b8b, #5a6a89, #636a87, #666a86);
+    $backgroundSize: 300% 300%;
+    $backgroundStartPosition: 0% 100%;
+    $backgroundEndPosition: 100% 0%;
+    $backgroundTransition: background-position 0.4s ease-out;
+
+    background-position: $backgroundStartPosition;
+    background-image: $gradient;
+    background-size: $backgroundSize;
+    transition: $backgroundTransition;
+    &.outline {
+        $borderRadius: 3px;
+        position: relative;
+        background: transparent;
+
+        //noinspection CssInvalidPropertyValue,CssInvalidFunction
+        &:before {
+            @include pseudo.pseudoMixinAbsolute($left: 0);
+            -webkit-mask: linear-gradient(#ffffff 0 0) padding-box,
+            linear-gradient(#ffffff 0 0);
+            mask: linear-gradient(#ffffff 0 0) padding-box,
+            linear-gradient(#ffffff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            border: $borderRadius solid transparent;
+            border-radius: 1000px;
+            background-position: ((math.div(nth($backgroundStartPosition, 1), nth($backgroundStartPosition, 1) * 0 + 1) * -0.02) - 1) * $borderRadius ((math.div(nth($backgroundStartPosition, 2), nth($backgroundStartPosition, 2) * 0 + 1) * -0.02) - 1) * $borderRadius;
+            background-image: $gradient;
+            background-size: calc(nth($backgroundSize, 1) + ($borderRadius * 2)) calc(nth($backgroundSize, 2) + ($borderRadius * 2));
+            transition: $backgroundTransition;
+        }
+
+        &:hover:before {
+            background-position: calc(#{nth($backgroundEndPosition, 1)} + #{((math.div(nth($backgroundEndPosition, 1), nth($backgroundEndPosition, 1) * 0 + 1) * 0.02) - 1) * $borderRadius}) calc(#{nth($backgroundEndPosition, 2)} + #{((math.div(nth($backgroundEndPosition, 2), nth($backgroundEndPosition, 2) * 0 + 1) * 0.02) - 1) * $borderRadius});
+        }
+    }
+
+    &:hover {
+        background-position: $backgroundEndPosition;
+    }
+}

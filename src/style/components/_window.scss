@@ -1,0 +1,39 @@
+@use "../utilities/variables";
+
+div.window {
+  border: 2px solid var(--light);
+  position: relative;
+  overflow: hidden;
+
+  > div.window-header {
+    background-color: var(--light);
+    color: var(--dark);
+    text-align: left;
+    padding: 2px 12px;
+    width: 100%;
+    font-family: var(--font-code);
+
+    &:before {
+      content: ">_"
+    }
+  }
+
+  > div.window-icons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "x";
+
+    &:before {
+      content: "x";
+      color: var(--dark);
+      padding: 1rem;
+    }
+  }
+
+  > div.window-content {
+    padding: 2.4rem;
+  }
+}
+
+

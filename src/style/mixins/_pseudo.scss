@@ -1,0 +1,15 @@
+@mixin pseudoMixin($position: relative, $top:unset, $left:unset, $bottom:unset, $right:unset, $width: 100%, $height: 100%, $display: block) {
+    content: "";
+    width: $width;
+    height: $height;
+    display: $display;
+    position: $position;
+    top: $top;
+    left: $left;
+    bottom: $bottom;
+    right: $right;
+}
+
+@mixin pseudoMixinAbsolute($position: relative, $top:0, $left:unset, $bottom:unset, $right:unset, $width: 100%, $height: 100%, $display: block) {
+    @include pseudoMixin(absolute, $top, $left, $bottom, $right, $width, $height, $display);
+}

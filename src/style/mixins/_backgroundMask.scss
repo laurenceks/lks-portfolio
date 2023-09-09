@@ -1,0 +1,20 @@
+@use "../utilities/variables";
+
+$imagesRoot: "";
+@mixin backgroundMaskMixin($relativePath: "", $size: auto, $maskPosition:center, $repeat:no-repeat, $includeTransition: false, $includePointer: false) {
+  $absolutePath: url("#{$imagesRoot}#{$relativePath}");
+  -webkit-mask-image: $absolutePath;
+  mask-image: $absolutePath;
+  -webkit-mask-position: $maskPosition;
+  mask-position: $maskPosition;
+  -webkit-mask-repeat: $repeat;
+  mask-repeat: $repeat;
+  mask-size: $size;
+  -webkit-mask-size: $size;
+  @if ($includeTransition) {
+    transition: background-color variables.$defaultTransitionDuration variables.$defaultEasing;
+  }
+  @if ($includePointer) {
+    cursor: pointer;
+  }
+}
