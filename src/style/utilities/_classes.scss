@@ -13,6 +13,7 @@ $propertyMap: (
         ("label":"justify-self", "property":justify-self, "applyBreakpoints": true, "values": (start, center, end, baseline)),
         ("label":"ta", "property":text-align, "applyBreakpoints": true, "values": (left, center, right, justify)),
         ("label":"fw", "property":font-weight, "values": (100, 200, 300, 400, 500, 600, 700, 800, 900)),
+        ("label":"fs", "property":font-style, "values": (normal, italic)),
         ("label":"w", "property":width, "values": (25%, 50%, 75%, 100%, auto)),
         ("label":"h", "property":height, "values": (25%, 50%, 75%, 100%, auto)),
         ("label":"cursor", "property":cursor, "values": (pointer, auto)),
@@ -24,6 +25,7 @@ $propertyMap: (
         ("label":"l", "property":left, "values": (0)),
         ("label":"t", "property":top, "values": (0)),
         ("label":"b", "property":bottom, "values": (0)),
+        ("label":"pointer-events", "property":pointer-events, "values": (auto, none)),
 );
 
 @each $colour, $hex in colours.$colours {

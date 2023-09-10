@@ -1,12 +1,17 @@
 export interface PortfolioItem {
-    id: string;
+    id: number;
     title: string;
     description: string;
     type: string;
+    media: string;
+    date: string;
+    image: string;
+    imageAlt: string;
     url: string;
-    ap: number;
 }
-export interface ActiveItem {
+export interface ActivePortfolioItem {
     item?: PortfolioItem;
-    target?: HTMLDivElement;
+    rect?: DOMRect;
 }
+
+export type PanelPosition = "none" | "left" | "right";

@@ -2,13 +2,21 @@
 @use "../utilities/variables";
 @use "../mixins/pseudo";
 @use "../mixins/backgroundMask";
+@forward "../utilities/classes";
 
 div.portfolio-info-panel {
-  transition-property: opacity, visibility, top, left;
+  transition-property: opacity, visibility, transform;
   transition-duration: variables.$defaultTransitionDuration;
   transition-timing-function: variables.$defaultEasing;
-  pointer-events: none;
-  background-color: rgba(map-get(colours.$colours, "light"), 0.95);
+  z-index: -1;
+  min-height: 100%;
+  height: max-content;
+}
+
+p.portfolio-info-panel-description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 div.portfolio-masonry-item {
@@ -18,9 +26,32 @@ div.portfolio-masonry-item {
 
   &:hover {
     transform: scale(1.05);
+    z-index: 1;
+
+    div.portfolio-info-panel {
+      @extend .shown;
+
+      &.left {
+        transform: translateX(-100%);
+      }
+
+      &.right {
+        transform: translateX(100%);
+      }
+    }
   }
 
   &.not-active {
     transform: scale(0.95);
+  }
+}
+
+div.portfolio-info-panel-grid {
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+
+  p {
+    margin-bottom: 0;
   }
 }

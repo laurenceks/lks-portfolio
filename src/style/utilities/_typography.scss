@@ -52,6 +52,33 @@ $styles: (
                         font-weight: 300
                 )
         ),
+        "p.small":(
+                "style": (
+                        font-size: 1.6rem,
+                        line-height: 1.5em,
+                        font-family: var(--font-body),
+                        margin-bottom: 0.5em,
+                        font-weight: 300
+                )
+        ),
+        "p.smaller":(
+                "style": (
+                        font-size: 1.4rem,
+                        line-height: 1.4em,
+                        font-family: var(--font-body),
+                        margin-bottom: 0.25em,
+                        font-weight: 300
+                )
+        ),
+        "p.tiny":(
+                "style": (
+                        font-size: 1.2rem,
+                        line-height: 1.4em,
+                        font-family: var(--font-body),
+                        margin-bottom: 0.25em,
+                        font-weight: 300
+                )
+        ),
 );
 
 :root {

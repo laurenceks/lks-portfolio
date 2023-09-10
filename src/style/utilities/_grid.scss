@@ -13,6 +13,14 @@
     overflow: hidden;
   }
 
+  > .grid-span-columns {
+    grid-column: 1/-1;
+  }
+
+  > .grid-span-rows {
+    grid-row: 1/-1;
+  }
+
   @for $i from 1 through variables.$maxColumnsGrid {
     &.grid-columns-#{$i} {
       grid-template-columns: repeat($i, 1fr);

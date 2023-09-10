@@ -3,24 +3,25 @@
 
 $gapTypes: ("p":"padding", "m":"margin");
 $gapClasses: ("t":"top", "b":"bottom", "e": "right", "s":"left", "y":("top", "bottom"), "x":("left", "right"));
+$gaps: append(variables.$gaps, auto);
 
 //two iterations to organise shorthand classes (p-12) before specific classes (pt-12) to allow specific overides
 @each $prefix, $propertyPrefix in $gapTypes {
-  @for $gapLabel from 1 through length(variables.$gaps) {
-    $gap: nth(variables.$gaps, $gapLabel);
+  @for $gapLabel from 1 through length($gaps) {
+    $gap: nth($gaps, $gapLabel);
     //p-12
-    .#{$prefix}-#{$gapLabel} {
+    .#{$prefix}-#{if($gapLabel == length($gaps), "auto", $gapLabel)} {
       #{$propertyPrefix}: $gap;
     }
   }
 }
 
 @each $prefix, $propertyPrefix in $gapTypes {
-  @for $gapLabel from 1 through length(variables.$gaps) {
-    $gap: nth(variables.$gaps, $gapLabel);
+  @for $gapLabel from 1 through length($gaps) {
+    $gap: nth($gaps, $gapLabel);
     @each $suffix, $propertySuffix in $gapClasses {
       //pt-12
-      .#{$prefix}#{$suffix}-#{$gapLabel} {
+      .#{$prefix}#{$suffix}-#{if($gapLabel == length($gaps), "auto", $gapLabel)} {
         @if type-of($propertySuffix) == list {
           @each $propertySuffixItem in $propertySuffix {
             #{$propertyPrefix}-#{$propertySuffixItem}: $gap;
@@ -37,15 +38,15 @@ $gapClasses: ("t":"top", "b":"bottom", "e": "right", "s":"left", "y":("top", "bo
 @each $breakpointLabel, $breakpointValue in variables.$breakpoints {
   @media screen and (max-width: $breakpointValue) {
     @each $prefix, $propertyPrefix in $gapTypes {
-      @for $gapLabel from 1 through length(variables.$gaps) {
-        $gap: nth(variables.$gaps, $gapLabel);
+      @for $gapLabel from 1 through length($gaps) {
+        $gap: nth($gaps, $gapLabel);
         //p-sm-12
-        .#{$prefix}-#{$breakpointLabel}-#{$gapLabel} {
+        .#{$prefix}-#{$breakpointLabel}-#{if($gapLabel == length($gaps), "auto", $gapLabel)} {
           #{$propertyPrefix}: $gap;
         }
         @each $suffix, $propertySuffixValue in $gapClasses {
           //pt-sm-12
-          .#{$prefix}#{$suffix}-#{$breakpointLabel}-#{$gapLabel} {
+          .#{$prefix}#{$suffix}-#{$breakpointLabel}-#{if($gapLabel == length($gaps), "auto", $gapLabel)} {
             @if type-of($propertySuffixValue) == list {
               @each $propertySuffixItem in $propertySuffixValue {
                 #{$propertyPrefix}-#{$propertySuffixItem}: $gap;
@@ -83,15 +84,22 @@ $gapClasses: ("t":"top", "b":"bottom", "e": "right", "s":"left", "y":("top", "bo
   }
 }
 
-.mx-auto {
-  margin-right: auto;
-  margin-left: auto;
-}
 
-.ms-auto {
-  margin: 0 0 0 auto;
-}
-
-.me-auto {
-  margin: 0 auto 0 0;
+@each $prefix, $propertyPrefix in $gapTypes {
+  //p-sm-none
+  .#{$prefix}-none {
+    #{$propertyPrefix}: 0;
+  }
+  @each $suffix, $propertySuffix in $gapClasses {
+    //pt-sm-none
+    .#{$prefix}#{$suffix}-none {
+      @if type-of($propertySuffix) == list {
+        @each $propertySuffixItem in $propertySuffix {
+          #{$propertyPrefix}-#{$propertySuffixItem}: 0;
+        }
+      } @else {
+        #{$propertyPrefix}-#{$propertySuffix}: 0;
+      }
+    }
+  }
 }
