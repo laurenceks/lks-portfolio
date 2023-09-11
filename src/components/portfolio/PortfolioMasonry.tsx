@@ -1,12 +1,9 @@
 import { useState } from "react";
 import SectionMaxWidth from "../wrappers/SectionMaxWidth.tsx";
-import {
-    ActivePortfolioItem,
-    PanelPosition,
-    PortfolioItem,
-} from "../../types/portfolioTypes.ts";
+import { PanelPosition, PortfolioItem } from "../../types/portfolioTypes.ts";
 import { mockPortfolioItems } from "../../mockData.ts";
 import PortfolioMasonryItem from "./PortfolioMasonryItem.tsx";
+import PortfolioLightbox from "./PortfolioLightbox.tsx";
 
 const splitItemsIntoCols = (items: PortfolioItem[]) => {
     const columnCount: number = 3;
@@ -24,11 +21,9 @@ const splitItemsIntoCols = (items: PortfolioItem[]) => {
 const PortfolioMasonry = () => {
     const [PortfolioMasonryItems, setPortfolioMasonryItems] =
         useState(mockPortfolioItems);
-    const [activeItem, setActiveItem] = useState<ActivePortfolioItem>({
-        rect: undefined,
-        item: undefined,
-    });
+    const [activeItem, setActiveItem] = useState<PortfolioItem | null>(null);
     const [showActiveItem, setShowActiveItem] = useState(false);
+    const [showLightbox, setShowLightbox] = useState(false);
 
     return (
         <SectionMaxWidth
@@ -51,10 +46,11 @@ const PortfolioMasonry = () => {
                                 <PortfolioMasonryItem
                                     key={item.id}
                                     item={item}
-                                    activeItemId={activeItem.item?.id}
+                                    activeItemId={activeItem?.id}
                                     showActiveItem={showActiveItem}
                                     setActivePortfolioItem={setActiveItem}
                                     setShowActiveItem={setShowActiveItem}
+                                    setShowLightbox={setShowLightbox}
                                     panelPosition={panelPosition}
                                 />
                             ))}
@@ -62,6 +58,11 @@ const PortfolioMasonry = () => {
                     );
                 })}
             </div>
+            <PortfolioLightbox
+                item={activeItem}
+                shown={showLightbox}
+                setShowLightbox={setShowLightbox}
+            />
         </SectionMaxWidth>
     );
 };

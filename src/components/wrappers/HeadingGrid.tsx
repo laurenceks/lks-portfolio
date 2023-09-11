@@ -1,4 +1,4 @@
-import React from "react";
+import { ReactNode } from "react";
 import SectionMaxWidth from "./SectionMaxWidth.tsx";
 
 const HeadingGrid = ({
@@ -6,7 +6,7 @@ const HeadingGrid = ({
     children,
 }: {
     className?: string;
-    children: React.ReactNode;
+    children: ReactNode;
 }) => (
     <SectionMaxWidth className={`heading-grid ${className}`}>
         <div className={"max-width-sm"}>{children}</div>

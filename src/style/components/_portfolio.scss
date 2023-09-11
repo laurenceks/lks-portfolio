@@ -41,8 +41,34 @@ div.portfolio-masonry-item {
     }
   }
 
-  &.not-active {
+  &.expanded {
+    transform: scale(1);
+    z-index: 6;
+
+    div.portfolio-masonry-item-image-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+
+      img {
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  &.not-active:not(.expanded) {
     transform: scale(0.95);
+  }
+
+  div.portfolio-masonry-item-image-container {
+    transform-origin: transform, width, height;
+    transition-property: transform;
+    transition-duration: variables.$defaultTransitionDuration;
+    transition-timing-function: variables.$defaultEasing;
   }
 }
 
@@ -54,4 +80,8 @@ div.portfolio-info-panel-grid {
   p {
     margin-bottom: 0;
   }
+}
+
+div.portfolio-lightbox {
+  z-index: 10;
 }

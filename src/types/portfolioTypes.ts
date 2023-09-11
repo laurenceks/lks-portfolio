@@ -15,3 +15,12 @@ export interface ActivePortfolioItem {
 }
 
 export type PanelPosition = "none" | "left" | "right";
+
+export interface PortfolioItemExpanded {
+    left?: number;
+    top?: number;
+    width?: number;
+    height?: number;
+    position?: "fixed" | "absolute";
+    expanded: boolean;
+}

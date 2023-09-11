@@ -1,11 +1,11 @@
-import React from "react";
+import { ReactNode } from "react";
 import Section from "./Section.tsx";
 
 const SectionMaxWidth = ({
     children,
     className,
 }: {
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
 }) => (
     <Section className={className}>

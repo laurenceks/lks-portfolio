@@ -1,10 +1,10 @@
-import React, { SetStateAction } from "react";
+import { Dispatch, MutableRefObject, SetStateAction } from "react";
 
 export interface TypingHeroStartProps {
     nextHeroTypingStage: () => void;
 }
 export interface HeroProps {
     heroTypingStage: number;
-    setHeroTypingStage?: React.Dispatch<SetStateAction<number>>;
-    learnMoreRef?: React.MutableRefObject<HTMLInputElement>;
+    setHeroTypingStage?: Dispatch<SetStateAction<number>>;
+    learnMoreRef?: MutableRefObject<HTMLInputElement>;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { useSpring } from "react-spring";
 import NavBracketSVG from "../hero/NavBracketSVG.tsx";
 
@@ -10,7 +10,7 @@ const Nav = () => {
     const [{ stage }, setStage] = useSpring(() => ({
         stage: 0,
     }));
-    const liMouseOver = (e: React.MouseEvent<HTMLLIElement>) => {
+    const liMouseOver = (e: MouseEvent<HTMLLIElement>) => {
         setStage.start({ stage: 1 });
         setBracketTranslation({
             translateX: e.currentTarget.offsetLeft,
