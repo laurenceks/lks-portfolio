@@ -1,4 +1,4 @@
-export interface PortfolioItem {
+export interface PortfolioItemInterface {
     id: number;
     title: string;
     description: string;
@@ -9,14 +9,14 @@ export interface PortfolioItem {
     imageAlt: string;
     url: string;
 }
-export interface ActivePortfolioItem {
-    item?: PortfolioItem;
-    rect?: DOMRect;
+export interface PortfolioLightBoxItemInterface {
+    item?: PortfolioItemInterface | null;
+    rect?: DOMRect | null;
 }
 
-export type PanelPosition = "none" | "left" | "right";
+export type PanelPositionType = "none" | "left" | "right";
 
-export interface PortfolioItemExpanded {
+export interface PortfolioItemExpandedInterface {
     left?: number;
     top?: number;
     width?: number;

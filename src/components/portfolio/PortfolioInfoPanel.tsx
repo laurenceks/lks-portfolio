@@ -1,11 +1,11 @@
 import PortfolioInfoPanelRow from "./PortfolioInfoPanelRow.tsx";
-import { PortfolioItem } from "../../types/portfolioTypes.ts";
+import { PortfolioItemInterface } from "../../types/portfolioTypes.ts";
 
 const PortfolioInfoPanel = ({
     item,
     position,
 }: {
-    item: PortfolioItem;
+    item: PortfolioItemInterface;
     position: "left" | "right";
     show?: boolean;
 }) => (

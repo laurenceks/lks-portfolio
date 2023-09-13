@@ -5,83 +5,124 @@
 @forward "../utilities/classes";
 
 div.portfolio-info-panel {
-  transition-property: opacity, visibility, transform;
-  transition-duration: variables.$defaultTransitionDuration;
-  transition-timing-function: variables.$defaultEasing;
-  z-index: -1;
-  min-height: 100%;
-  height: max-content;
+    transition-property: opacity, visibility, transform;
+    transition-duration: variables.$defaultTransitionDuration;
+    transition-timing-function: variables.$defaultEasing;
+    z-index: -1;
+    height: max-content;
+    min-height: 100%;
 }
 
 p.portfolio-info-panel-description {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 div.portfolio-masonry-item {
-  transition-property: transform;
-  transition-duration: variables.$defaultTransitionDuration;
-  transition-timing-function: variables.$defaultEasing;
-
-  &:hover {
-    transform: scale(1.05);
-    z-index: 1;
-
-    div.portfolio-info-panel {
-      @extend .shown;
-
-      &.left {
-        transform: translateX(-100%);
-      }
-
-      &.right {
-        transform: translateX(100%);
-      }
-    }
-  }
-
-  &.expanded {
-    transform: scale(1);
-    z-index: 6;
-
-    div.portfolio-masonry-item-image-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-
-      img {
-        height: 100%;
-        object-fit: contain;
-      }
-    }
-  }
-
-  &.not-active:not(.expanded) {
-    transform: scale(0.95);
-  }
-
-  div.portfolio-masonry-item-image-container {
-    transform-origin: transform, width, height;
     transition-property: transform;
     transition-duration: variables.$defaultTransitionDuration;
     transition-timing-function: variables.$defaultEasing;
-  }
+
+    &:hover {
+        transform: scale(1.05);
+        z-index: 1;
+
+        div.portfolio-info-panel {
+            @extend .shown;
+
+            &.left {
+                transform: translateX(-100%);
+            }
+
+            &.right {
+                transform: translateX(100%);
+            }
+        }
+    }
+
+    &.expanded {
+        transform: scale(1);
+        z-index: 6;
+
+        div.portfolio-masonry-item-image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+
+            img {
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+
+    &.not-active:not(.expanded) {
+        transform: scale(0.95);
+    }
+
+    div.portfolio-masonry-item-image-container {
+        transition-property: transform;
+        transition-duration: variables.$defaultTransitionDuration;
+        transition-timing-function: variables.$defaultEasing;
+    }
 }
 
 div.portfolio-info-panel-grid {
-  grid-template-columns: auto 1fr;
-  gap: 0.5rem;
-  margin-bottom: 0.8rem;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
 
-  p {
-    margin-bottom: 0;
-  }
+    p {
+        margin-bottom: 0;
+    }
 }
 
 div.portfolio-lightbox {
-  z-index: 10;
+    z-index: 10;
+
+    .portfolio-lightbox-content-container, &:before {
+        transform: translateX(100%);
+        transition-property: transform;
+        transition-duration: variables.$defaultTransitionDuration;
+        transition-timing-function: variables.$defaultEasing;
+    }
+
+    &:before {
+        @include pseudo.pseudoMixinAbsolute($left: 0);
+        background-color: var(--dark);
+    }
+
+    &.enter-active, &.enter-done {
+        &:before {
+            transform: translateX(0);
+        }
+
+        .portfolio-lightbox-image-container {
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .portfolio-lightbox-content-container {
+            transform: translateX(0)
+        }
+    }
+}
+
+.portfolio-lightbox-image-container {
+    transition-property: width, height, top, left;
+    transition-duration: variables.$defaultTransitionDuration;
+    transition-timing-function: variables.$defaultEasing;
+
+}
+
+.portfolio-lightbox-content-container:before {
+    @include pseudo.pseudoMixinAbsolute($left: 0);
+    z-index: -1;
+    background-color: var(--dark);
 }
