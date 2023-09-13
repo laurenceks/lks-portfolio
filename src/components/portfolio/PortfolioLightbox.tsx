@@ -1,25 +1,44 @@
-import { Dispatch, Ref, SetStateAction, useRef } from "react";
+import {
+    Dispatch,
+    LegacyRef,
+    SetStateAction,
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 import { CSSTransition } from "react-transition-group";
 import { PortfolioLightBoxItemInterface } from "../../types/portfolioTypes.ts";
 
 const PortfolioLightbox = ({
     item,
-    shown,
+    showLightbox,
     setShowLightbox,
 }: {
     item: PortfolioLightBoxItemInterface | null;
-    shown: boolean;
+    showLightbox: boolean;
     setShowLightbox: Dispatch<SetStateAction<boolean>>;
 }) => {
-    const nodeRef = useRef() as Ref<HTMLElement | undefined>;
+    const nodeRef = useRef() as LegacyRef<HTMLDivElement> | undefined;
+    const [inProp, setInProp] = useState(showLightbox);
+
+    useEffect(() => {
+        if (showLightbox) {
+            setInProp(true);
+        }
+    }, [showLightbox]);
+
     return (
-        <CSSTransition nodeRef={nodeRef} in={shown} timeout={400}>
+        <CSSTransition
+            nodeRef={nodeRef}
+            in={inProp}
+            timeout={400}
+            onExited={() => setShowLightbox(false)}
+            unmountOnExit
+        >
             <div
                 ref={nodeRef}
-                className={`portfolio-lightbox ${
-                    shown ? "d-grid" : "d-none"
-                } position-fixed p-3 grid-columns-2 gap-3 t-0 l-0 w-100 h-100 text-light`}
-                onClick={() => setShowLightbox(false)}
+                className={`portfolio-lightbox position-fixed p-3 d-grid grid-columns-2 gap-3 t-0 l-0 w-100 h-100 text-light`}
+                onClick={() => setInProp(false)}
             >
                 <div className={"position-relative"}>
                     <div

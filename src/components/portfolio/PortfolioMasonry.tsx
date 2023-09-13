@@ -77,7 +77,7 @@ const PortfolioMasonry = () => {
             </div>
             <PortfolioLightbox
                 item={portfolioLightboxItem}
-                shown={showLightbox}
+                showLightbox={showLightbox}
                 setShowLightbox={setShowLightbox}
             />
         </SectionMaxWidth>
