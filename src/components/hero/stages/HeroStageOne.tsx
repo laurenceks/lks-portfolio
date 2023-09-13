@@ -1,8 +1,8 @@
 import HeroTypingOpenTag from "../HeroTypingTagOpen.tsx";
 import HeroTypingTagClose from "../HeroTypingTagClose.tsx";
-import { TypingHeroStartProps } from "../../../types/heroTypes.ts";
+import { TypingHeroInterface } from "../../../types/heroTypes.ts";
 
-const HeroStageOne = ({ nextHeroTypingStage }: TypingHeroStartProps) => (
+const HeroStageOne = ({ nextHeroTypingStage }: TypingHeroInterface) => (
     <div>
         <p className="hero-tag">
             <HeroTypingOpenTag nextHeroTypingStage={nextHeroTypingStage} />

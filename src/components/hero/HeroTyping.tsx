@@ -4,9 +4,9 @@ import HeroBackground from "./HeroBackground.tsx";
 import HeroHidden from "./HeroHidden.tsx";
 import HeroStageThree from "./stages/HeroStageThree.tsx";
 import HeroStageFour from "./stages/HeroStageFour.tsx";
-import { HeroProps } from "../../types/heroTypes.ts";
+import { HeroInterface } from "../../types/heroTypes.ts";
 
-const HeroTyping = ({ heroTypingStage, setHeroTypingStage }: HeroProps) => {
+const HeroTyping = ({ heroTypingStage, setHeroTypingStage }: HeroInterface) => {
     const nextHeroTypingStage = () => {
         setHeroTypingStage((currentStage: number) => currentStage + 1);
     };

@@ -1,8 +1,8 @@
 import { TypeAnimation } from "react-type-animation";
 import heroConfig from "./heroConfig.ts";
-import { TypingHeroStartProps } from "../../types/heroTypes.ts";
+import { TypingHeroInterface } from "../../types/heroTypes.ts";
 
-const HeroTypingBodyName = ({ nextHeroTypingStage }: TypingHeroStartProps) => (
+const HeroTypingBodyName = ({ nextHeroTypingStage }: TypingHeroInterface) => (
     <TypeAnimation
         sequence={[
             "I'm Laurence",

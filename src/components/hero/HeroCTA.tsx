@@ -1,6 +1,6 @@
-import { HeroProps } from "../../types/heroTypes.ts";
+import { HeroInterface } from "../../types/heroTypes.ts";
 
-const HeroCTA = ({ heroTypingStage, learnMoreRef }: HeroProps) => (
+const HeroCTA = ({ heroTypingStage, learnMoreRef }: HeroInterface) => (
     <div className={`hero-cta`}>
         <button
             className={heroTypingStage > 2 ? "shown" : ""}
