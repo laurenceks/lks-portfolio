@@ -1,4 +1,4 @@
-import { PortfolioItemInterface } from "../../types/portfolioTypes.ts";
+import { PortfolioItemInterface } from "../types/portfolioTypes.ts";
 
 const splitItemsIntoCols = (items: PortfolioItemInterface[]) => {
     const columnCount: number = 3;

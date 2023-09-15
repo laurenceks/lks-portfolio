@@ -8,6 +8,8 @@ import {
 } from "react";
 import { CSSTransition } from "react-transition-group";
 import { PortfolioLightBoxItemInterface } from "../../types/portfolioTypes.ts";
+import { sortingDateToMonthYear } from "../../utils/formatDates.ts";
+import PortfolioLightboxRow from "./PortfolioLightboxRow.tsx";
 
 const PortfolioLightbox = ({
     item,
@@ -61,9 +63,21 @@ const PortfolioLightbox = ({
                         "portfolio-lightbox-content-container p-3 ps-none"
                     }
                 >
-                    <h3>{item?.item?.title}</h3>
-                    <h6>{item?.item?.date}</h6>
-                    <p>{item?.item?.description}</p>
+                    <PortfolioLightboxRow label={"What?"}>
+                        <h1>{item?.item?.title}</h1>
+                    </PortfolioLightboxRow>
+                    <PortfolioLightboxRow label={"When?"}>
+                        <h6>{sortingDateToMonthYear(item?.item?.date)}</h6>
+                    </PortfolioLightboxRow>
+                    <PortfolioLightboxRow label={"Why?"}>
+                        <p>{item?.item?.description}</p>
+                    </PortfolioLightboxRow>
+                    <PortfolioLightboxRow label={"Who?"}>
+                        <h3>{item?.item?.client}</h3>
+                    </PortfolioLightboxRow>
+                    <PortfolioLightboxRow label={"How?"}>
+                        <p>{item?.item?.stack}</p>
+                    </PortfolioLightboxRow>
                 </div>
             </div>
         </CSSTransition>

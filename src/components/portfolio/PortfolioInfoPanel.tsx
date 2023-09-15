@@ -1,5 +1,6 @@
 import PortfolioInfoPanelRow from "./PortfolioInfoPanelRow.tsx";
 import { PortfolioItemInterface } from "../../types/portfolioTypes.ts";
+import { sortingDateToMonthYear } from "../../utils/formatDates.ts";
 
 const PortfolioInfoPanel = ({
     item,
@@ -18,7 +19,10 @@ const PortfolioInfoPanel = ({
                     {item.title}
                 </h5>
                 <div className={"d-grid portfolio-info-panel-grid"}>
-                    <PortfolioInfoPanelRow label={"Date"} value={item.date} />
+                    <PortfolioInfoPanelRow
+                        label={"Date"}
+                        value={sortingDateToMonthYear(item.date)}
+                    />
                     <PortfolioInfoPanelRow label={"Type"} value={item.type} />
                     <PortfolioInfoPanelRow label={"Media"} value={item.media} />
                 </div>

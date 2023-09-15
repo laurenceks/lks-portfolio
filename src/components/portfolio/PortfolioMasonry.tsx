@@ -8,7 +8,7 @@ import {
 import { mockPortfolioItems } from "../../mockData.ts";
 import PortfolioMasonryItem from "./PortfolioMasonryItem.tsx";
 import PortfolioLightbox from "./PortfolioLightbox.tsx";
-import splitItemsIntoCols from "./splitItemsIntoCols.tsx";
+import splitItemsIntoCols from "../../utils/splitItemsIntoCols.tsx";
 
 const PortfolioMasonry = () => {
     const [PortfolioMasonryItems, setPortfolioMasonryItems] = useState<

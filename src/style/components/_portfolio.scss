@@ -135,3 +135,10 @@ div.portfolio-lightbox {
     transition-duration: variables.$defaultTransitionDuration;
     transition-timing-function: variables.$defaultEasing;
 }
+
+.portfolio-lightbox-tag {
+    rotate: 180deg;
+    margin: 0;
+    writing-mode: vertical-lr;
+    text-orientation: sideways;
+}

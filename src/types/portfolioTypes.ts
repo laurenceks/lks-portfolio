@@ -5,6 +5,8 @@ export interface PortfolioItemInterface {
     title: string;
     description: string;
     type: string;
+    client: string;
+    stack: string;
     media: string;
     date: string;
     image: string;
