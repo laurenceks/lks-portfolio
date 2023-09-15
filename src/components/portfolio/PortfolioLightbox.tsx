@@ -37,12 +37,12 @@ const PortfolioLightbox = ({
         >
             <div
                 ref={nodeRef}
-                className={`portfolio-lightbox position-fixed p-3 d-grid grid-columns-2 gap-3 t-0 l-0 w-100 h-100 text-light`}
+                className={`portfolio-lightbox position-fixed d-grid grid-columns-2 gap-3 t-0 l-0 w-100 h-100 text-light`}
                 onClick={() => setInProp(false)}
             >
                 <div className={"position-relative"}>
                     <div
-                        className={`portfolio-lightbox-image-container img-contain position-absolute`}
+                        className={`portfolio-lightbox-image-container img-contain position-absolute p-3 pe-none`}
                         style={{
                             width: item?.rect?.width,
                             height: item?.rect?.height,
@@ -56,7 +56,11 @@ const PortfolioLightbox = ({
                         />
                     </div>
                 </div>
-                <div className={"portfolio-lightbox-content-container"}>
+                <div
+                    className={
+                        "portfolio-lightbox-content-container p-3 ps-none"
+                    }
+                >
                     <h3>{item?.item?.title}</h3>
                     <h6>{item?.item?.date}</h6>
                     <p>{item?.item?.description}</p>

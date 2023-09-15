@@ -1,32 +1,26 @@
-import { Dispatch, SetStateAction } from "react";
-import {
-    PanelPositionType,
-    PortfolioItemInterface,
-    PortfolioLightBoxItemInterface,
-} from "../../types/portfolioTypes.ts";
+import { PortfolioMasonryItemInterface } from "../../types/portfolioTypes.ts";
 import PortfolioInfoPanel from "./PortfolioInfoPanel.tsx";
 
 const PortfolioMasonryItem = ({
     item,
     hoverItemId,
+    lightboxItemId,
+    showLightbox,
     setPortfolioLightboxItem,
     setShowLightbox,
     setHoverItemId,
     panelPosition,
-}: {
-    item: PortfolioItemInterface;
-    activeItemId?: number | null;
-    hoverItemId?: number | null;
-    setPortfolioLightboxItem: Dispatch<
-        SetStateAction<PortfolioLightBoxItemInterface | null>
-    >;
-    setHoverItemId: Dispatch<SetStateAction<number | null>>;
-    setShowLightbox: Dispatch<SetStateAction<boolean>>;
-    panelPosition: PanelPositionType;
-}) => (
+}: PortfolioMasonryItemInterface) => (
     <div
         className={`portfolio-masonry-item cursor-pointer bg-accent-1 w-100 h-auto position-relative ${
-            hoverItemId && hoverItemId !== item?.id ? "not-active" : ""
+            (hoverItemId && hoverItemId !== item.id) ||
+            (showLightbox && lightboxItemId !== item.id)
+                ? "not-active"
+                : ""
+        } ${
+            showLightbox && lightboxItemId && lightboxItemId === item.id
+                ? "active"
+                : ""
         }`}
         onMouseOver={() => {
             setHoverItemId(item.id);

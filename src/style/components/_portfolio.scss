@@ -24,43 +24,26 @@ div.portfolio-masonry-item {
     transition-duration: variables.$defaultTransitionDuration;
     transition-timing-function: variables.$defaultEasing;
 
-    &:hover {
+    &:hover, &.active {
         transform: scale(1.05);
         z-index: 1;
 
-        div.portfolio-info-panel {
-            @extend .shown;
+        &:not(.active) {
+            div.portfolio-info-panel {
+                @extend .shown;
 
-            &.left {
-                transform: translateX(-100%);
-            }
+                &.left {
+                    transform: translateX(-100%);
+                }
 
-            &.right {
-                transform: translateX(100%);
-            }
-        }
-    }
-
-    &.expanded {
-        transform: scale(1);
-        z-index: 6;
-
-        div.portfolio-masonry-item-image-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            width: 100%;
-            height: 100%;
-
-            img {
-                height: 100%;
-                object-fit: contain;
+                &.right {
+                    transform: translateX(100%);
+                }
             }
         }
     }
 
-    &.not-active:not(.expanded) {
+    &.not-active {
         transform: scale(0.95);
     }
 
@@ -111,11 +94,16 @@ div.portfolio-lightbox {
             height: 100% !important;
         }
     }
+
+    &:not(.enter-active, .enter-done) {
+        .portfolio-lightbox-image-container {
+            padding: 0 !important;
+        }
+    }
 }
 
 .portfolio-lightbox-image-container {
-    transition-property: width, height, top, left;
+    transition-property: width, height, top, left, padding;
     transition-duration: variables.$defaultTransitionDuration;
     transition-timing-function: variables.$defaultEasing;
-
 }

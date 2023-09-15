@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface PortfolioItemInterface {
     id: number;
     title: string;
@@ -9,6 +11,7 @@ export interface PortfolioItemInterface {
     imageAlt: string;
     url: string;
 }
+
 export interface PortfolioLightBoxItemInterface {
     item?: PortfolioItemInterface | null;
     rect?: DOMRect | null;
@@ -16,11 +19,15 @@ export interface PortfolioLightBoxItemInterface {
 
 export type PanelPositionType = "none" | "left" | "right";
 
-export interface PortfolioItemExpandedInterface {
-    left?: number;
-    top?: number;
-    width?: number;
-    height?: number;
-    position?: "fixed" | "absolute";
-    expanded: boolean;
+export interface PortfolioMasonryItemInterface {
+    item: PortfolioItemInterface;
+    lightboxItemId?: number | null;
+    hoverItemId?: number | null;
+    showLightbox?: boolean | null;
+    setPortfolioLightboxItem: Dispatch<
+        SetStateAction<PortfolioLightBoxItemInterface | null>
+    >;
+    setHoverItemId: Dispatch<SetStateAction<number | null>>;
+    setShowLightbox: Dispatch<SetStateAction<boolean>>;
+    panelPosition: PanelPositionType;
 }

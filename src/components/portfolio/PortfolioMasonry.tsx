@@ -8,20 +8,8 @@ import {
 import { mockPortfolioItems } from "../../mockData.ts";
 import PortfolioMasonryItem from "./PortfolioMasonryItem.tsx";
 import PortfolioLightbox from "./PortfolioLightbox.tsx";
+import splitItemsIntoCols from "./splitItemsIntoCols.tsx";
 
-const splitItemsIntoCols = (items: PortfolioItemInterface[]) => {
-    const columnCount: number = 3;
-    const columnsArray: PortfolioItemInterface[][] = [];
-    for (let i: number = 0; i < columnCount; i++) {
-        columnsArray.push([]);
-    }
-    items
-        .sort((a, b) => (a.date < b.date ? 1 : -1))
-        .forEach((item, i) => {
-            columnsArray[i % columnCount]?.push(item);
-        });
-    return columnsArray;
-};
 const PortfolioMasonry = () => {
     const [PortfolioMasonryItems, setPortfolioMasonryItems] = useState<
         PortfolioItemInterface[]
@@ -40,9 +28,7 @@ const PortfolioMasonry = () => {
 
     return (
         <SectionMaxWidth
-            className={
-                "bg-light text-dark position-relative overflow-x-hidden pt-none"
-            }
+            className={"bg-light text-dark position-relative pt-none"}
         >
             <div className={"d-grid grid-columns-3 gap-3 align-items-start"}>
                 {splitItemsIntoCols(PortfolioMasonryItems).map((col, i, a) => {
@@ -59,9 +45,10 @@ const PortfolioMasonry = () => {
                                 <PortfolioMasonryItem
                                     key={item.id}
                                     item={item}
-                                    activeItemId={
+                                    lightboxItemId={
                                         portfolioLightboxItem?.item?.id
                                     }
+                                    showLightbox={showLightbox}
                                     hoverItemId={hoverItemId}
                                     setPortfolioLightboxItem={
                                         setPortfolioLightboxItem
