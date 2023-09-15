@@ -11,6 +11,34 @@ div.portfolio-info-panel {
     z-index: -1;
     height: max-content;
     min-height: 100%;
+    overflow: hidden;
+
+    &:before, &:after {
+        @include pseudo.pseudoMixinAbsolute($left: 0, $bottom: 0, $top: unset, $height: 26.4rem);
+    }
+
+    &:before {
+        opacity: 0.25;
+        z-index: -2;
+        -webkit-mask-image: url("navBgMask.svg");
+        mask-image: url("navBgMask.svg");
+        -webkit-mask-position: center bottom;
+        mask-position: center bottom;
+        -webkit-mask-size: 65px;
+        mask-size: auto;
+        background-color: var(--accent-1);
+    }
+
+    &:after {
+        z-index: -1;
+        background: radial-gradient(ellipse farthest-side at bottom left, transparent 0%, var(--dark) 100%) no-repeat bottom left;
+        background-size: 100% 26.4rem;
+    }
+
+    &.left:after {
+        background: radial-gradient(ellipse farthest-side at bottom right, transparent 0%, var(--dark) 100%) no-repeat bottom right;
+    }
+
 }
 
 p.portfolio-info-panel-description {
