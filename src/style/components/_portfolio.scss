@@ -79,6 +79,10 @@ div.portfolio-masonry-item {
         transition-property: transform;
         transition-duration: variables.$defaultTransitionDuration;
         transition-timing-function: variables.$defaultEasing;
+
+        img {
+            animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1)
+        }
     }
 }
 

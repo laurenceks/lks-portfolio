@@ -1,5 +1,6 @@
 import { PortfolioMasonryItemInterface } from "../../types/portfolioTypes.ts";
 import PortfolioInfoPanel from "./PortfolioInfoPanel.tsx";
+import ImagePlaceholder from "../common/ImagePlaceholder.tsx";
 
 const PortfolioMasonryItem = ({
     item,
@@ -12,7 +13,7 @@ const PortfolioMasonryItem = ({
     panelPosition,
 }: PortfolioMasonryItemInterface) => (
     <div
-        className={`portfolio-masonry-item cursor-pointer bg-accent-1 w-100 h-auto position-relative ${
+        className={`portfolio-masonry-item cursor-pointer w-100 h-auto position-relative ${
             (hoverItemId && hoverItemId !== item.id) ||
             (showLightbox && lightboxItemId !== item.id)
                 ? "not-active"
@@ -35,11 +36,16 @@ const PortfolioMasonryItem = ({
         }}
     >
         <div>
-            <div className={"portfolio-masonry-item-image-container"}>
-                <img
-                    className={"d-flex w-100 h-auto"}
-                    src={item.image}
-                    alt={item.imageAlt}
+            <div
+                className={
+                    "portfolio-masonry-item-image-container overflow-hidden"
+                }
+            >
+                <ImagePlaceholder
+                    src={item.thumb}
+                    alt={item.alt}
+                    width={item.thumbWidth}
+                    height={item.thumbHeight}
                 />
             </div>
             {panelPosition !== "none" && (

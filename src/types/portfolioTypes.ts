@@ -3,14 +3,18 @@ import { Dispatch, SetStateAction } from "react";
 export interface PortfolioItemInterface {
     id: number;
     title: string;
-    description: string;
     type: string;
-    client: string;
-    stack: string;
     media: string;
+    client: string;
     date: string;
-    image: string;
-    imageAlt: string;
+    stack: string;
+    blurb: string;
+    description: string;
+    img: string;
+    thumb: string;
+    thumbWidth: number;
+    thumbHeight: number;
+    alt: string;
     url: string;
 }
 

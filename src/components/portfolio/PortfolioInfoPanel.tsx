@@ -1,4 +1,3 @@
-import PortfolioInfoPanelRow from "./PortfolioInfoPanelRow.tsx";
 import { PortfolioItemInterface } from "../../types/portfolioTypes.ts";
 import { sortingDateToMonthYear } from "../../utils/formatDates.ts";
 
@@ -15,20 +14,19 @@ const PortfolioInfoPanel = ({
     >
         {item && (
             <>
-                <h5 className={"fw-700 d-inline-block me-1 mb-0"}>
-                    {item.title}
-                </h5>
-                <div className={"d-grid portfolio-info-panel-grid"}>
-                    <PortfolioInfoPanelRow
-                        label={"Date"}
-                        value={sortingDateToMonthYear(item.date)}
-                    />
-                    <PortfolioInfoPanelRow label={"Type"} value={item.type} />
-                    <PortfolioInfoPanelRow label={"Media"} value={item.media} />
+                <h5 className={"fw-700"}>{item.title}</h5>
+                <div className={"d-flex flex-wrap gap-column-1 mb-2"}>
+                    <p className={"tag text-dark bg-light m-none"}>
+                        {">_"}
+                        {item.type}
+                    </p>
+                    <p className={"tag text-dark bg-light m-none"}>
+                        {">_"}
+                        {item.media}
+                    </p>
                 </div>
-                <p className={"small portfolio-info-panel-description"}>
-                    {item.description}
-                </p>
+                <p className={"mb-3"}>{sortingDateToMonthYear(item.date)}</p>
+                <p className={"small"}>{item.blurb}</p>
                 <p className={"mt-auto smaller fs-italic"}>Click to see more</p>
             </>
         )}

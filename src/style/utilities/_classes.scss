@@ -3,6 +3,7 @@
 @use "../mixins/pseudo";
 @use "../mixins/backgroundMask";
 @use "functions";
+@forward "../animations/placeholderWave";
 @forward "../utilities/margins";
 
 $propertyMap: (
@@ -26,169 +27,191 @@ $propertyMap: (
         ("label":"t", "property":top, "values": (0)),
         ("label":"b", "property":bottom, "values": (0)),
         ("label":"pointer-events", "property":pointer-events, "values": (auto, none)),
+        ("label":"tt", "property":text-transform, "values": (lowercase, uppercase, capitalize)),
 );
 
 @each $colour, $hex in colours.$colours {
-  .bg-#{$colour} {
-    background-color: $hex !important;
-  }
-  .text-#{$colour} {
-    color: $hex !important;
-  }
-  .border-#{$colour} {
-    border: 1px solid $hex !important;
-  }
+    .bg-#{$colour} {
+        background-color: $hex !important;
+    }
+    .text-#{$colour} {
+        color: $hex !important;
+    }
+    .border-#{$colour} {
+        border: 1px solid $hex !important;
+    }
 }
 
 @for $gapLabel from 1 through length(variables.$gaps) {
-  $gap: nth(variables.$gaps, $gapLabel);
-  .gap-#{$gapLabel} {
-    gap: #{$gap};
-  }
-  .gap-column-#{$gapLabel} {
-    column-gap: #{$gap};
-  }
-  .gap-row-#{$gapLabel} {
-    row-gap: #{$gap};
-  }
+    $gap: nth(variables.$gaps, $gapLabel);
+    .gap-#{$gapLabel} {
+        gap: #{$gap};
+    }
+    .gap-column-#{$gapLabel} {
+        column-gap: #{$gap};
+    }
+    .gap-row-#{$gapLabel} {
+        row-gap: #{$gap};
+    }
 }
 
 .max-width {
-  &-none {
-    max-width: none;
-  }
+    &-none {
+        max-width: none;
+    }
 
-  &-content {
-    max-width: variables.$maxWidth;
-  }
+    &-content {
+        max-width: variables.$maxWidth;
+    }
 }
 
 @each $map in $propertyMap {
-  @each $value in map-get($map, "values") {
-    $propertyLabel: functions.str-replace(functions.str-replace($value, " !important"), "%");
-    .#{map-get($map, "label")}-#{$propertyLabel} {
-      #{map-get($map, "property")} : $value;
+    @each $value in map-get($map, "values") {
+        $propertyLabel: functions.str-replace(functions.str-replace($value, " !important"), "%");
+        .#{map-get($map, "label")}-#{$propertyLabel} {
+            #{map-get($map, "property")} : $value;
+        }
     }
-  }
 }
 
 @each $breakpointLabel, $breakpointValue in variables.$breakpoints {
 
-  //max-width-xs
-  .max-width-#{$breakpointLabel} {
-    max-width: $breakpointValue;
-  }
+    //max-width-xs
+    .max-width-#{$breakpointLabel} {
+        max-width: $breakpointValue;
+    }
 
-  @media screen and (max-width: $breakpointValue) {
-    @each $map in $propertyMap {
-      @if (map-get($map, "applyBreakpoints")) {
-        @each $value in map-get($map, "values") {
-          //d-sm-block
-          .#{map-get($map, "label")}-#{$breakpointLabel}-#{functions.str-replace(functions.str-replace($value, " !important"), "%")} {
-            #{map-get($map, "property")} : $value;
-          }
+    @media screen and (max-width: $breakpointValue) {
+        @each $map in $propertyMap {
+            @if (map-get($map, "applyBreakpoints")) {
+                @each $value in map-get($map, "values") {
+                    //d-sm-block
+                    .#{map-get($map, "label")}-#{$breakpointLabel}-#{functions.str-replace(functions.str-replace($value, " !important"), "%")} {
+                        #{map-get($map, "property")} : $value;
+                    }
+                }
+            }
         }
-      }
-    }
 
-    @for $gapLabel from 1 through length(variables.$gaps) {
-      $gap: nth(variables.$gaps, $gapLabel);
-      //gap-sm-8
-      .gap-#{$breakpointLabel}-#{$gapLabel} {
-        gap: #{$gap};
-      }
-      .gap-column-#{$breakpointLabel}-#{$gapLabel} {
-        column-gap: #{$gap};
-      }
-      .gap-row-#{$breakpointLabel}-#{$gapLabel} {
-        row-gap: #{$gap};
-      }
+        @for $gapLabel from 1 through length(variables.$gaps) {
+            $gap: nth(variables.$gaps, $gapLabel);
+            //gap-sm-8
+            .gap-#{$breakpointLabel}-#{$gapLabel} {
+                gap: #{$gap};
+            }
+            .gap-column-#{$breakpointLabel}-#{$gapLabel} {
+                column-gap: #{$gap};
+            }
+            .gap-row-#{$breakpointLabel}-#{$gapLabel} {
+                row-gap: #{$gap};
+            }
+        }
     }
-  }
+}
+
+.bg-placeholder {
+    position: relative;
+    background-color: var(--accent-2);
+
+    &:after {
+        @include pseudo.pseudoMixinAbsolute();
+        -webkit-mask-image: linear-gradient(130deg, #000000 25%, rgba(0, 0, 0, 0.8) 50%, #000000 75%);
+        mask-image: linear-gradient(130deg, #000000 25%, rgba(0, 0, 0, 0.8) 75%, #000000 75%);
+        -webkit-mask-size: 200% 100%;
+        mask-size: 200% 100%;
+        background-color: var(--accent-1);
+        animation: placeholderWave 2s linear infinite;
+    }
+}
+
+.tag {
+    border-radius: 10000px;
+    padding: 0.4rem 0.8rem;
+    font-size: 1.2rem;
 }
 
 .hidden {
-  visibility: hidden;
-  opacity: 0;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .hidden-transition {
-  transition-property: opacity, visibility;
-  transition-duration: variables.$defaultTransitionDuration;
-  transition-timing-function: variables.$defaultEasing;
+    transition-property: opacity, visibility;
+    transition-duration: variables.$defaultTransitionDuration;
+    transition-timing-function: variables.$defaultEasing;
 }
 
 .shown {
-  visibility: visible;
-  opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }
 
 .overflow-hidden {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .no-transition {
-  transition: none !important;
+    transition: none !important;
 }
 
 .border-pill {
-  border-radius: 10000px;
+    border-radius: 10000px;
 }
 
 .shadow {
-  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.05));
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.05));
 }
 
 .aspect-ratio-square {
-  aspect-ratio: 1;
+    aspect-ratio: 1;
 }
 
 .img-cover > img, .img-contain > img {
-  display: flex;
-  width: 100%;
-  height: 100%;
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
 
 .img-cover > img {
-  object-fit: cover;
+    object-fit: cover;
 }
 
 .img-contain > img {
-  object-fit: contain;
+    object-fit: contain;
 }
 
 .img-centre > img {
-  object-position: center;
+    object-position: center;
 }
 
 .img-centre-top > img {
-  object-position: center top;
+    object-position: center top;
 }
 
 .img-centre-bottom > img {
-  object-position: center bottom;
+    object-position: center bottom;
 }
 
 .img-left-centre > img {
-  object-position: left center;
+    object-position: left center;
 }
 
 .img-right-centre > img {
-  object-position: right center;
+    object-position: right center;
 }
 
 .img-left-bottom > img {
-  object-position: left bottom;
+    object-position: left bottom;
 }
 
 .img-right-bottom > img {
-  object-position: right bottom;
+    object-position: right bottom;
 }
 
 .img-left-top > img {
-  object-position: left top;
+    object-position: left top;
 }
 
 .img-right-top > img {
-  object-position: right top;
+    object-position: right top;
 }

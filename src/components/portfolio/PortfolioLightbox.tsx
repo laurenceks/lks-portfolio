@@ -22,6 +22,12 @@ const PortfolioLightbox = ({
 }) => {
     const nodeRef = useRef() as LegacyRef<HTMLDivElement> | undefined;
     const [inProp, setInProp] = useState(showLightbox);
+    const [imageLoaded, setImageLoaded] = useState(false);
+    useEffect(() => {
+        const img = new Image();
+        img.src = item?.item?.img;
+        img.onload = () => setImageLoaded(true);
+    }, [item?.item?.img]);
 
     useEffect(() => {
         if (showLightbox) {
@@ -53,8 +59,12 @@ const PortfolioLightbox = ({
                         }}
                     >
                         <img
-                            src={item?.item?.image}
-                            alt={item?.item?.imageAlt}
+                            src={
+                                imageLoaded
+                                    ? item?.item?.img
+                                    : item?.item?.thumb
+                            }
+                            alt={item?.item?.alt}
                         />
                     </div>
                 </div>
