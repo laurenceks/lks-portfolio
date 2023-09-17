@@ -20,11 +20,24 @@ const ImagePlaceholder = ({
 
     return (
         <div
-            className={imageLoaded ? "" : "bg-placeholder"}
+            className={"bg-light-2 position-relative"}
             style={{ aspectRatio: width / height }}
         >
+            <div
+                className={
+                    "portfolio-image-placeholder d-flex justify-content-center align-items-center h-100 w-100 position-absolute t-0 l-0"
+                }
+            >
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
             {imageLoaded && (
-                <img className={"d-flex w-100 h-auto"} src={src} alt={alt} />
+                <img
+                    className={"d-flex w-100 h-auto position-relative"}
+                    src={src}
+                    alt={alt}
+                />
             )}
         </div>
     );

@@ -1,0 +1,31 @@
+@use "../utilities/variables";
+@use "../utilities/functions";
+
+$animationPhaseDurationInS: 1;
+$totalDurationInS: functions.strip-unit(variables.$placeholderEllipsisAnimationDuration);
+
+@keyframes placeholderEllipsis {
+    0% {
+        transform: translateY(150%);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1); //easeOutQuart
+    }
+
+    #{percentage($animationPhaseDurationInS/$totalDurationInS)} {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(0);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.5, 0, 0.75, 0); //easeInQuart
+    }
+    #{percentage(($animationPhaseDurationInS + ($totalDurationInS/2))/$totalDurationInS)} {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+}
