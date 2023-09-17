@@ -26,7 +26,7 @@ div.portfolio-info-panel {
         mask-position: center bottom;
         -webkit-mask-size: 65px;
         mask-size: auto;
-        background-color: var(--accent-1);
+        background-color: var(--dark-blue-grey);
     }
 
     &:after {
@@ -86,6 +86,28 @@ div.portfolio-masonry-item {
     }
 }
 
+.portfolio-image-placeholder {
+    column-gap: 0.5rem;
+    z-index: 0;
+
+    > div {
+        opacity: 0;
+        border-radius: 50%;
+        background-color: var(--light);
+        width: 1rem;
+        height: 1rem;
+        animation: placeholderEllipsis variables.$placeholderEllipsisAnimationDuration infinite;
+
+        &:nth-of-type(2) {
+            animation-delay: 0.25s;
+        }
+
+        &:nth-of-type(3) {
+            animation-delay: 0.5s;
+        }
+    }
+}
+
 div.portfolio-info-panel-grid {
     grid-template-columns: auto 1fr;
     gap: 0.5rem;
@@ -97,6 +119,8 @@ div.portfolio-info-panel-grid {
 }
 
 div.portfolio-lightbox {
+    grid-template-columns: 3fr 2fr;
+    column-gap: 3rem;
     z-index: 10;
 
     &, &:before, .portfolio-lightbox-content-container {
@@ -138,6 +162,42 @@ div.portfolio-lightbox {
     transition-property: width, height, top, left, padding;
     transition-duration: variables.$defaultTransitionDuration;
     transition-timing-function: variables.$defaultEasing;
+}
+
+/*
+.portfolio-lightbox-thumbnails-container {
+    position: relative;
+    right: -1.5rem;
+    grid-column: 1/2;
+    align-items: end;
+    justify-content: center;
+    justify-self: end;
+    margin: 3rem 0;
+
+    > div {
+        transition: width variables.$defaultTransitionDuration variables.$defaultEasing;
+        box-shadow: 0.5rem 0.5rem 1rem rgba(map-get(colours.$colours, "light"), 0.15);
+        background-color: var(--light);
+        cursor: pointer;
+        width: 5rem;
+        aspect-ratio: 1;
+
+        &:hover {
+            width: 7rem;
+        }
+    }
+}
+*/
+
+.portfolio-lightbox-content-back-text {
+    left: -15rem;
+    opacity: 0.1;
+    z-index: -1;
+    background-blend-mode: lighten;
+    mix-blend-mode: lighten;
+    width: max-content;
+    line-height: 65%;
+    font-size: 20rem;
 }
 
 .portfolio-lightbox-tag {

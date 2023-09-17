@@ -3,7 +3,7 @@
 @use "../mixins/pseudo";
 @use "../mixins/backgroundMask";
 @use "functions";
-@forward "../animations/placeholderWave";
+@forward "../animations/placeholderEllipsis";
 @forward "../utilities/margins";
 
 $propertyMap: (
@@ -106,21 +106,6 @@ $propertyMap: (
                 row-gap: #{$gap};
             }
         }
-    }
-}
-
-.bg-placeholder {
-    position: relative;
-    background-color: var(--accent-2);
-
-    &:after {
-        @include pseudo.pseudoMixinAbsolute();
-        -webkit-mask-image: linear-gradient(130deg, #000000 25%, rgba(0, 0, 0, 0.8) 50%, #000000 75%);
-        mask-image: linear-gradient(130deg, #000000 25%, rgba(0, 0, 0, 0.8) 75%, #000000 75%);
-        -webkit-mask-size: 200% 100%;
-        mask-size: 200% 100%;
-        background-color: var(--accent-1);
-        animation: placeholderWave 2s linear infinite;
     }
 }
 

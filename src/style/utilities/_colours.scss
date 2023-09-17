@@ -1,13 +1,13 @@
-$colours: ("primary": #006633, "dark" : #0C0C0C, "light": #F5F5F5, "accent-1": #666A86, "accent-2": #788AA3);
+$colours: ("primary": #006633, "dark" : #0c0c0c, "light": #f5f5f5, "light-2": #dddddd, "dark-blue-grey": #666a86, "shadow-blue": #788aa3);
 
 :root {
-  @each $colour, $hex in $colours {
-    --#{$colour}: #{$hex};
-    .text-#{$colour} {
-      color: #{$hex};
+    @each $colour, $hex in $colours {
+        --#{$colour}: #{$hex};
+        .text-#{$colour} {
+            color: #{$hex};
+        }
+        .bg-#{$colour} {
+            background-color: #{$hex};
+        }
     }
-    .bg-#{$colour} {
-      background-color: #{$hex};
-    }
-  }
 }

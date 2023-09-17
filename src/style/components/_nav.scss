@@ -2,91 +2,91 @@
 @use "../mixins/pseudo";
 
 nav {
-  display: flex;
-  position: sticky;
-  top: 0;
-  align-items: center;
-  background-color: var(--light);
-  padding: 0 variables.$paddingGutter;
-  width: 100%;
-  letter-spacing: 0.01rem;
-  color: var(--dark);
-  font-family: var(--font-body);
-  font-weight: 500;
-  z-index: 5;
-
-  > img {
-    height: 60px;
-  }
-
-  > .nav-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0.25;
-    z-index: -1;
-    -webkit-mask-image: url("navBgMask.svg");
-    mask-image: url("navBgMask.svg");
-    -webkit-mask-position: center bottom;
-    mask-position: center bottom;
-    -webkit-mask-size: 65px;
-    mask-size: auto;
-    background-color: var(--accent-1);
-    width: 100%;
-    height: 100%;
-
-    &:before {
-      @include pseudo.pseudoMixinAbsolute($left: 0);
-      background: radial-gradient(ellipse farthest-side at top right, transparent 0%, var(--light) 100%);
-      background-size: 100% 26.4rem;
-    }
-  }
-
-  > ul {
     display: flex;
-    position: relative;
-    justify-self: end;
-    margin-left: auto;
-    padding: 2.4rem * .75 0;
-    list-style: none;
+    position: sticky;
+    top: 0;
+    align-items: center;
+    z-index: 5;
+    background-color: var(--light);
+    padding: 0 variables.$paddingGutter;
+    width: 100%;
+    letter-spacing: 0.01rem;
+    color: var(--dark);
+    font-family: var(--font-body);
+    font-weight: 500;
 
-    &:hover > li.nav-marker {
-      opacity: 1;
+    > img {
+        height: 60px;
     }
 
-    > li {
-      flex: 0 0 auto;
-      cursor: pointer;
-      padding: 0 3.2rem;
-      text-transform: uppercase;
-      font-size: 2.2rem;
-
-      &.nav-marker {
-        display: flex;
+    > .nav-background {
         position: absolute;
         top: 0;
         left: 0;
-        transition: transform 0.4s ease-out, width 0.4s ease-out, opacity 0.4s ease-out;
-        opacity: 0;
+        opacity: 0.25;
         z-index: -1;
-        padding: 2.4rem * .75 1rem;
-        width: auto;
+        -webkit-mask-image: url("navBgMask.svg");
+        mask-image: url("navBgMask.svg");
+        -webkit-mask-position: center bottom;
+        mask-position: center bottom;
+        -webkit-mask-size: 65px;
+        mask-size: auto;
+        background-color: var(--dark-blue-grey);
+        width: 100%;
         height: 100%;
-        color: var(--primary);
 
-        > svg {
-          width: 1.5rem;
-          height: 100%;
-
-          &:nth-of-type(1) {
-            margin-right: auto;
-          }
-
-          > path {
-            fill: var(--primary)
-          }
+        &:before {
+            @include pseudo.pseudoMixinAbsolute($left: 0);
+            background: radial-gradient(ellipse farthest-side at top right, transparent 0%, var(--light) 100%);
+            background-size: 100% 26.4rem;
         }
-      }
     }
-  }
+
+    > ul {
+        display: flex;
+        position: relative;
+        justify-self: end;
+        margin-left: auto;
+        padding: 2.4rem * .75 0;
+        list-style: none;
+
+        &:hover > li.nav-marker {
+            opacity: 1;
+        }
+
+        > li {
+            flex: 0 0 auto;
+            cursor: pointer;
+            padding: 0 3.2rem;
+            text-transform: uppercase;
+            font-size: 2.2rem;
+
+            &.nav-marker {
+                display: flex;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transition: transform 0.4s ease-out, width 0.4s ease-out, opacity 0.4s ease-out;
+                opacity: 0;
+                z-index: -1;
+                padding: 2.4rem * .75 1rem;
+                width: auto;
+                height: 100%;
+                color: var(--primary);
+
+                > svg {
+                    width: 1.5rem;
+                    height: 100%;
+
+                    &:nth-of-type(1) {
+                        margin-right: auto;
+                    }
+
+                    > path {
+                        fill: var(--primary)
+                    }
+                }
+            }
+        }
+    }
 }

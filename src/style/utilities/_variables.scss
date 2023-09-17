@@ -12,5 +12,6 @@ $breakpoints: (
 
 $maxWidth: 1200px;
 $paddingGutter: max(2.4rem, (100% - #{$maxWidth}) / 2);
-$defaultEasing: cubic-bezier(0.25, 1, 0.5, 1);
+$defaultEasing: cubic-bezier(0.25, 1, 0.5, 1); //easeOutQuart
 $defaultTransitionDuration: 0.4s;
+$placeholderEllipsisAnimationDuration: 4s;
