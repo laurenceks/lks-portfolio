@@ -72,7 +72,7 @@ const PortfolioLightboxStack = ({
     itemId?: number;
     stack?: string[];
 }) => (
-    <div className={"d-flex gap-column-2 flex-wrap mb-2"}>
+    <div className={"d-flex gap-2 flex-wrap my-3"}>
         {stack?.map((x, i) => (
             <div
                 className={"portfolio-lightbox-stack-icon cursor-pointer"}

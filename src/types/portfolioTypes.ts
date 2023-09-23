@@ -7,7 +7,7 @@ export interface PortfolioItemInterface {
     media: string;
     client: string;
     date: string;
-    stack: string;
+    stack: string[];
     blurb: string;
     description: string;
     img: string;

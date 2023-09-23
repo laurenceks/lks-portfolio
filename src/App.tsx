@@ -13,13 +13,12 @@ function App() {
                 <Hero learnMoreRef={learnMoreRef} />
                 <Nav />
                 <HeadingGrid className={"nav-background"}>
-                    <h1>Lorem ipsum</h1>
+                    <h1>More than just websites</h1>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Blanditiis libero minima nisi quaerat ut. Aliquid
-                        architecto dignissimos in odio quod sed sit tempora
-                        tempore temporibus vero. Dignissimos ipsum molestias
-                        ullam?
+                        Entirely bespoke web apps that solve your problems and
+                        simplify your workflows. Tailored solutions that place a
+                        premium on user experience. Quality innovations that
+                        will help your business succeed.
                     </p>
                 </HeadingGrid>
                 <Portfolio />

@@ -9,15 +9,18 @@ import {
 import { CSSTransition } from "react-transition-group";
 import { PortfolioLightBoxItemInterface } from "../../types/portfolioTypes.ts";
 import { sortingDateToMonthYear } from "../../utils/formatDates.ts";
+import PortfolioLightboxStack from "./PortfolioLightboxStack.tsx";
 
 const PortfolioLightbox = ({
     item,
     showLightbox,
     setShowLightbox,
+    setPortfolioLightboxItem,
 }: {
     item: PortfolioLightBoxItemInterface | null;
     showLightbox: boolean;
     setShowLightbox: Dispatch<SetStateAction<boolean>>;
+    setPortfolioLightboxItem: Dispatch<PortfolioLightBoxItemInterface | null>;
 }) => {
     const nodeRef = useRef() as LegacyRef<HTMLDivElement> | undefined;
     const [inProp, setInProp] = useState(showLightbox);
@@ -39,12 +42,16 @@ const PortfolioLightbox = ({
             nodeRef={nodeRef}
             in={inProp}
             timeout={400}
-            onExited={() => setShowLightbox(false)}
-            unmountOnExit
+            onExited={() => {
+                setShowLightbox(false);
+                setPortfolioLightboxItem(null);
+            }}
         >
             <div
                 ref={nodeRef}
-                className={`portfolio-lightbox position-fixed d-grid t-0 l-0 w-100 h-100 text-light`}
+                className={`portfolio-lightbox position-fixed t-0 l-0 w-100 h-100 text-light ${
+                    showLightbox ? "d-grid" : "d-none"
+                }`}
                 onClick={() => setInProp(false)}
             >
                 <div className={"position-relative"}>
@@ -80,10 +87,13 @@ const PortfolioLightbox = ({
                         {item?.item?.title}
                     </h1>
                     <h1>{item?.item?.title}</h1>
-                    <h6>{sortingDateToMonthYear(item?.item?.date)}</h6>
+                    <h4>{sortingDateToMonthYear(item?.item?.date)}</h4>
+                    <h5>{item?.item?.client}</h5>
+                    <PortfolioLightboxStack
+                        itemId={item?.item?.id}
+                        stack={item?.item?.stack}
+                    />
                     <p>{item?.item?.description}</p>
-                    <h3>{item?.item?.client}</h3>
-                    <p>{item?.item?.stack}</p>
                 </div>
             </div>
         </CSSTransition>
