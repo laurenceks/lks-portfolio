@@ -60,7 +60,7 @@ $propertyMap: (
         max-width: none;
     }
 
-    &-content {
+    &-content, &-page {
         max-width: variables.$maxWidth;
     }
 }
