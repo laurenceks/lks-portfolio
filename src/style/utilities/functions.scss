@@ -1,75 +1,77 @@
+@use "sass:math";
+
 @function str-replace($string, $search, $replace: "") {
-  @if type-of($string) != string {
-    $string: #{$string};
-  }
-  @if type-of($search) != string {
-    $search: #{$search};
-  }
-  $index: str-index($string, $search);
+    @if type-of($string) != string {
+        $string: #{$string};
+    }
+    @if type-of($search) != string {
+        $search: #{$search};
+    }
+    $index: str-index($string, $search);
 
-  @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
-  }
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
 
-  @return $string;
+    @return $string;
 }
 
 @function multi-str-replace($string, $searches, $replace: "") {
-  @each $search in $searches {
-    $string: str-replace($string, $search, $replace)
-  }
+    @each $search in $searches {
+        $string: str-replace($string, $search, $replace)
+    }
 
-  @return $string;
+    @return $string;
 }
 
 @function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
-  }
+    @if type-of($number) == "number" and not unitless($number) {
+        @return math.div($number, ($number * 0 + 1));
+    }
 
-  @return $number;
+    @return $number;
 }
 
 @function make-label($val) {
-  @return multi-str-replace(strip-unit($val), ("~", "!", "!important" "\@", "$", "%", "^", "&", "*", "(", ")", "+", "=", ",", ".", "/", "'", "\"", ";", ":", "?", ">", "<", "[", "]", "\\"), "-");
+    @return multi-str-replace(strip-unit($val), ("~", "!", "!important" "\@", "$", "%", "^", "&", "*", "(", ")", "+", "=", ",", ".", "/", "'", "\"", ";", ":", "?", ">", "<", "[", "]", "\\"), "-");
 }
 
 @function map-get-next($map, $key, $fallback: false, $return: value) {
-  // Check if map is valid
-  @if type-of($map) == map {
-    // Check if key exists in map
-    @if map-has-key($map, $key) {
-      // Init index counter variable
-      $i: 0;
-      // Init key index
-      $key-index: false;
-      // Traverse map for key
-      @each $map-key, $map-value in $map {
-        // Update index
-        $i: $i + 1;
-        // If map key found, set key index
-        @if $map-key == $key {
-          $key-index: $i;
+    // Check if map is valid
+    @if type-of($map) == map {
+        // Check if key exists in map
+        @if map-has-key($map, $key) {
+            // Init index counter variable
+            $i: 0;
+            // Init key index
+            $key-index: false;
+            // Traverse map for key
+            @each $map-key, $map-value in $map {
+                // Update index
+                $i: $i + 1;
+                // If map key found, set key index
+                @if $map-key == $key {
+                    $key-index: $i;
+                }
+                // If next index return next value or key based on $return
+                @if $i == $key-index + 1 {
+                    @if $return == key {
+                        @return $map-key;
+                    } @else {
+                        @return $map-value;
+                    }
+                }
+                // If last entry return false
+                @if $i == length($map) {
+                    @return $fallback;
+                }
+            }
+            @warn "No next map item for key #{$key}";
+            @return $fallback;
         }
-        // If next index return next value or key based on $return
-        @if $i == $key-index + 1 {
-          @if $return == key {
-            @return $map-key;
-          } @else {
-            @return $map-value;
-          }
-        }
-        // If last entry return false
-        @if $i == length($map) {
-          @return $fallback;
-        }
-      }
-      @warn "No next map item for key #{$key}";
-      @return $fallback;
+        @warn "No valid key #{$key} in map";
+        @return $fallback;
     }
-    @warn "No valid key #{$key} in map";
+    @warn "No valid map";
     @return $fallback;
-  }
-  @warn "No valid map";
-  @return $fallback;
 }
