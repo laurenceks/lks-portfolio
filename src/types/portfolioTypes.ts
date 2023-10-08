@@ -1,5 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
 
+export interface PortfolioItemDescriptionItemInterface {
+    title: string;
+    content: string;
+}
+
 export interface PortfolioItemInterface {
     id: number;
     title: string;
@@ -9,7 +14,7 @@ export interface PortfolioItemInterface {
     date: string;
     stack: string[];
     blurb: string;
-    description: string;
+    description: PortfolioItemDescriptionItemInterface[];
     img: string;
     thumb: string;
     thumbWidth: number;

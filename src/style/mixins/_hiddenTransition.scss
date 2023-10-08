@@ -1,4 +1,4 @@
-@use "../variables";
+@use "../utilities/variables";
 
 @mixin hiddenTransitionMixin() {
     transition: opacity variables.$defaultTransitionDuration variables.$defaultEasing, visibility variables.$defaultTransitionDuration;

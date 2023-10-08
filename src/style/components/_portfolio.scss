@@ -1,6 +1,7 @@
 @use "../utilities/colours";
 @use "../utilities/variables";
 @use "../mixins/pseudo";
+@use "../mixins/hiddenTransition";
 @use "../mixins/backgroundMask";
 @forward "../utilities/classes";
 
@@ -230,4 +231,87 @@ div.portfolio-lightbox {
             opacity: 1;
         }
     }
+}
+
+.portfolio-lightbox-timeline-item {
+    &:first-child {
+        .portfolio-lightbox-timeline-segment:after {
+            top: 1.8rem;
+            height: calc(100% - 1.8rem);
+        }
+    }
+
+    &:last-child {
+        .portfolio-lightbox-timeline-segment:after {
+            height: 1.8rem;
+        }
+    }
+
+    &:only-child {
+        .portfolio-lightbox-timeline-segment:after {
+            display: none;
+        }
+    }
+
+    &:not(:last-child) {
+        padding-bottom: 1rem;
+    }
+
+    &:not(:only-child) {
+
+    }
+
+    &.active {
+        .portfolio-lightbox-timeline-segment {
+            &:before {
+                transform: scale(1.5);
+            }
+        }
+
+        .portfolio-lightbox-timeline-content {
+            @include hiddenTransition.hiddenTransitionMixin;
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    &.inactive {
+        .portfolio-lightbox-timeline-content,
+        .portfolio-lightbox-timeline-heading {
+            visibility: hidden;
+            opacity: 0;
+        }
+    }
+}
+
+.portfolio-lightbox-timeline-segment {
+    &:before {
+        //dot
+        @include pseudo.pseudoMixin($width: 1rem, $height: 1rem, $top: 1.8rem);
+        flex-shrink: 0;
+        transition-property: transform;
+        transition-duration: variables.$defaultTransitionDuration;
+        transition-timing-function: variables.$defaultEasing;
+        margin-right: 1.5rem;
+        border-radius: 50%;
+        background-color: var(--light);
+    }
+
+    &:after {
+        //line
+        @include pseudo.pseudoMixinAbsolute($width: 0.2rem, $height: 100%, $top: 0, $left: 0.5rem);
+        flex-shrink: 0;
+        transform: translateX(-50%);
+        background-color: var(--light);
+    }
+}
+
+.portfolio-lightbox-timeline-heading {
+}
+
+.portfolio-lightbox-timeline-content {
+    @include hiddenTransition.hiddenTransitionMixin;
+    transform: translateY(100%);
+    visibility: hidden;
+    opacity: 0;
 }

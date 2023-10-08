@@ -10,6 +10,7 @@ import { CSSTransition } from "react-transition-group";
 import { PortfolioLightBoxItemInterface } from "../../types/portfolioTypes.ts";
 import { sortingDateToMonthYear } from "../../utils/formatDates.ts";
 import PortfolioLightboxStack from "./PortfolioLightboxStack.tsx";
+import PortfolioLightboxTimeline from "./PortfolioLightboxTimeline.tsx";
 
 const PortfolioLightbox = ({
     item,
@@ -93,7 +94,9 @@ const PortfolioLightbox = ({
                         itemId={item?.item?.id}
                         stack={item?.item?.stack}
                     />
-                    <p>{item?.item?.description}</p>
+                    <PortfolioLightboxTimeline
+                        portfolioDescription={item?.item?.description}
+                    />
                 </div>
             </div>
         </CSSTransition>

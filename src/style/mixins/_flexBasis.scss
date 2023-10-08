@@ -1,8 +1,11 @@
 @use "sass:math";
 @use "../utilities/functions";
 
-@mixin flexBasisMixin($columns: 1, $gap: 0) {
+@mixin flexBasisMixin($columns: 1, $gapInPx: 0) {
     $targetWidth: math.div(1, $columns);
-    $gutter: ((1-$targetWidth)*$gap);
-    flex-basis: calc(#{math.percentage($targetWidth)} - #{functions.str-replace($gutter, "px")}px);
+    @if (unit($gapInPx) == "rem") {
+        $gapInPx: $gapInPx * 10;
+    }
+    $gutter: ((1-$targetWidth)*$gapInPx);
+    flex-basis: calc(#{math.percentage($targetWidth)} - #{functions.strip-unit($gutter)}px);
 }
