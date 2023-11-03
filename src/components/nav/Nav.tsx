@@ -2,20 +2,33 @@ import { MouseEvent, useState } from "react";
 import { useSpring } from "react-spring";
 import NavBracketSVG from "../hero/NavBracketSVG.tsx";
 
+interface LiMouseOverInterface {
+    touchedOnce: boolean;
+    touchedTwice: boolean;
+    translateX: number;
+    width: number;
+}
 const Nav = () => {
-    const [bracketTranslation, setBracketTranslation] = useState({
-        width: 0,
-        translateX: 0,
-    });
+    const [bracketTranslation, setBracketTranslation] =
+        useState<LiMouseOverInterface>({
+            touchedOnce: false,
+            touchedTwice: false,
+            width: 0,
+            translateX: 0,
+        });
     const [{ stage }, setStage] = useSpring(() => ({
         stage: 0,
     }));
     const liMouseOver = (e: MouseEvent<HTMLLIElement>) => {
         setStage.start({ stage: 1 });
-        setBracketTranslation({
-            translateX: e.currentTarget.offsetLeft,
-            width: e.currentTarget.offsetWidth,
-        });
+        // store values now to avoid reference of e.currentTarget expiring when state update runs
+        const { offsetLeft, offsetWidth } = e.currentTarget;
+        setBracketTranslation((prevState) => ({
+            touchedOnce: true,
+            touchedTwice: prevState.touchedOnce,
+            translateX: offsetLeft,
+            width: offsetWidth,
+        }));
     };
     const liMouseOut = () => {
         setStage.start({ stage: 0 });
@@ -23,7 +36,7 @@ const Nav = () => {
 
     return (
         <nav>
-            <img src={"logo.svg"} />
+            <img src={"logo.svg"} alt={"Laurence Summers Web Development"} />
             <ul>
                 <li onMouseEnter={liMouseOver} onMouseLeave={liMouseOut}>
                     Home
@@ -38,7 +51,9 @@ const Nav = () => {
                     Contact
                 </li>
                 <li
-                    className={"nav-marker"}
+                    className={`nav-marker ${
+                        bracketTranslation.touchedTwice ? "" : "no-transition"
+                    }`}
                     style={{
                         transform: `translateX(${bracketTranslation.translateX}px)`,
                         width: `${bracketTranslation.width}px`,
