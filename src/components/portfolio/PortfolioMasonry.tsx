@@ -1,33 +1,27 @@
-import { useEffect, useRef, useState } from "react";
+import { RefObject, useContext, useEffect, useRef, useState } from "react";
 import SectionMaxWidth from "../wrappers/SectionMaxWidth.tsx";
-import {
-    PanelPositionType,
-    PortfolioItemInterface,
-    PortfolioLightBoxItemInterface,
-} from "../../types/portfolioTypes.ts";
-import { mockPortfolioItems } from "../../mockData.ts";
+import { PanelPositionType } from "../../types/portfolioTypes.ts";
 import PortfolioMasonryItem from "./PortfolioMasonryItem.tsx";
 import PortfolioLightbox from "./PortfolioLightbox.tsx";
 import splitItemsIntoCols from "../../utils/splitItemsIntoCols.tsx";
 import remToPx from "../../utils/remToPx.ts";
+import { AppContext } from "../../App.tsx";
 
 const PortfolioMasonry = () => {
-    const [PortfolioMasonryItems, setPortfolioMasonryItems] = useState<
-        PortfolioItemInterface[]
-    >([]);
+    const {
+        appState: { portfolioItems, currentPortfolioItem },
+    } = useContext(AppContext);
     const [hoverItemId, setHoverItemId] = useState<number | null>(null);
-    const [portfolioLightboxItem, setPortfolioLightboxItem] =
-        useState<PortfolioLightBoxItemInterface | null>(null);
-    const [showLightbox, setShowLightbox] = useState(false);
     const [masonryColumns, setMasonryColumns] = useState(3);
-    const masonryContainerRef = useRef(null);
+    const masonryContainerRef = useRef(null) as
+        | RefObject<HTMLDivElement>
+        | undefined;
 
     useEffect(() => {
-        setPortfolioMasonryItems(mockPortfolioItems);
         const handleResize = () => {
             setMasonryColumns(
                 Math.floor(
-                    (masonryContainerRef.current?.offsetWidth || 0) /
+                    (masonryContainerRef?.current?.offsetWidth || 0) /
                         remToPx(31.5)
                 )
             );
@@ -35,7 +29,6 @@ const PortfolioMasonry = () => {
         window.addEventListener("resize", handleResize);
         handleResize();
         return () => {
-            setPortfolioMasonryItems([]);
             window.removeEventListener("resize", handleResize);
         };
     }, []);
@@ -45,10 +38,12 @@ const PortfolioMasonry = () => {
             className={"bg-light text-dark position-relative pt-none"}
         >
             <div
-                className={`d-grid grid-columns-${masonryColumns} gap-3 align-items-start`}
+                className={`d-grid grid-columns-${masonryColumns} gap-3 align-items-start ${
+                    currentPortfolioItem ? "overflow-hidden" : ""
+                }`}
                 ref={masonryContainerRef}
             >
-                {splitItemsIntoCols(PortfolioMasonryItems, masonryColumns).map(
+                {splitItemsIntoCols(portfolioItems, masonryColumns).map(
                     (col, i, a) => {
                         let panelPosition: PanelPositionType = "none";
                         if (a.length > 1) {
@@ -66,16 +61,8 @@ const PortfolioMasonry = () => {
                                     <PortfolioMasonryItem
                                         key={item.id}
                                         item={item}
-                                        lightboxItemId={
-                                            portfolioLightboxItem?.item?.id
-                                        }
-                                        showLightbox={showLightbox}
                                         hoverItemId={hoverItemId}
-                                        setPortfolioLightboxItem={
-                                            setPortfolioLightboxItem
-                                        }
                                         setHoverItemId={setHoverItemId}
-                                        setShowLightbox={setShowLightbox}
                                         panelPosition={panelPosition}
                                     />
                                 ))}
@@ -84,12 +71,7 @@ const PortfolioMasonry = () => {
                     }
                 )}
             </div>
-            <PortfolioLightbox
-                item={portfolioLightboxItem}
-                showLightbox={showLightbox}
-                setShowLightbox={setShowLightbox}
-                setPortfolioLightboxItem={setPortfolioLightboxItem}
-            />
+            <PortfolioLightbox />
         </SectionMaxWidth>
     );
 };

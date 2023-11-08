@@ -110,6 +110,11 @@ $propertyMap: (
     }
 }
 
+.no-scroll {
+    position: fixed;
+    overflow-y: scroll;
+}
+
 .tag {
     border-radius: 10000px;
     padding: 0.4rem 0.8rem;

@@ -24,21 +24,17 @@ export interface PortfolioItemInterface {
 }
 
 export interface PortfolioLightBoxItemInterface {
-    item?: PortfolioItemInterface | null;
-    rect?: DOMRect | null;
+    item: PortfolioItemInterface | null;
+    rect: DOMRect | null;
+    bodyTop: number | null;
 }
 
 export type PanelPositionType = "none" | "left" | "right";
 
 export interface PortfolioMasonryItemInterface {
     item: PortfolioItemInterface;
-    lightboxItemId?: number | null;
     hoverItemId?: number | null;
     showLightbox?: boolean | null;
-    setPortfolioLightboxItem: Dispatch<
-        SetStateAction<PortfolioLightBoxItemInterface | null>
-    >;
     setHoverItemId: Dispatch<SetStateAction<number | null>>;
-    setShowLightbox: Dispatch<SetStateAction<boolean>>;
     panelPosition: PanelPositionType;
 }

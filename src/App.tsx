@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { createContext, useEffect, useReducer, useRef } from "react";
 import {
     SiAdobeillustrator,
     SiAdobephotoshop,
@@ -35,11 +35,42 @@ import Portfolio from "./components/portfolio/Portfolio.tsx";
 import HeadingGrid from "./components/wrappers/HeadingGrid.tsx";
 import Hero from "./components/hero/Hero.tsx";
 import Nav from "./components/nav/Nav.tsx";
+import {
+    appStateReducer,
+    initialAppState,
+} from "./reducers/appStateReducer.ts";
+import { AppContextInterface } from "./types/appStateTypes.ts";
+
+export const AppContext = createContext<AppContextInterface>({
+    appState: initialAppState,
+    dispatchAppState: () => {},
+});
 
 function App() {
+    const [appState, dispatchAppState] = useReducer(
+        appStateReducer,
+        initialAppState
+    );
     const learnMoreRef = useRef(null);
+
+    useEffect(() => {
+        document.body.className = appState.currentPortfolioItem
+            ? "no-scroll"
+            : "position-static";
+        if (!appState.currentPortfolioItem) {
+            window.scrollTo({
+                top:
+                    parseInt(document.body.style.top.replace("px", ""), 10) *
+                    -1,
+            });
+        }
+        document.body.style.top = `${
+            appState.currentPortfolioItem?.bodyTop || 0
+        }px`;
+    }, [appState.currentPortfolioItem]);
+
     return (
-        <>
+        <AppContext.Provider value={{ appState, dispatchAppState }}>
             <header></header>
             <main>
                 <Hero learnMoreRef={learnMoreRef} />
@@ -200,7 +231,7 @@ function App() {
                 <Portfolio />
             </main>
             <footer></footer>
-        </>
+        </AppContext.Provider>
     );
 }
 
