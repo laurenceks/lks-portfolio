@@ -2,7 +2,7 @@ import { Ref, useContext, useEffect, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { sortingDateToMonthYear } from "../../utils/formatDates.ts";
 import PortfolioLightboxStack from "./PortfolioLightboxStack.tsx";
-import PortfolioLightboxTimeline from "./PortfolioLightboxTimeline.tsx";
+import PortfolioLightboxTimeline from "./timeline/PortfolioLightboxTimeline.tsx";
 import { AppContext } from "../../App.tsx";
 
 const PortfolioLightbox = () => {

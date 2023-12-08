@@ -107,25 +107,25 @@ function App() {
                                     "d-flex gap-column-2 flex-wrap justify-content-center align-items-center"
                                 }
                             >
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiHtml5 />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiCss3 />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiSass />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiJavascript />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiTypescript />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiPhp />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiVisualbasic />
                                 </div>
                             </div>
@@ -137,25 +137,25 @@ function App() {
                                     "d-flex gap-2 flex-wrap justify-content-center align-items-center"
                                 }
                             >
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiReact />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiJquery />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiChartdotjs />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiMapbox />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SlClock />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiWebpack />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiPassport />
                                 </div>
                             </div>
@@ -167,10 +167,10 @@ function App() {
                                     "d-flex gap-2 flex-wrap justify-content-center align-items-center"
                                 }
                             >
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiMysql />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiMongodb />
                                 </div>
                             </div>
@@ -182,46 +182,46 @@ function App() {
                                     "d-flex gap-2 flex-wrap justify-content-center align-items-center"
                                 }
                             >
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiGit />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiGithub />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiVisualstudiocode />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiWebstorm />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiPhpstorm />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiAtom />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiMicrosoftexcel />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiAdobeillustrator />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiAdobephotoshop />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiAdobepremierepro />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiGimp />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiInkscape />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiFigma />
                                 </div>
-                                <div className="portfolio-lightbox-stack-icon">
+                                <div className="portfolio-lightbox-stack-icon icon-container">
                                     <SiSlack />
                                 </div>
                             </div>

@@ -6,40 +6,53 @@
 @forward "../utilities/classes";
 
 div.portfolio-info-panel {
-    transition-property: opacity, visibility, transform;
-    transition-duration: variables.$defaultTransitionDuration;
-    transition-timing-function: variables.$defaultEasing;
     z-index: -1;
     height: max-content;
     min-height: 100%;
     overflow: hidden;
+    transition-property: opacity, visibility, transform;
+    transition-duration: variables.$defaultTransitionDuration;
+    transition-timing-function: variables.$defaultEasing;
 
-    &:before, &:after {
-        @include pseudo.pseudoMixinAbsolute($left: 0, $bottom: 0, $top: unset, $height: 26.4rem);
+    &:before,
+    &:after {
+        @include pseudo.pseudoMixinAbsolute(
+                $left: 0,
+                $bottom: 0,
+                $top: unset,
+                $height: 26.4rem
+        );
     }
 
     &:before {
-        opacity: 0.25;
         z-index: -2;
+        opacity: 0.25;
+        background-color: var(--dark-blue-grey);
         -webkit-mask-image: url("navBgMask.svg");
         mask-image: url("navBgMask.svg");
         -webkit-mask-position: center bottom;
         mask-position: center bottom;
         -webkit-mask-size: 65px;
         mask-size: auto;
-        background-color: var(--dark-blue-grey);
     }
 
     &:after {
         z-index: -1;
-        background: radial-gradient(ellipse farthest-side at bottom left, transparent 0%, var(--dark) 100%) no-repeat bottom left;
+        background: radial-gradient(
+                        ellipse farthest-side at bottom left,
+                        transparent 0%,
+                        var(--dark) 100%
+        ) no-repeat bottom left;
         background-size: 100% 26.4rem;
     }
 
     &.left:after {
-        background: radial-gradient(ellipse farthest-side at bottom right, transparent 0%, var(--dark) 100%) no-repeat bottom right;
+        background: radial-gradient(
+                        ellipse farthest-side at bottom right,
+                        transparent 0%,
+                        var(--dark) 100%
+        ) no-repeat bottom right;
     }
-
 }
 
 p.portfolio-info-panel-description {
@@ -53,9 +66,10 @@ div.portfolio-masonry-item {
     transition-duration: variables.$defaultTransitionDuration;
     transition-timing-function: variables.$defaultEasing;
 
-    &:hover, &.active {
-        transform: scale(1.05);
+    &:hover,
+    &.active {
         z-index: 1;
+        transform: scale(1.05);
 
         &:not(.active) {
             div.portfolio-info-panel {
@@ -82,22 +96,22 @@ div.portfolio-masonry-item {
         transition-timing-function: variables.$defaultEasing;
 
         img {
-            animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1)
+            animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1);
         }
     }
 }
 
 .portfolio-image-placeholder {
-    column-gap: 0.5rem;
     z-index: 0;
+    column-gap: 0.5rem;
 
     > div {
-        opacity: 0;
-        border-radius: 50%;
-        background-color: var(--light);
         width: 1rem;
         height: 1rem;
         animation: placeholderEllipsis variables.$placeholderEllipsisAnimationDuration infinite;
+        border-radius: 50%;
+        opacity: 0;
+        background-color: var(--light);
 
         &:nth-of-type(2) {
             animation-delay: 0.25s;
@@ -111,8 +125,8 @@ div.portfolio-masonry-item {
 
 div.portfolio-info-panel-grid {
     grid-template-columns: auto 1fr;
-    gap: 0.5rem;
     margin-bottom: 0.8rem;
+    gap: 0.5rem;
 
     p {
         margin-bottom: 0;
@@ -120,17 +134,20 @@ div.portfolio-info-panel-grid {
 }
 
 div.portfolio-lightbox {
+    z-index: 10;
     grid-template-columns: 3fr 2fr;
     column-gap: 3rem;
-    z-index: 10;
 
-    &, &:before, .portfolio-lightbox-content-container {
+    &,
+    &:before,
+    .portfolio-lightbox-content-container {
         transition-property: transform;
         transition-duration: variables.$defaultTransitionDuration;
         transition-timing-function: variables.$defaultEasing;
     }
 
-    &:before, .portfolio-lightbox-content-container {
+    &:before,
+    .portfolio-lightbox-content-container {
         transform: translateX(100%);
     }
 
@@ -139,8 +156,10 @@ div.portfolio-lightbox {
         background-color: var(--dark);
     }
 
-    &.enter-active, &.enter-done {
-        &:before, .portfolio-lightbox-content-container {
+    &.enter-active,
+    &.enter-done {
+        &:before,
+        .portfolio-lightbox-content-container {
             transform: translateX(0%);
         }
 
@@ -191,19 +210,19 @@ div.portfolio-lightbox {
 */
 
 .portfolio-lightbox-content-back-text {
-    left: -15rem;
-    opacity: 0.1;
     z-index: -1;
+    left: -15rem;
+    width: max-content;
+    opacity: 0.1;
+    font-size: 20rem;
+    line-height: 65%;
     background-blend-mode: lighten;
     mix-blend-mode: lighten;
-    width: max-content;
-    line-height: 65%;
-    font-size: 20rem;
 }
 
 .portfolio-lightbox-tag {
-    rotate: 180deg;
     margin: 0;
+    rotate: 180deg;
     writing-mode: vertical-lr;
     text-orientation: sideways;
 }
@@ -213,15 +232,16 @@ div.portfolio-lightbox {
     width: 4rem;
     height: 4rem;
 
-    > svg {
-        width: 100%;
-        height: 100%;
-    }
-
     > div {
-        @include pseudo.pseudoMixinAbsolute($left: 50%, $bottom: 0, $top: unset, $width: auto, $height: auto);
-        transform: translate(-50%, 125%);
+        @include pseudo.pseudoMixinAbsolute(
+                $left: 50%,
+                $bottom: 0,
+                $top: unset,
+                $width: auto,
+                $height: auto
+        );
         width: max-content;
+        transform: translate(-50%, 125%);
         font-size: 1.5rem;
     }
 
@@ -233,41 +253,27 @@ div.portfolio-lightbox {
     }
 }
 
+.portfolio-lightbox-timeline {
+    &:after {
+        @include pseudo.pseudoMixinAbsolute(
+                $width: 4rem,
+                $left: 0,
+                $height: 1.6rem
+        );
+        background: linear-gradient(180deg, var(--dark) 0%, transparent 100%);
+    }
+}
+
+.portfolio-lightbox-timeline-grid {
+    grid-template-columns: auto 1fr;
+
+    > div {
+        transition: transform variables.$defaultTransitionDuration variables.$defaultEasing;
+    }
+}
+
 .portfolio-lightbox-timeline-item {
-    &:first-child {
-        .portfolio-lightbox-timeline-segment:after {
-            top: 1.8rem;
-            height: calc(100% - 1.8rem);
-        }
-    }
-
-    &:last-child {
-        .portfolio-lightbox-timeline-segment:after {
-            height: 1.8rem;
-        }
-    }
-
-    &:only-child {
-        .portfolio-lightbox-timeline-segment:after {
-            display: none;
-        }
-    }
-
-    &:not(:last-child) {
-        padding-bottom: 1rem;
-    }
-
-    &:not(:only-child) {
-
-    }
-
     &.active {
-        .portfolio-lightbox-timeline-segment {
-            &:before {
-                transform: scale(1.5);
-            }
-        }
-
         .portfolio-lightbox-timeline-content {
             @include hiddenTransition.hiddenTransitionMixin;
             visibility: visible;
@@ -276,42 +282,76 @@ div.portfolio-lightbox {
     }
 
     &.inactive {
+        pointer-events: none;
+
         .portfolio-lightbox-timeline-content,
         .portfolio-lightbox-timeline-heading {
             visibility: hidden;
             opacity: 0;
         }
     }
+
+    .portfolio-lightbox-timeline-heading {
+        min-height: 5.5rem;
+    }
+
+    .portfolio-lightbox-timeline-button {
+        width: 4rem;
+        height: 4rem;
+    }
 }
 
 .portfolio-lightbox-timeline-segment {
+    height: 5.5rem;
+
     &:before {
         //dot
         @include pseudo.pseudoMixin($width: 1rem, $height: 1rem, $top: 1.8rem);
         flex-shrink: 0;
+        margin-right: 1.5rem;
+        margin-left: 1.5rem;
         transition-property: transform;
         transition-duration: variables.$defaultTransitionDuration;
         transition-timing-function: variables.$defaultEasing;
-        margin-right: 1.5rem;
         border-radius: 50%;
         background-color: var(--light);
     }
 
     &:after {
         //line
-        @include pseudo.pseudoMixinAbsolute($width: 0.2rem, $height: 100%, $top: 0, $left: 0.5rem);
+        @include pseudo.pseudoMixinAbsolute(
+                $width: 0.2rem,
+                $height: 100%,
+                $top: 0,
+                $left: 1.9rem
+        );
         flex-shrink: 0;
         transform: translateX(-50%);
         background-color: var(--light);
     }
-}
 
-.portfolio-lightbox-timeline-heading {
+    &:first-child:after {
+        top: 1.8rem;
+        height: calc(100% - 1.8rem);
+    }
+
+    &:last-child:after {
+        height: 1.8rem;
+    }
+
+    &:only-child:after {
+        display: none;
+    }
+
+    &.active {
+        &:before {
+            transform: scale(1.5);
+        }
+    }
 }
 
 .portfolio-lightbox-timeline-content {
     @include hiddenTransition.hiddenTransitionMixin;
-    transform: translateY(100%);
     visibility: hidden;
     opacity: 0;
 }

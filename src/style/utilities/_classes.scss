@@ -15,7 +15,7 @@ $propertyMap: (
         ("label":"ta", "property":text-align, "applyBreakpoints": true, "values": (left, center, right, justify)),
         ("label":"fw", "property":font-weight, "values": (100, 200, 300, 400, 500, 600, 700, 800, 900)),
         ("label":"fs", "property":font-style, "values": (normal, italic)),
-        ("label":"w", "property":width, "values": (25%, 50%, 75%, 100%, auto)),
+        ("label":"w", "property":width, "values": (0, 25%, 50%, 75%, 100%, auto)),
         ("label":"h", "property":height, "values": (25%, 50%, 75%, 100%, auto)),
         ("label":"cursor", "property":cursor, "values": (pointer, auto)),
         ("label":"overflow", "property":overflow, "values": (hidden, scroll)),
@@ -116,8 +116,8 @@ $propertyMap: (
 }
 
 .tag {
-    border-radius: 10000px;
     padding: 0.4rem 0.8rem;
+    border-radius: 10000px;
     font-size: 1.2rem;
 }
 
@@ -155,6 +155,11 @@ $propertyMap: (
 
 .aspect-ratio-square {
     aspect-ratio: 1;
+}
+
+.icon-container > svg{
+    width: 100%;
+    height: 100%;
 }
 
 .img-cover > img, .img-contain > img {

@@ -75,7 +75,9 @@ const PortfolioLightboxStack = ({
     <div className={"d-flex gap-2 flex-wrap my-3"}>
         {stack?.map((x, i) => (
             <div
-                className={"portfolio-lightbox-stack-icon cursor-pointer"}
+                className={
+                    "portfolio-lightbox-stack-icon icon-container cursor-pointer"
+                }
                 key={`${itemId}-stack-${i}`}
                 onClick={(e) => {
                     e.stopPropagation();
