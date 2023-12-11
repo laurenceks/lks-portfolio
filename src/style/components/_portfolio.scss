@@ -156,6 +156,12 @@ div.portfolio-lightbox {
         background-color: var(--dark);
     }
 
+    &.enter:not(.enter-active) {
+        .portfolio-lightbox-image-container {
+            transition-property: none !important;
+        }
+    }
+
     &.enter-active,
     &.enter-done {
         &:before,
@@ -164,22 +170,18 @@ div.portfolio-lightbox {
         }
 
         .portfolio-lightbox-image-container {
-            top: 0 !important;
-            left: 0 !important;
-            width: 100% !important;
-            height: 100% !important;
+            transform: none !important;
         }
     }
 
     &:not(.enter-active, .enter-done) {
         .portfolio-lightbox-image-container {
-            padding: 0 !important;
         }
     }
 }
 
 .portfolio-lightbox-image-container {
-    transition-property: width, height, top, left, padding;
+    transition-property: transform;
     transition-duration: variables.$defaultTransitionDuration;
     transition-timing-function: variables.$defaultEasing;
 }

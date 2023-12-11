@@ -21,7 +21,8 @@ const PortfolioLightbox = () => {
     const imgContainerRef = useRef<HTMLDivElement>(null);
     const [imageLoaded, setImageLoaded] = useState(false);
 
-    const [imgContainerTransform, setImgContainerTransform] = useState("");
+    const [imgContainerTransformState, setImgContainerTransformState] =
+        useState("");
 
     useEffect(() => {
         const img = new Image();
@@ -30,10 +31,7 @@ const PortfolioLightbox = () => {
     }, [currentPortfolioItem?.item?.img]);
 
     useLayoutEffect(() => {
-        if (
-            imgContainerRef?.current?.getBoundingClientRect &&
-            currentPortfolioItem?.rect
-        ) {
+        if (currentPortfolioItem?.rect && imgContainerRef?.current) {
             const { top, left, width, height } =
                 imgContainerRef.current.getBoundingClientRect();
             const { paddingTop, paddingBottom, paddingLeft } = getComputedStyle(
@@ -43,42 +41,39 @@ const PortfolioLightbox = () => {
             const parsedPaddingTop = parseInt(paddingTop, 10);
             const parsedPaddingBottom = parseInt(paddingBottom, 10);
 
-            const isLandscape =
-                currentPortfolioItem.rect.width >
-                currentPortfolioItem.rect.height;
+            const isTallerThanContainer =
+                currentPortfolioItem.rect.width /
+                    currentPortfolioItem.rect.height <
+                width / height;
 
-            const scaleX =
+            const normalScale =
                 currentPortfolioItem.rect.width /
                 (width - parsedPaddingLeft - left);
 
-            const imgAspectRatio =
-                currentPortfolioItem.rect.height /
-                currentPortfolioItem.rect.width;
-            const containerHeightScale = imgAspectRatio / (height / width);
-            console.log(containerHeightScale);
             const scaleY =
                 currentPortfolioItem.rect.height /
-                (height * containerHeightScale -
-                    parsedPaddingTop -
-                    parsedPaddingBottom -
-                    top);
+                (height - parsedPaddingTop - parsedPaddingBottom - top);
+
+            const tallScale = (height * scaleY * (width / height)) / width;
 
             const translateX =
                 currentPortfolioItem.rect.left +
                 currentPortfolioItem.rect.width / 2 -
-                (parsedPaddingLeft * scaleX) / 2;
+                (parsedPaddingLeft * normalScale) / 2;
 
             const translateY =
                 currentPortfolioItem.rect.top +
                 currentPortfolioItem.rect.height / 2;
 
-            setImgContainerTransform(
+            setImgContainerTransformState(
                 `translate(calc(${translateX}px - 50%), calc(${translateY}px - 50%)) scale(${
-                    isLandscape ? scaleX : scaleY
-                })    `
+                    isTallerThanContainer ? tallScale : normalScale
+                })`
             );
+        } else if (!showLightbox) {
+            setImgContainerTransformState("");
         }
-    }, [currentPortfolioItem?.rect]);
+    }, [currentPortfolioItem, showLightbox]);
 
     return (
         <CSSTransition
@@ -104,7 +99,7 @@ const PortfolioLightbox = () => {
                 <div className={"position-relative"}>
                     <div
                         className={`portfolio-lightbox-image-container img-contain position-absolute p-3 pe-none w-100 h-100`}
-                        style={{ transform: imgContainerTransform }}
+                        style={{ transform: imgContainerTransformState }}
                     >
                         <img
                             src={
