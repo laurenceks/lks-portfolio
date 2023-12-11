@@ -3,6 +3,7 @@
 @use "../mixins/pseudo";
 @use "../mixins/hiddenTransition";
 @use "../mixins/backgroundMask";
+@use "../mixins/buttonGradient";
 @forward "../utilities/classes";
 
 div.portfolio-info-panel {
@@ -298,8 +299,16 @@ div.portfolio-lightbox {
     }
 
     .portfolio-lightbox-timeline-button {
+        @include buttonGradient.buttonGradientMixin();
+        position: relative;
         width: 4rem;
         height: 4rem;
+
+        > svg {
+            background: black;
+            color: white;
+            mix-blend-mode: multiply;
+        }
     }
 }
 
@@ -325,7 +334,7 @@ div.portfolio-lightbox {
                 $width: 0.2rem,
                 $height: 100%,
                 $top: 0,
-                $left: 1.9rem
+                $left: 2rem
         );
         flex-shrink: 0;
         transform: translateX(-50%);

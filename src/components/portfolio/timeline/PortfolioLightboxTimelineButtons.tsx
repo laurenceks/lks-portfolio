@@ -11,16 +11,16 @@ const PortfolioLightboxTimelineButtons = ({
     setActiveItemIndex: Dispatch<SetStateAction<number>>;
 }) => (
     <div className={"d-flex gap-column-2"}>
-        {i > 0 && itemCount > 1 && (
+        {i < itemCount - 1 && (
             <PortfolioLightboxTimelineButton
-                type="up"
+                type="down"
                 i={i}
                 setActiveItemIndex={setActiveItemIndex}
             />
         )}
-        {i < itemCount - 1 && (
+        {i > 0 && itemCount > 1 && (
             <PortfolioLightboxTimelineButton
-                type="down"
+                type="up"
                 i={i}
                 setActiveItemIndex={setActiveItemIndex}
             />

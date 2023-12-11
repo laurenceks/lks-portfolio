@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import {
-    IoArrowDownCircleOutline,
+    IoArrowDownCircleSharp,
     IoArrowUpCircleOutline,
 } from "react-icons/io5";
 
@@ -23,7 +23,7 @@ const PortfolioLightboxTimelineButtons = ({
         }}
     >
         {type === "down" ? (
-            <IoArrowDownCircleOutline />
+            <IoArrowDownCircleSharp />
         ) : (
             <IoArrowUpCircleOutline />
         )}
