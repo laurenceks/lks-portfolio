@@ -1,13 +1,14 @@
-import HeroTypingBodyLoop from "../HeroTypingBodyLoop.tsx";
+import HeroTypingBodyLoop from "../typing/HeroTypingBodyLoop.tsx";
+import HeroStageDiv from "./HeroStageDiv.tsx";
 
 const HeroStageThree = () => (
-    <div>
+    <HeroStageDiv>
         <p className={"hero-tag"}>{"<hello> "}</p>
         <p className={"hero-main"}>
             <HeroTypingBodyLoop />
         </p>
         <p className={"hero-tag"}>{"</hello>"}</p>
-    </div>
+    </HeroStageDiv>
 );
 
 export default HeroStageThree;

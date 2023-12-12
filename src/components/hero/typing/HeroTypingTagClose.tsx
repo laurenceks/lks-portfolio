@@ -1,5 +1,5 @@
 import { TypeAnimation } from "react-type-animation";
-import heroConfig from "./heroConfig.ts";
+import heroConfig from "../heroConfig.ts";
 
 const HeroTypingTagClose = () => (
     <TypeAnimation sequence={["</hello>"]} {...heroConfig} cursor={false} />

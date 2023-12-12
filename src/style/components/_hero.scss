@@ -1,44 +1,29 @@
 @use "../utilities/variables";
-@use "../animations/fadeInUp";
+@use "../mixins/pseudo";
+@use "../mixins/buttonGradient";
 
 section.hero {
-    position: relative;
-    z-index: 0;
+    min-height: 50vw;
     padding-right: variables.$paddingGutter;
     padding-left: variables.$paddingGutter;
-    min-height: 50vw;
 
     div.hero-content {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
+        grid-template-areas: "typing image" "buttons empty";
+        grid-template-columns: auto 1fr;
     }
 
     div.hero-typing-container {
-        width: 50%;
-        min-width: 60rem;
+        grid-area: typing;
+        width: clamp(65rem, 55%, 100%);
     }
 
     div.hero-typing, div.hero-typing > div:not(.hero-typing-background) {
-        display: grid;
         grid-template-columns: 1fr;
-        align-items: center;
-        justify-content: center;
-        z-index: 1;
-        margin: 0;
-        width: 100%;
-        max-width: 60rem;
+        max-width: 70rem;
 
         > div {
-            grid-row: 1/-1;
             grid-column: 1/-1;
-        }
-
-        > div.hidden {
-            visibility: hidden;
+            grid-row: 1/-1;
         }
 
         > p {
@@ -51,63 +36,66 @@ section.hero {
             &.hero-main {
                 margin-bottom: 0;
                 padding: 2.4rem 2.4rem 2.4rem 5.4rem;
-                line-height: unset;
                 font-family: var(--font-headings);
                 font-size: 4.8rem;
                 font-weight: 600;
+                line-height: unset;
             }
         }
     }
 
     div.hero-cta {
-        display: flex;
-        column-gap: 2rem;
-        z-index: 1;
-        margin-top: 5rem;
+        grid-area: buttons;
         padding: 2.4rem 2.4rem 2.4rem 5.4rem;
         font-family: var(--font-buttons);
         font-size: 2.4rem;
 
         > button {
-            visibility: hidden;
-            opacity: 0;
-
             &.shown {
-                animation: fadeInUp 2s cubic-bezier(0.25, 1, 0.5, 1);
-                animation-fill-mode: forwards;
-
                 &:nth-of-type(2) {
                     animation-delay: 0.5s;
                 }
-
             }
         }
     }
 
     div.hero-typing-background {
-        position: absolute;
-        bottom: 0;
         left: 24px;
-        grid-row: auto;
         grid-column: auto;
+        grid-row: auto;
         opacity: 0.65;
-        white-space: pre;
-        color: var(--dark-blue-grey);
         font-family: var(--font-code);
         font-size: 0.8rem;
+        white-space: pre;
     }
 
     div.hero-particles-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        width: 100%;
-        height: 100%;
-
         > div {
             width: 100%;
             height: 100%;
         }
+    }
+}
+
+div.hero-image {
+    position: relative;
+    grid-area: image;
+    align-self: center;
+    max-width: 25rem;
+    justify-self: center;
+    aspect-ratio: 1;
+
+    > img {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        border-radius: 50%;
+    }
+
+    &:before {
+        $borderThickness: 1rem;
+        @include pseudo.pseudoMixinAbsolute($width: calc(100% + $borderThickness), $height: calc(100% + $borderThickness), $top: $borderThickness/-2, $left: $borderThickness/-2);
+        @include buttonGradient.buttonGradientMixin;
+        border-radius: 50%;
     }
 }

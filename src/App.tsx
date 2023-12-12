@@ -51,7 +51,7 @@ function App() {
         appStateReducer,
         initialAppState
     );
-    const learnMoreRef = useRef(null);
+    const learnMoreRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         document.body.className = appState.currentPortfolioItem
@@ -74,6 +74,7 @@ function App() {
             <header></header>
             <main>
                 <Hero learnMoreRef={learnMoreRef} />
+                <div ref={learnMoreRef} />
                 <Nav />
                 <HeadingGrid className={"nav-background"}>
                     <h1>More than just websites</h1>

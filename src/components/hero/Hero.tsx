@@ -1,10 +1,14 @@
 import HeroContent from "./HeroContent.tsx";
-import ParticleBackground from "../particles/ParticleBackground.tsx";
+import HeroParticleBackground from "./HeroParticleBackground.tsx";
+import { ScrollIntoViewRefType } from "../../types/heroTypes.ts";
 
-const Hero = ({ learnMoreRef }) => (
-    <section id="hero" className={"hero"}>
+const Hero = ({ learnMoreRef }: { learnMoreRef: ScrollIntoViewRefType }) => (
+    <section
+        id="hero"
+        className={"hero d-grid align-items-center position-relative z-0"}
+    >
         <HeroContent learnMoreRef={learnMoreRef} />
-        <ParticleBackground />
+        <HeroParticleBackground />
     </section>
 );
 export default Hero;

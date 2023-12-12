@@ -1,6 +1,6 @@
 import { MouseEvent, useState } from "react";
 import { useSpring } from "react-spring";
-import NavBracketSVG from "../hero/NavBracketSVG.tsx";
+import NavBracketSVG from "./NavBracketSVG.tsx";
 
 interface LiMouseOverInterface {
     touchedOnce: boolean;

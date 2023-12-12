@@ -29,6 +29,7 @@ $propertyMap: (
         ("label":"pointer-events", "property":pointer-events, "values": (auto, none)),
         ("label":"tt", "property":text-transform, "values": (lowercase, uppercase, capitalize)),
         ("label":"flex-grow", "property":flex-grow, "values": (1)),
+        ("label":"z", "property":z-index, "values": (-1, 0, 1)),
 );
 
 @each $colour, $hex in colours.$colours {
@@ -157,7 +158,7 @@ $propertyMap: (
     aspect-ratio: 1;
 }
 
-.icon-container > svg{
+.icon-container > svg {
     width: 100%;
     height: 100%;
 }

@@ -7,7 +7,9 @@ const HeroBackground = () => (
         sequence={[heroTypingBackgroundTextContent]}
         {...heroConfig}
         wrapper={"div"}
-        className={"hero-typing-background"}
+        className={
+            "hero-typing-background position-absolute b-0 text-dark-blue-grey"
+        }
         speed={80}
     />
 );

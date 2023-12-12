@@ -87,7 +87,7 @@ const PortfolioLightboxStack = ({
                 {iconMap[x]?.icon || ""}
                 <div
                     className={
-                        "hidden hidden-transition tag bg-light text-dark"
+                        "hidden hidden-transition tag bg-light text-dark z-1"
                     }
                 >
                     {">_"}

@@ -414,7 +414,7 @@ export default HeroContent;
 );
 export default HeroBackground;
 import HeroContent from "./HeroContent.tsx";
-import ParticleBackground from "../particles/ParticleBackground.tsx";
+import ParticleBackground from "../particles/HeroParticleBackground.tsx";
 
 const Hero = () => (
     <section id="hero" className={"hero"}>
