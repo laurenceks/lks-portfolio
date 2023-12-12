@@ -1,22 +1,42 @@
-.fade-in-up {
-    visibility: hidden;
-    opacity: 0;
-
-    &.shown {
-        animation: fadeInUp 2s cubic-bezier(0.25, 1, 0.5, 1);
-        animation-fill-mode: forwards;
-    }
-}
-
-@keyframes fadeInUp {
+@mixin fadeInUpMixin($y: 100%) {
     0% {
         opacity: 0;
         visibility: hidden;
-        transform: translateY(100%);
+        transform: translateY($y);
     }
     100% {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
     }
+}
+
+.animation-fade-in-up {
+    visibility: hidden;
+    opacity: 0;
+
+    &.animation-start {
+        animation: fadeInUp 2s cubic-bezier(0.25, 1, 0.5, 1);
+        animation-fill-mode: forwards;
+
+        &.fade-in-up-25 {
+            animation-name: fadeInUp25;
+        }
+
+        &.fade-in-up-50 {
+            animation-name: fadeInUp50;
+        }
+    }
+}
+
+@keyframes fadeInUp {
+    @include fadeInUpMixin()
+}
+
+@keyframes fadeInUp25 {
+    @include fadeInUpMixin(25%)
+}
+
+@keyframes fadeInUp50 {
+    @include fadeInUpMixin(50%)
 }
