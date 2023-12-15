@@ -8,6 +8,7 @@ export interface AppStateInterface {
     portfolioItems: PortfolioItemInterface[];
     currentPortfolioItem: PortfolioLightBoxItemInterface | null;
     showLightbox: boolean;
+    scrollPadding: number;
 }
 
 interface setPortfolioItemsInterface {
@@ -24,10 +25,7 @@ interface unsetCurrentPortfolioItemInterface {
     type: "unsetCurrentPortfolioItem";
 }
 
-interface showPortfolioLightbox {
-    type: "showPortfolioLightbox";
-}
-interface hidePortfolioLightbox {
+interface hidePortfolioLightboxInterface {
     type: "hidePortfolioLightbox";
 }
 
@@ -35,8 +33,7 @@ export type AppReducerActionType =
     | setPortfolioItemsInterface
     | setCurrentPortfolioItemInterface
     | unsetCurrentPortfolioItemInterface
-    | showPortfolioLightbox
-    | hidePortfolioLightbox;
+    | hidePortfolioLightboxInterface;
 
 export interface AppContextInterface {
     appState: AppStateInterface;

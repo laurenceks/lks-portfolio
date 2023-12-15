@@ -26,7 +26,6 @@ export interface PortfolioItemInterface {
 export interface PortfolioLightBoxItemInterface {
     item: PortfolioItemInterface | null;
     rect: DOMRect | null;
-    bodyTop: number | null;
 }
 
 export type PanelPositionType = "none" | "left" | "right";

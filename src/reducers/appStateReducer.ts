@@ -8,6 +8,7 @@ export const initialAppState: AppStateInterface = {
     portfolioItems: mockPortfolioItems,
     currentPortfolioItem: null,
     showLightbox: false,
+    scrollPadding: 0,
 };
 
 export const appStateReducer = (
@@ -23,13 +24,17 @@ export const appStateReducer = (
                 ...prevState,
                 currentPortfolioItem: action.payload,
                 showLightbox: true,
+                scrollPadding: Math.abs(
+                    window.innerWidth - document.documentElement.clientWidth
+                ),
             };
         }
         case "unsetCurrentPortfolioItem": {
-            return { ...prevState, currentPortfolioItem: null };
-        }
-        case "showPortfolioLightbox": {
-            return { ...prevState, showLightbox: true };
+            return {
+                ...prevState,
+                currentPortfolioItem: null,
+                scrollPadding: 0,
+            };
         }
         case "hidePortfolioLightbox": {
             return { ...prevState, showLightbox: false };

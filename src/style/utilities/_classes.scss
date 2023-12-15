@@ -112,8 +112,8 @@ $propertyMap: (
 }
 
 .no-scroll {
-    position: fixed;
-    overflow-y: scroll;
+    overflow: hidden;
+    touch-action: none;
 }
 
 .tag {

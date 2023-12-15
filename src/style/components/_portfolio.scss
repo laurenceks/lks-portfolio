@@ -63,6 +63,7 @@ p.portfolio-info-panel-description {
 }
 
 div.portfolio-masonry-item {
+    transform: scale(1);
     transition-property: transform;
     transition-duration: variables.$defaultTransitionDuration;
     transition-timing-function: variables.$defaultEasing;
@@ -142,6 +143,7 @@ div.portfolio-lightbox {
     &,
     &:before,
     .portfolio-lightbox-content-container {
+        transform: translateX(0);
         transition-property: transform;
         transition-duration: variables.$defaultTransitionDuration;
         transition-timing-function: variables.$defaultEasing;
@@ -182,6 +184,8 @@ div.portfolio-lightbox {
 }
 
 .portfolio-lightbox-image-container {
+    max-height: 100vh;
+    transform: none;
     transition-property: transform;
     transition-duration: variables.$defaultTransitionDuration;
     transition-timing-function: variables.$defaultEasing;

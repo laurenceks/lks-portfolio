@@ -38,7 +38,6 @@ const PortfolioMasonryItem = ({
                     payload: {
                         item,
                         rect: e.currentTarget.getBoundingClientRect(),
-                        bodyTop: window.scrollY * -1,
                     },
                 });
             }}

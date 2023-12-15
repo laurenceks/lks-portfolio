@@ -56,23 +56,17 @@ function App() {
     useEffect(() => {
         document.body.className = appState.currentPortfolioItem
             ? "no-scroll"
-            : "position-static";
-        if (!appState.currentPortfolioItem) {
-            window.scrollTo({
-                top:
-                    parseInt(document.body.style.top.replace("px", ""), 10) *
-                    -1,
-            });
-        }
-        document.body.style.top = `${
-            appState.currentPortfolioItem?.bodyTop || 0
-        }px`;
+            : "";
     }, [appState.currentPortfolioItem]);
 
     return (
         <AppContext.Provider value={{ appState, dispatchAppState }}>
             <header></header>
-            <main>
+            <main
+                style={{
+                    paddingRight: appState.scrollPadding,
+                }}
+            >
                 <Hero learnMoreRef={learnMoreRef} />
                 <div ref={learnMoreRef} />
                 <Nav />
