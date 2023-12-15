@@ -94,7 +94,8 @@ div.hero-image {
 
     &:before {
         $borderThickness: 1rem;
-        @include pseudo.pseudoMixinAbsolute($width: calc(100% + $borderThickness), $height: calc(100% + $borderThickness), $top: $borderThickness/-2, $left: $borderThickness/-2);
+        @include pseudo.pseudoMixinAbsolute($width: calc(100% + $borderThickness), $height: calc(100% + $borderThickness), $top: $borderThickness *-0.5, $left: $borderThickness *-0.5
+        );
         @include buttonGradient.buttonGradientMixin;
         border-radius: 50%;
     }
