@@ -10,6 +10,7 @@ $propertyMap: (
         ("label":"d", "property":display, "applyBreakpoints": true, "values":(grid, flex, inline, inline-block, inline-grid, inline-flex, block, none)),
         ("label":"justify-content", "property":justify-content, "applyBreakpoints": true, "values": (start, center, end, space-evenly, space-around, space-between)),
         ("label":"align-items", "property":align-items, "applyBreakpoints": true, "values": (start, center, end, baseline)),
+        ("label":"align-content", "property":align-content, "applyBreakpoints": true, "values": (start, center, end, baseline)),
         ("label":"align-self", "property":align-self, "applyBreakpoints": true, "values": (start, center, end, baseline)),
         ("label":"justify-self", "property":justify-self, "applyBreakpoints": true, "values": (start, center, end, baseline)),
         ("label":"ta", "property":text-align, "applyBreakpoints": true, "values": (left, center, right, justify)),
@@ -161,6 +162,14 @@ $propertyMap: (
 .icon-container > svg {
     width: 100%;
     height: 100%;
+}
+
+.ps-gutter {
+    padding-left: variables.$paddingGutter;
+}
+
+.pe-gutter {
+    padding-right: variables.$paddingGutter;
 }
 
 .img-cover > img, .img-contain > img {

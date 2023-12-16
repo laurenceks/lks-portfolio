@@ -1,0 +1,19 @@
+@use "../utilities/variables";
+
+.about-image-container {
+    max-height: 50rem;
+
+    > div {
+        transform: translateX(-25%);
+        transition-property: opacity, transform;
+        transition-duration: variables.$defaultTransitionDuration * 2;
+        transition-timing-function: variables.$defaultEasing;
+        opacity: 0;
+
+        &.active,
+        &.scrolled-past {
+            transform: translateX(0%);
+            opacity: 1;
+        }
+    }
+}
