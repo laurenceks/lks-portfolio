@@ -1,7 +1,11 @@
 @use "../utilities/variables";
 
+.about-grid {
+    grid-template-columns: auto 1fr;
+}
+
 .about-image-container {
-    max-height: 50rem;
+    max-height: 60rem;
 
     > div {
         transform: translateX(-25%);

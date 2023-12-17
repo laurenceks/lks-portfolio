@@ -5,8 +5,14 @@ export interface TypingHeroInterface {
 }
 
 export type ScrollIntoViewRefType = RefObject<HTMLElement | HTMLDivElement>;
-export interface HeroInterface {
+
+export interface HeroTypingInterface {
     heroTypingStage: number;
     setHeroTypingStage?: Dispatch<SetStateAction<number>>;
-    learnMoreRef?: ScrollIntoViewRefType;
 }
+
+export interface HeroRefInterface {
+    learnMoreRef: ScrollIntoViewRefType;
+    contactRef: ScrollIntoViewRefType;
+}
+export interface HeroInterface extends HeroRefInterface, HeroTypingInterface {}

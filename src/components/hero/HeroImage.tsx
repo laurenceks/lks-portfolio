@@ -1,6 +1,6 @@
-import { HeroInterface } from "../../types/heroTypes.ts";
+import { HeroTypingInterface } from "../../types/heroTypes.ts";
 
-const HeroImage = ({ heroTypingStage }: HeroInterface) => (
+const HeroImage = ({ heroTypingStage }: HeroTypingInterface) => (
     <div
         className={`hero-image animation-fade-in-up fade-in-up-25 ${
             heroTypingStage > 2 ? "animation-start" : ""

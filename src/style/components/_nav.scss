@@ -4,16 +4,16 @@
 nav {
     display: flex;
     position: sticky;
-    top: 0;
-    align-items: center;
     z-index: 5;
-    background-color: var(--light);
-    padding: 0 variables.$paddingGutter;
+    top: -1px;
+    align-items: center;
     width: 100%;
-    letter-spacing: 0.01rem;
+    padding: 0 variables.$paddingGutter;
+    background-color: var(--light);
     color: var(--dark);
     font-family: var(--font-body);
     font-weight: 500;
+    letter-spacing: 0.01rem;
 
     > img {
         height: 60px;
@@ -21,19 +21,19 @@ nav {
 
     > .nav-background {
         position: absolute;
+        z-index: -1;
         top: 0;
         left: 0;
+        width: 100%;
+        height: 100%;
         opacity: 0.25;
-        z-index: -1;
+        background-color: var(--dark-blue-grey);
         -webkit-mask-image: url("navBgMask.svg");
         mask-image: url("navBgMask.svg");
         -webkit-mask-position: center bottom;
         mask-position: center bottom;
         -webkit-mask-size: 65px;
         mask-size: auto;
-        background-color: var(--dark-blue-grey);
-        width: 100%;
-        height: 100%;
 
         &:before {
             @include pseudo.pseudoMixinAbsolute($left: 0);
@@ -45,10 +45,10 @@ nav {
     > ul {
         display: flex;
         position: relative;
-        justify-self: end;
         margin-left: auto;
         padding: 2.4rem * .75 0;
         list-style: none;
+        justify-self: end;
 
         &:hover > li.nav-marker {
             opacity: 1;
@@ -56,22 +56,22 @@ nav {
 
         > li {
             flex: 0 0 auto;
-            cursor: pointer;
             padding: 0 3.2rem;
-            text-transform: uppercase;
             font-size: 2.2rem;
+            text-transform: uppercase;
+            cursor: pointer;
 
             &.nav-marker {
                 display: flex;
                 position: absolute;
+                z-index: -1;
                 top: 0;
                 left: 0;
-                transition: transform 0.4s ease-out, width 0.4s ease-out, opacity 0.4s ease-out;
-                opacity: 0;
-                z-index: -1;
-                padding: 2.4rem * .75 1rem;
                 width: auto;
                 height: 100%;
+                padding: 2.4rem * .75 1rem;
+                transition: transform 0.4s ease-out, width 0.4s ease-out, opacity 0.4s ease-out;
+                opacity: 0;
                 color: var(--primary);
 
                 > svg {

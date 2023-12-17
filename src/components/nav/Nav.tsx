@@ -1,6 +1,7 @@
 import { MouseEvent, useState } from "react";
 import { useSpring } from "react-spring";
 import NavBracketSVG from "./NavBracketSVG.tsx";
+import { ScrollIntoViewRefType } from "../../types/heroTypes.ts";
 
 interface LiMouseOverInterface {
     touchedOnce: boolean;
@@ -8,7 +9,7 @@ interface LiMouseOverInterface {
     translateX: number;
     width: number;
 }
-const Nav = () => {
+const Nav = ({ refs }: { refs: ScrollIntoViewRefType[] }) => {
     const [bracketTranslation, setBracketTranslation] =
         useState<LiMouseOverInterface>({
             touchedOnce: false,
@@ -34,22 +35,22 @@ const Nav = () => {
         setStage.start({ stage: 0 });
     };
 
+    const labels = ["About", "Portfolio", "Contact"];
+
     return (
         <nav>
             <img src={"logo.svg"} alt={"Laurence Summers Web Development"} />
             <ul>
-                <li onMouseEnter={liMouseOver} onMouseLeave={liMouseOut}>
-                    Home
-                </li>
-                <li onMouseEnter={liMouseOver} onMouseLeave={liMouseOut}>
-                    Portfolio
-                </li>
-                <li onMouseEnter={liMouseOver} onMouseLeave={liMouseOut}>
-                    About
-                </li>
-                <li onMouseEnter={liMouseOver} onMouseLeave={liMouseOut}>
-                    Contact
-                </li>
+                {labels.map((label, i) => (
+                    <li
+                        key={`nav-li-${label}`}
+                        onMouseEnter={liMouseOver}
+                        onMouseLeave={liMouseOut}
+                        onClick={() => refs[i].current?.scrollIntoView()}
+                    >
+                        {label}
+                    </li>
+                ))}
                 <li
                     className={`nav-marker ${
                         bracketTranslation.touchedTwice ? "" : "no-transition"

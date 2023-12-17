@@ -1,14 +1,20 @@
 @use "scss-reset/reset";
 @use "animations";
 @use "common";
-@use "components";
 @use "utilities";
+//components last to allow overriding of classes
+@use "components";
 
 body, html, #root {
     width: 100%;
     min-height: 100%;
     background-color: var(--dark);
     color: var(--light);
+}
+
+body {
+    scroll-behavior: smooth;
+    scroll-margin: 6.6rem;
 }
 
 * {

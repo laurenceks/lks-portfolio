@@ -172,6 +172,14 @@ $propertyMap: (
     padding-right: variables.$paddingGutter;
 }
 
+.ms-gutter {
+    margin-left: variables.$paddingGutter;
+}
+
+.me-gutter {
+    margin-right: variables.$paddingGutter;
+}
+
 .img-cover > img, .img-contain > img {
     display: flex;
     width: 100%;

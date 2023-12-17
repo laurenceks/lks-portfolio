@@ -2,13 +2,9 @@ import { useState } from "react";
 import HeroTyping from "./typing/HeroTyping.tsx";
 import HeroCTA from "./HeroCTA.tsx";
 import HeroImage from "./HeroImage.tsx";
-import { ScrollIntoViewRefType } from "../../types/heroTypes.ts";
+import { HeroRefInterface } from "../../types/heroTypes.ts";
 
-const HeroContent = ({
-    learnMoreRef,
-}: {
-    learnMoreRef: ScrollIntoViewRefType;
-}) => {
+const HeroContent = ({ learnMoreRef, contactRef }: HeroRefInterface) => {
     const [heroStage, setHeroStage] = useState(0);
 
     return (
@@ -21,7 +17,11 @@ const HeroContent = ({
                 heroTypingStage={heroStage}
                 setHeroTypingStage={setHeroStage}
             />
-            <HeroCTA heroTypingStage={heroStage} learnMoreRef={learnMoreRef} />
+            <HeroCTA
+                heroTypingStage={heroStage}
+                learnMoreRef={learnMoreRef}
+                contactRef={contactRef}
+            />
             <HeroImage heroTypingStage={heroStage} />
         </div>
     );

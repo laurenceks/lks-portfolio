@@ -8,6 +8,9 @@ import {
 } from "./reducers/appStateReducer.ts";
 import { AppContextInterface } from "./types/appStateTypes.ts";
 import About from "./About.tsx";
+import Experience from "./Experience.tsx";
+import Technologies from "./Technologies.tsx";
+import Section from "./components/wrappers/Section.tsx";
 
 export const AppContext = createContext<AppContextInterface>({
     appState: initialAppState,
@@ -20,6 +23,9 @@ function App() {
         initialAppState
     );
     const learnMoreRef = useRef<HTMLDivElement>(null);
+    const aboutRef = useRef<HTMLDivElement>(null);
+    const portfolioRef = useRef<HTMLDivElement>(null);
+    const contactRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         document.body.className = appState.currentPortfolioItem
@@ -35,11 +41,18 @@ function App() {
                     paddingRight: appState.scrollPadding,
                 }}
             >
-                <Hero learnMoreRef={learnMoreRef} />
+                <Hero learnMoreRef={learnMoreRef} contactRef={contactRef} />
                 <div ref={learnMoreRef} />
-                <Nav />
-                <About />
-                <Portfolio />
+                <Nav refs={[aboutRef, portfolioRef, contactRef]} />
+                <About aboutRef={aboutRef} />
+                <Experience portfolioRef={portfolioRef} />
+                <Technologies />
+                <Portfolio portfolioRef={portfolioRef} />
+                <Section>
+                    <div ref={contactRef}>
+                        <h2>Contact</h2>
+                    </div>
+                </Section>
             </main>
             <footer></footer>
         </AppContext.Provider>

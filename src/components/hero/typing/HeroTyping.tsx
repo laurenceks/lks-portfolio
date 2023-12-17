@@ -5,10 +5,13 @@ import HeroBackground from "../HeroBackground.tsx";
 import HeroHidden from "../HeroHidden.tsx";
 import HeroStageThree from "../stages/HeroStageThree.tsx";
 import HeroStageFour from "../stages/HeroStageFour.tsx";
-import { HeroInterface } from "../../../types/heroTypes.ts";
+import { HeroTypingInterface } from "../../../types/heroTypes.ts";
 import HeroStageDiv from "../stages/HeroStageDiv.tsx";
 
-const HeroTyping = ({ heroTypingStage, setHeroTypingStage }: HeroInterface) => {
+const HeroTyping = ({
+    heroTypingStage,
+    setHeroTypingStage,
+}: HeroTypingInterface) => {
     const nextHeroTypingStage = () => {
         if (setHeroTypingStage) {
             setHeroTypingStage((currentStage: number) => currentStage + 1);
