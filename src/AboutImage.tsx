@@ -70,7 +70,7 @@ const AboutImage = () => {
                         } ${currentImageIndex > i ? "scrolled-past" : ""}`}
                     >
                         <img
-                            src={`about/cropped/about-${i + 1}.png`}
+                            src={`/images/about/cropped/about-${i + 1}.png`}
                             alt={`About image ${i + 1}`}
                         />
                     </div>
