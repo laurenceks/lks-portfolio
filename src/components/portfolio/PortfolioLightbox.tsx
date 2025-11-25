@@ -20,15 +20,19 @@ const PortfolioLightbox = () => {
     const nodeRef = useRef<HTMLDivElement>(null);
     const imgContainerRef = useRef<HTMLDivElement>(null);
     const [imageLoaded, setImageLoaded] = useState(false);
+    const [entered, setEntered] = useState(false);
 
     const [imgContainerTransformState, setImgContainerTransformState] =
         useState("");
+    const imgPath = currentPortfolioItem?.item
+        ? `images/portfolio/full/${currentPortfolioItem?.item?.imgFileName}`
+        : "";
 
     useEffect(() => {
         const img = new Image();
-        img.src = currentPortfolioItem?.item?.img || "";
+        img.src = imgPath;
         img.onload = () => setImageLoaded(true);
-    }, [currentPortfolioItem?.item?.img]);
+    }, [imgPath]);
 
     useLayoutEffect(() => {
         if (currentPortfolioItem?.rect && imgContainerRef?.current) {
@@ -84,8 +88,10 @@ const PortfolioLightbox = () => {
             onExited={() => {
                 if (!showLightbox) {
                     dispatchAppState({ type: "unsetCurrentPortfolioItem" });
+                    setEntered(false);
                 }
             }}
+            onEntered={() => setEntered(true)}
         >
             <div
                 ref={nodeRef}
@@ -102,10 +108,10 @@ const PortfolioLightbox = () => {
                         style={{ transform: imgContainerTransformState }}
                     >
                         <img
-                            src={
-                                imageLoaded
-                                    ? currentPortfolioItem?.item?.img
-                                    : currentPortfolioItem?.item?.thumb
+                            srcSet={
+                                imageLoaded && entered
+                                    ? currentPortfolioItem?.item?.srcSet
+                                    : currentPortfolioItem?.item?.thumbnailPath
                             }
                             alt={currentPortfolioItem?.item?.alt}
                         />
@@ -138,6 +144,15 @@ const PortfolioLightbox = () => {
                         itemId={currentPortfolioItem?.item?.id}
                         stack={currentPortfolioItem?.item?.stack}
                     />
+                    {currentPortfolioItem?.item?.url && (
+                        <a
+                            className="button url mb-2"
+                            href={currentPortfolioItem?.item?.url}
+                            target="_blank"
+                        >
+                            See live
+                        </a>
+                    )}
                     <PortfolioLightboxTimeline
                         portfolioDescription={
                             currentPortfolioItem?.item?.description
