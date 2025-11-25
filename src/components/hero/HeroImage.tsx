@@ -8,7 +8,7 @@ const HeroImage = ({ heroTypingStage }: HeroTypingInterface) => (
     >
         <img
             src={"profilePicture.jpeg"}
-            alt={"A picture of me, Laurence Summers"}
+            alt={"A picture of me, Laurence Summers. Hello!"}
         />
     </div>
 );
