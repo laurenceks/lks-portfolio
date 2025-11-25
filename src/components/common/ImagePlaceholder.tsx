@@ -3,12 +3,10 @@ import { useEffect, useState } from "react";
 const ImagePlaceholder = ({
     src,
     alt,
-    width,
-    height,
+    aspectRatio,
 }: {
     src: string;
-    width: number;
-    height: number;
+    aspectRatio: number;
     alt?: string;
 }) => {
     const [imageLoaded, setImageLoaded] = useState(false);
@@ -21,7 +19,7 @@ const ImagePlaceholder = ({
     return (
         <div
             className={"bg-light-2 position-relative"}
-            style={{ aspectRatio: width / height }}
+            style={{ aspectRatio }}
         >
             <div
                 className={

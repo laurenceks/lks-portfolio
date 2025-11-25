@@ -49,10 +49,9 @@ const PortfolioMasonryItem = ({
                     }
                 >
                     <ImagePlaceholder
-                        src={item.thumb}
+                        src={item.thumbnailPath}
                         alt={item.alt}
-                        width={item.thumbWidth}
-                        height={item.thumbHeight}
+                        aspectRatio={item.aspectRatio}
                     />
                 </div>
                 {panelPosition !== "none" && (

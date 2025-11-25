@@ -15,12 +15,12 @@ export interface PortfolioItemInterface {
     stack: string[];
     blurb: string;
     description: PortfolioItemDescriptionItemInterface[];
-    img: string;
-    thumb: string;
-    thumbWidth: number;
-    thumbHeight: number;
     alt: string;
     url: string;
+    imgFileName: string;
+    aspectRatio: number;
+    srcSet: string;
+    thumbnailPath: string;
 }
 
 export interface PortfolioLightBoxItemInterface {
