@@ -2,10 +2,10 @@ import {
     AppReducerActionType,
     AppStateInterface,
 } from "../types/appStateTypes.ts";
-import { mockPortfolioItems } from "../mockData.ts";
+import portfolioItems from "../data/portfolioItems.ts";
 
 export const initialAppState: AppStateInterface = {
-    portfolioItems: mockPortfolioItems,
+    portfolioItems,
     currentPortfolioItem: null,
     showLightbox: false,
     scrollPadding: 0,
