@@ -6,9 +6,9 @@ const HeroTypingBodyLoop = () => (
         sequence={[
             "I'm Laurence and I make websites",
             1000,
-            "I'm Laurence and I make solutions",
+            "I'm Laurence and I make tools",
             1000,
-            "I'm Laurence and I make dreams",
+            "I'm Laurence and I make solutions",
             2000,
             "",
             2000,
