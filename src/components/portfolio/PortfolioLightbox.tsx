@@ -113,6 +113,7 @@ const PortfolioLightbox = () => {
                                     ? currentPortfolioItem?.item?.srcSet
                                     : currentPortfolioItem?.item?.thumbnailPath
                             }
+                            sizes="calc(60vw - 3rem)"
                             alt={currentPortfolioItem?.item?.alt}
                         />
                     </div>
