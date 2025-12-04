@@ -5,20 +5,43 @@ export interface PortfolioItemDescriptionItemInterface {
     content: string;
 }
 
+export type PortfolioItemType = "personal" | "commission" | "employment";
+export type PortfolioItemMedia = "web" | "graphic" | "video";
+export type StackItem =
+    | "MongoDB"
+    | "ReactJS"
+    | "JavaScript"
+    | "TypeScript"
+    | "PHP"
+    | "CSS"
+    | "HTML"
+    | "Photoshop"
+    | "Illustrator"
+    | "Premiere Pro"
+    | "Excel"
+    | "SQL"
+    | "GIMP"
+    | "Inkscape"
+    | "jQuery"
+    | "MomentJS"
+    | "ChartJS"
+    | "NodeJS"
+    | "MySQL"
+    | "Express";
 export interface PortfolioItemInterface {
     id: number;
     title: string;
-    type: string;
-    media: string;
+    type: PortfolioItemType;
+    media: PortfolioItemMedia;
     client: string;
     date: string;
-    stack: string[];
+    stack: StackItem[];
     blurb: string;
     description: PortfolioItemDescriptionItemInterface[];
     alt: string;
     url: string;
     imgFileName: string;
-    aspectRatio: number;
+    aspectRatio: number | string;
     srcSet: string;
     thumbnailPath: string;
 }
