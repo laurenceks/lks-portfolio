@@ -18,10 +18,10 @@ div.portfolio-info-panel {
     &:before,
     &:after {
         @include pseudo.pseudoMixinAbsolute(
-                $left: 0,
-                $bottom: 0,
-                $top: unset,
-                $height: 26.4rem
+            $left: 0,
+            $bottom: 0,
+            $top: unset,
+            $height: 26.4rem
         );
     }
 
@@ -40,19 +40,21 @@ div.portfolio-info-panel {
     &:after {
         z-index: -1;
         background: radial-gradient(
-                        ellipse farthest-side at bottom left,
-                        transparent 0%,
-                        var(--dark) 100%
-        ) no-repeat bottom left;
+                ellipse farthest-side at bottom left,
+                transparent 0%,
+                var(--dark) 100%
+            )
+            no-repeat bottom left;
         background-size: 100% 26.4rem;
     }
 
     &.left:after {
         background: radial-gradient(
-                        ellipse farthest-side at bottom right,
-                        transparent 0%,
-                        var(--dark) 100%
-        ) no-repeat bottom right;
+                ellipse farthest-side at bottom right,
+                transparent 0%,
+                var(--dark) 100%
+            )
+            no-repeat bottom right;
     }
 }
 
@@ -110,7 +112,8 @@ div.portfolio-masonry-item {
     > div {
         width: 1rem;
         height: 1rem;
-        animation: placeholderEllipsis variables.$placeholderEllipsisAnimationDuration infinite;
+        animation: placeholderEllipsis
+            variables.$placeholderEllipsisAnimationDuration infinite;
         border-radius: 50%;
         opacity: 0;
         background-color: var(--light);
@@ -241,11 +244,11 @@ div.portfolio-lightbox {
 
     > div {
         @include pseudo.pseudoMixinAbsolute(
-                $left: 50%,
-                $bottom: 0,
-                $top: unset,
-                $width: auto,
-                $height: auto
+            $left: 50%,
+            $bottom: 0,
+            $top: unset,
+            $width: auto,
+            $height: auto
         );
         width: max-content;
         transform: translate(-50%, 125%);
@@ -263,9 +266,9 @@ div.portfolio-lightbox {
 .portfolio-lightbox-timeline {
     &:after {
         @include pseudo.pseudoMixinAbsolute(
-                $width: 4rem,
-                $left: 0,
-                $height: 1.6rem
+            $width: 4rem,
+            $left: 0,
+            $height: 1.6rem
         );
         background: linear-gradient(180deg, var(--dark) 0%, transparent 100%);
     }
@@ -275,7 +278,8 @@ div.portfolio-lightbox {
     grid-template-columns: auto 1fr;
 
     > div {
-        transition: transform variables.$defaultTransitionDuration variables.$defaultEasing;
+        transition: transform variables.$defaultTransitionDuration
+            variables.$defaultEasing;
     }
 }
 
@@ -308,10 +312,18 @@ div.portfolio-lightbox {
         width: 4rem;
         height: 4rem;
 
-        > svg {
-            background: black;
-            color: white;
-            mix-blend-mode: multiply;
+        &.down {
+            @include backgroundMask.backgroundMaskMixin(
+                "public/images/icons/timelineNext.svg",
+                100%
+            );
+        }
+
+        &.up {
+            @include backgroundMask.backgroundMaskMixin(
+                "public/images/icons/timelinePrevious.svg",
+                100%
+            );
         }
     }
 }
@@ -335,10 +347,10 @@ div.portfolio-lightbox {
     &:after {
         //line
         @include pseudo.pseudoMixinAbsolute(
-                $width: 0.2rem,
-                $height: 100%,
-                $top: 0,
-                $left: 2rem
+            $width: 0.2rem,
+            $height: 100%,
+            $top: 0,
+            $left: 2rem
         );
         flex-shrink: 0;
         transform: translateX(-50%);
