@@ -1,0 +1,25 @@
+@use "../utilities/variables";
+
+@mixin media-down($key) {
+    $value: map-get(variables.$breakpoints, $key);
+
+    @if $value == null {
+        @error "Breakpoint `#{$key}` not found in \$breakpoints map.";
+    }
+
+    @media (max-width: $value) {
+        @content;
+    }
+}
+
+@mixin media-up($key) {
+    $value: map-get(variables.$breakpoints, $key);
+
+    @if $value == null {
+        @error "Breakpoint `#{$key}` not found in \$breakpoints map.";
+    }
+
+    @media (min-width: $value) {
+        @content;
+    }
+}
