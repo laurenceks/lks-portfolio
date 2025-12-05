@@ -10,7 +10,7 @@ const HeroContent = ({ learnMoreRef, contactRef }: HeroRefInterface) => {
     return (
         <div
             className={
-                "hero-content d-grid align-items-center justify-content-center w-100 h-auto"
+                "hero-content d-grid align-items-center justify-content-center w-100 h-auto py-sm-0 py-3"
             }
         >
             <HeroTyping

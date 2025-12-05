@@ -1,6 +1,7 @@
 @use "../utilities/variables";
 @use "../mixins/pseudo";
 @use "../mixins/buttonGradient";
+@use "../mixins/media";
 
 section.hero {
     min-height: 50vw;
@@ -14,10 +15,11 @@ section.hero {
 
     div.hero-typing-container {
         grid-area: typing;
-        width: clamp(65rem, 55%, 100%);
+        //width: clamp(65rem, 55%, 100%);
     }
 
-    div.hero-typing, div.hero-typing > div:not(.hero-typing-background) {
+    div.hero-typing,
+    div.hero-typing > div:not(.hero-typing-background) {
         grid-template-columns: 1fr;
         max-width: 70rem;
 
@@ -74,6 +76,7 @@ div.hero-image {
     grid-area: image;
     align-self: center;
     max-width: 25rem;
+    min-width: 15rem;
     justify-self: center;
     aspect-ratio: 1;
 
@@ -86,9 +89,25 @@ div.hero-image {
 
     &:before {
         $borderThickness: 1rem;
-        @include pseudo.pseudoMixinAbsolute($width: calc(100% + $borderThickness), $height: calc(100% + $borderThickness), $top: $borderThickness *-0.5, $left: $borderThickness *-0.5
+        @include pseudo.pseudoMixinAbsolute(
+            $width: calc(100% + $borderThickness),
+            $height: calc(100% + $borderThickness),
+            $top: $borderThickness * -0.5,
+            $left: $borderThickness * -0.5
         );
         @include buttonGradient.buttonGradientMixin;
         border-radius: 50%;
+    }
+}
+
+@include media.media-down(md) {
+    section.hero {
+        div.hero-content {
+            grid-template-columns: 100%;
+            grid-template-areas:
+                "image"
+                "typing"
+                "buttons";
+        }
     }
 }
