@@ -1,5 +1,6 @@
 @use "../utilities/variables";
 @use "../mixins/pseudo";
+@use "../mixins/media";
 
 nav {
     display: flex;
@@ -37,7 +38,11 @@ nav {
 
         &:before {
             @include pseudo.pseudoMixinAbsolute($left: 0);
-            background: radial-gradient(ellipse farthest-side at top right, transparent 0%, var(--light) 100%);
+            background: radial-gradient(
+                ellipse farthest-side at top right,
+                transparent 0%,
+                var(--light) 100%
+            );
             background-size: 100% 26.4rem;
         }
     }
@@ -46,7 +51,7 @@ nav {
         display: flex;
         position: relative;
         margin-left: auto;
-        padding: 2.4rem * .75 0;
+        padding: 2.4rem * 0.75 0;
         list-style: none;
         justify-self: end;
 
@@ -69,8 +74,11 @@ nav {
                 left: 0;
                 width: auto;
                 height: 100%;
-                padding: 2.4rem * .75 1rem;
-                transition: transform 0.4s ease-out, width 0.4s ease-out, opacity 0.4s ease-out;
+                padding: 2.4rem * 0.75 1rem;
+                transition:
+                    transform 0.4s ease-out,
+                    width 0.4s ease-out,
+                    opacity 0.4s ease-out;
                 opacity: 0;
                 color: var(--primary);
 
@@ -83,9 +91,41 @@ nav {
                     }
 
                     > path {
-                        fill: var(--primary)
+                        fill: var(--primary);
                     }
                 }
+            }
+        }
+    }
+}
+
+@include media.media-down("md") {
+    nav {
+        display: grid;
+        grid-template-columns: auto 1fr;
+
+        > ul {
+            flex-direction: column;
+            margin-left: 0;
+            gap: 1rem;
+
+            > li {
+                text-align: center;
+            }
+        }
+    }
+}
+
+@include media.media-down("sm") {
+    nav {
+        display: flex;
+        flex-direction: column;
+
+        > ul {
+            padding-top: 0;
+
+            > li {
+                text-align: center;
             }
         }
     }

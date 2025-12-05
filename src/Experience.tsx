@@ -36,7 +36,7 @@ const Experience = ({
                 to full-stack web applications{" "}
             </p>
             <div
-                className={`button-animation-staggered d-flex gap-column-2 z-1 align-self-start gap-column-2 justify-content-center`}
+                className={`button-animation-staggered d-flex gap-column-2 z-1 align-self-start gap-2 justify-content-center flex-wrap`}
             >
                 <button
                     className={`animation-fade-in-up ${

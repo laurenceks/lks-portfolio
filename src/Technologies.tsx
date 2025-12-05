@@ -45,7 +45,7 @@ const Technologies = () => (
                     <h6>Languages</h6>
                     <div
                         className={
-                            "d-flex gap-column-2 flex-wrap justify-content-center align-items-center"
+                            "d-flex gap-2 flex-wrap justify-content-center align-items-center"
                         }
                     >
                         <div className="portfolio-lightbox-stack-icon icon-container">
