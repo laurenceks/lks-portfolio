@@ -54,14 +54,14 @@ section.hero {
     }
 
     div.hero-typing-background {
-        left: 2.4rem;
         grid-column: auto;
         grid-row: auto;
         opacity: 0.65;
         font-family: var(--font-code);
         font-size: 0.8rem;
         white-space: pre;
-        width: calc(100vw - #{variables.$paddingGutter} - 2.4rem);
+        padding-left: variables.$paddingGutter;
+        width: calc(100% - #{variables.$paddingGutter});
     }
 
     div.hero-particles-background {
