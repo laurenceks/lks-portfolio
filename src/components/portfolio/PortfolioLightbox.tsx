@@ -87,24 +87,33 @@ const PortfolioLightbox = () => {
                             className={
                                 "portfolio-lightbox-content-container p-lg-3 p-2"
                             }
-                            initial={{ opacity: 0, x: "100%" }}
+                            initial={{ opacity: 0, x: "75%" }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{
                                 opacity: 0,
-                                x: "100%",
+                                x: "75%",
                             }}
                             transition={{
                                 duration: 0.6,
                                 ease: [0.25, 1, 0.5, 1], // cubic-bezier
                             }}
                         >
-                            <h1
+                            <motion.h1
+                                initial={{ x: "50%" }}
+                                animate={{ x: 0 }}
+                                exit={{
+                                    x: "50%",
+                                }}
+                                transition={{
+                                    duration: 0.6,
+                                    ease: [0.25, 1, 0.5, 1], // cubic-bezier
+                                }}
                                 className={
                                     "portfolio-lightbox-content-back-text position-absolute t-0 fw-900"
                                 }
                             >
                                 {currentPortfolioItem?.title}
-                            </h1>
+                            </motion.h1>
                             <h1>{currentPortfolioItem?.title}</h1>
                             <h4>
                                 {sortingDateToMonthYear(
@@ -115,17 +124,16 @@ const PortfolioLightbox = () => {
                             <PortfolioLightboxStack
                                 itemId={currentPortfolioItem?.id}
                                 stack={currentPortfolioItem?.stack}
-                            />{" "}
+                            />
                             {currentPortfolioItem?.url && (
                                 <a
                                     className="button url mb-2"
                                     href={currentPortfolioItem?.url}
                                     target="_blank"
                                 >
-                                    {" "}
-                                    See live{" "}
+                                    See live
                                 </a>
-                            )}{" "}
+                            )}
                             <PortfolioLightboxTimeline
                                 portfolioDescription={
                                     currentPortfolioItem?.description
