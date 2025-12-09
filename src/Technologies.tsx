@@ -34,11 +34,11 @@ import Section from "./components/wrappers/Section.tsx";
 
 const Technologies = () => (
     <Section>
-        <div className={"px-3 py-7 py-sm-4 ta-center mx-auto max-width-page"}>
+        <div className={"px-3 py-4 py-sm-7 ta-center mx-auto max-width-page"}>
             <h4 className={"mb-6"}>Technologies I'm experienced with </h4>
             <div
                 className={
-                    "d-flex gap-column-4 gap-row-6 flex-wrap flex-columns-2 flex-columns-sm-1 justify-content-center"
+                    "d-flex gap-column-4 gap-row-6 flex-wrap flex-columns-sm-2 flex-columns-1 justify-content-center"
                 }
             >
                 <div>

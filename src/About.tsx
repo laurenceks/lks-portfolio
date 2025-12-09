@@ -7,10 +7,10 @@ const About = ({ aboutRef }: { aboutRef: RefObject<HTMLDivElement> }) => (
         <div
             ref={aboutRef}
             className={
-                "about-grid d-grid grid-columns-2 grid-columns-md-1 ms-gutter ms-md-none gap-column-8 align-items-center"
+                "about-grid d-grid grid-columns-md-2 grid-columns-1 ms-md-gutter gap-column-8 align-items-center"
             }
         >
-            <div className={"max-width-sm py-7"}>
+            <div className={"max-width-sm pt-7 pb-3 pb-md-7 px-3 px-md-none"}>
                 <h1>More than just websites</h1>
                 <p>
                     Entirely bespoke web apps that solve your problems and

@@ -41,14 +41,9 @@ export interface PortfolioItemInterface {
     alt: string;
     url: string;
     imgFileName: string;
-    aspectRatio: number | string;
+    aspectRatio: number;
     srcSet: string;
     thumbnailPath: string;
-}
-
-export interface PortfolioLightBoxItemInterface {
-    item: PortfolioItemInterface | null;
-    rect: DOMRect | null;
 }
 
 export type PanelPositionType = "none" | "left" | "right";

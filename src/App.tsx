@@ -1,6 +1,5 @@
 import { createContext, useEffect, useReducer, useRef } from "react";
 import Portfolio from "./components/portfolio/Portfolio.tsx";
-import Hero from "./components/hero/Hero.tsx";
 import Nav from "./components/nav/Nav.tsx";
 import {
     appStateReducer,
@@ -8,9 +7,10 @@ import {
 } from "./reducers/appStateReducer.ts";
 import { AppContextInterface } from "./types/appStateTypes.ts";
 import About from "./About.tsx";
+import Section from "./components/wrappers/Section.tsx";
 import Experience from "./Experience.tsx";
 import Technologies from "./Technologies.tsx";
-import Section from "./components/wrappers/Section.tsx";
+import Hero from "./components/hero/Hero.tsx";
 
 export const AppContext = createContext<AppContextInterface>({
     appState: initialAppState,
@@ -36,11 +36,7 @@ function App() {
     return (
         <AppContext.Provider value={{ appState, dispatchAppState }}>
             <header></header>
-            <main
-                style={{
-                    paddingRight: appState.scrollPadding,
-                }}
-            >
+            <main>
                 <Hero learnMoreRef={learnMoreRef} contactRef={contactRef} />
                 <div ref={learnMoreRef} />
                 <Nav refs={[aboutRef, portfolioRef, contactRef]} />

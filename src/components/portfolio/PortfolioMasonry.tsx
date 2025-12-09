@@ -1,4 +1,5 @@
 import { RefObject, useContext, useEffect, useRef, useState } from "react";
+import { LayoutGroup } from "framer-motion";
 import SectionMaxWidth from "../wrappers/SectionMaxWidth.tsx";
 import { PanelPositionType } from "../../types/portfolioTypes.ts";
 import PortfolioMasonryItem from "./PortfolioMasonryItem.tsx";
@@ -37,41 +38,43 @@ const PortfolioMasonry = () => {
         <SectionMaxWidth
             className={"bg-light text-dark position-relative pt-none"}
         >
-            <div
-                className={`d-grid grid-columns-${masonryColumns} gap-3 align-items-start ${
-                    currentPortfolioItem ? "overflow-hidden" : ""
-                }`}
-                ref={masonryContainerRef}
-            >
-                {splitItemsIntoCols(portfolioItems, masonryColumns).map(
-                    (col, i, a) => {
-                        let panelPosition: PanelPositionType = "none";
-                        if (a.length > 1) {
-                            panelPosition =
-                                i === a.length - 1 ? "left" : "right";
+            <LayoutGroup>
+                <div
+                    className={`d-grid grid-columns-${masonryColumns} gap-3 align-items-start ${
+                        currentPortfolioItem ? "overflow-hidden" : ""
+                    }`}
+                    ref={masonryContainerRef}
+                >
+                    {splitItemsIntoCols(portfolioItems, masonryColumns).map(
+                        (col, i, a) => {
+                            let panelPosition: PanelPositionType = "none";
+                            if (a.length > 1) {
+                                panelPosition =
+                                    i === a.length - 1 ? "left" : "right";
+                            }
+                            return (
+                                <div
+                                    key={`masonry-col-${i}`}
+                                    className={
+                                        "d-grid gap-row-3 align-content-start"
+                                    }
+                                >
+                                    {col?.map((item) => (
+                                        <PortfolioMasonryItem
+                                            key={item.id}
+                                            item={item}
+                                            hoverItemId={hoverItemId}
+                                            setHoverItemId={setHoverItemId}
+                                            panelPosition={panelPosition}
+                                        />
+                                    ))}
+                                </div>
+                            );
                         }
-                        return (
-                            <div
-                                key={`masonry-col-${i}`}
-                                className={
-                                    "d-grid gap-row-3 align-content-start"
-                                }
-                            >
-                                {col?.map((item) => (
-                                    <PortfolioMasonryItem
-                                        key={item.id}
-                                        item={item}
-                                        hoverItemId={hoverItemId}
-                                        setHoverItemId={setHoverItemId}
-                                        panelPosition={panelPosition}
-                                    />
-                                ))}
-                            </div>
-                        );
-                    }
-                )}
-            </div>
-            <PortfolioLightbox />
+                    )}
+                </div>
+                <PortfolioLightbox />
+            </LayoutGroup>
         </SectionMaxWidth>
     );
 };

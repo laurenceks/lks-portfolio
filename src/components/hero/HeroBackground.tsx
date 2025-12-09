@@ -8,7 +8,7 @@ const HeroBackground = () => (
         {...heroConfig}
         wrapper={"div"}
         className={
-            "hero-typing-background position-absolute b-0 text-dark-blue-grey"
+            "hero-typing-background position-absolute b-0 l-0 text-dark-blue-grey overflow-hidden"
         }
         speed={80}
     />

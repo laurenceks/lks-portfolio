@@ -4,6 +4,7 @@
 @use "../mixins/hiddenTransition";
 @use "../mixins/backgroundMask";
 @use "../mixins/buttonGradient";
+@use "../mixins/media";
 @forward "../utilities/classes";
 
 div.portfolio-info-panel {
@@ -94,14 +95,8 @@ div.portfolio-masonry-item {
         transform: scale(0.95);
     }
 
-    div.portfolio-masonry-item-image-container {
-        transition-property: transform;
-        transition-duration: variables.$defaultTransitionDuration;
-        transition-timing-function: variables.$defaultEasing;
-
-        img {
-            animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1);
-        }
+    img {
+        animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1);
     }
 }
 
@@ -126,6 +121,13 @@ div.portfolio-masonry-item {
             animation-delay: 0.5s;
         }
     }
+
+    &:has(~ img) {
+        opacity: 0;
+        transition: opacity;
+        transition-delay: 2s;
+        transition-duration: 0s;
+    }
 }
 
 div.portfolio-info-panel-grid {
@@ -138,86 +140,25 @@ div.portfolio-info-panel-grid {
     }
 }
 
-div.portfolio-lightbox {
+div.portfolio-lightbox-wrapper {
     z-index: 10;
+}
+
+div.portfolio-lightbox {
+    min-height: 100%;
     grid-template-columns: 3fr 2fr;
     column-gap: 3rem;
 
-    &,
-    &:before,
-    .portfolio-lightbox-content-container {
-        transform: translateX(0);
-        transition-property: transform;
-        transition-duration: variables.$defaultTransitionDuration;
-        transition-timing-function: variables.$defaultEasing;
-    }
-
-    &:before,
-    .portfolio-lightbox-content-container {
-        transform: translateX(100%);
-    }
-
-    &:before {
+    .portfolio-lightbox-bg {
         @include pseudo.pseudoMixinAbsolute($left: 0);
         background-color: var(--dark);
-    }
-
-    &.enter:not(.enter-active) {
-        .portfolio-lightbox-image-container {
-            transition-property: none !important;
-        }
-    }
-
-    &.enter-active,
-    &.enter-done {
-        &:before,
-        .portfolio-lightbox-content-container {
-            transform: translateX(0%);
-        }
-
-        .portfolio-lightbox-image-container {
-            transform: none !important;
-        }
-    }
-
-    &:not(.enter-active, .enter-done) {
-        .portfolio-lightbox-image-container {
-        }
+        z-index: -2;
     }
 }
 
-.portfolio-lightbox-image-container {
-    max-height: 100vh;
-    transform: none;
-    transition-property: transform;
-    transition-duration: variables.$defaultTransitionDuration;
-    transition-timing-function: variables.$defaultEasing;
-}
-
-/*
-.portfolio-lightbox-thumbnails-container {
+.portfolio-lightbox-content-container {
     position: relative;
-    right: -1.5rem;
-    grid-column: 1/2;
-    align-items: end;
-    justify-content: center;
-    justify-self: end;
-    margin: 3rem 0;
-
-    > div {
-        transition: width variables.$defaultTransitionDuration variables.$defaultEasing;
-        box-shadow: 0.5rem 0.5rem 1rem rgba(map-get(colours.$colours, "light"), 0.15);
-        background-color: var(--light);
-        cursor: pointer;
-        width: 5rem;
-        aspect-ratio: 1;
-
-        &:hover {
-            width: 7rem;
-        }
-    }
 }
-*/
 
 .portfolio-lightbox-content-back-text {
     z-index: -1;
@@ -381,4 +322,27 @@ div.portfolio-lightbox {
     @include hiddenTransition.hiddenTransitionMixin;
     visibility: hidden;
     opacity: 0;
+}
+
+@include media.media-up("lg") {
+    div.portfolio-lightbox-image-wrapper {
+        aspect-ratio: unset !important;
+    }
+}
+
+@include media.media-down("lg") {
+    div.portfolio-lightbox-wrapper {
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+    div.portfolio-lightbox {
+        grid-template-columns: 100%;
+        grid-template-rows: auto 1fr;
+    }
+
+    div.portfolio-lightbox-content-container:before {
+        @include pseudo.pseudoMixinAbsolute($left: 0);
+        background-color: var(--dark);
+        z-index: -1;
+    }
 }

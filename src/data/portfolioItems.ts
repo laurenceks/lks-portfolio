@@ -79,7 +79,18 @@ const portfolioItems: PortfolioItemInterface[] = [
         type: "personal",
         media: "web",
         blurb: "App for finding shift swaps",
-        description: [],
+        description: [
+            {
+                title: "The idea",
+                content:
+                    "Finding shift swaps is a tedious and tricky business. I had an idea for an app that would allow users to enter details for shifts they want to swap, add what they can do in return and instantly find matches.",
+            },
+            {
+                title: "The result",
+                content:
+                    "The app lets users quickly enter shifts they want to swap, specify what they can do in return and find matches instantly. The app compares shift dates, times, types and locations to get a list of matching swaps. Users are notified when matches are found, offered or agreed and can import their calendar feeds to make the process even more streamlined.",
+            },
+        ],
         url: "https://shiftshop.laurencesummers.com",
         aspectRatio: 1.33333333333333,
         srcSet: "images/portfolio/srcset/shiftShop@1920w.png 1920w, images/portfolio/srcset/shiftShop@1280w.png 1280w, images/portfolio/srcset/shiftShop@860w.png 860w, images/portfolio/srcset/shiftShop@450w.png 450w",
@@ -95,7 +106,7 @@ const portfolioItems: PortfolioItemInterface[] = [
         stack: ["Photoshop"],
         type: "commission",
         media: "graphic",
-        blurb: "Poster advertising a show",
+        blurb: 'Advertising poster for "A Really Really Big Modern Telly"',
         description: [],
         url: "",
         aspectRatio: 0.71428571428,
@@ -113,7 +124,18 @@ const portfolioItems: PortfolioItemInterface[] = [
         type: "personal",
         media: "web",
         blurb: "App for calculating pay",
-        description: [],
+        description: [
+            {
+                title: "The problem",
+                content:
+                    "NHS pay is a black-box of complex interacting rules, policies and nuances. Prediciting monthly pay is an almost insurmountable challenge, and being able to budget effectively meant an app for calculating take-home pay was badly needed.",
+            },
+            {
+                title: "The solution",
+                content:
+                    "An app that logs shifts and calculates basic pay, unsocial hours, and generates take-home pay. This also led to my first NPM library or calculating Section 2 hours - the heart and most complex part of the app.",
+            },
+        ],
         url: "https://pay.laurencesummers.com",
         aspectRatio: 1.33333333333333,
         srcSet: "images/portfolio/srcset/nhsPayLog@1920w.png 1920w, images/portfolio/srcset/nhsPayLog@1280w.png 1280w, images/portfolio/srcset/nhsPayLog@860w.png 860w, images/portfolio/srcset/nhsPayLog@450w.png 450w",

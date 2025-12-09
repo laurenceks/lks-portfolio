@@ -2,40 +2,40 @@
 @use "../utilities/functions";
 
 .d-grid {
-  grid-auto-rows: auto;
-  grid-auto-columns: 1fr;
+    grid-auto-rows: auto;
+    grid-auto-columns: 1fr;
 
-  &.grid-stack > * {
-    grid-row: 1/-1;
-    grid-column: 1/-1;
-    max-width: 100%;
-    max-height: 100%;
-    overflow: hidden;
-  }
-
-  > .grid-span-columns {
-    grid-column: 1/-1;
-  }
-
-  > .grid-span-rows {
-    grid-row: 1/-1;
-  }
-
-  @for $i from 1 through variables.$maxColumnsGrid {
-    &.grid-columns-#{$i} {
-      grid-template-columns: repeat($i, 1fr);
+    &.grid-stack > * {
+        grid-row: 1/-1;
+        grid-column: 1/-1;
+        max-width: 100%;
+        max-height: 100%;
+        overflow: hidden;
     }
-  }
+
+    > .grid-span-columns {
+        grid-column: 1/-1;
+    }
+
+    > .grid-span-rows {
+        grid-row: 1/-1;
+    }
+
+    @for $i from 1 through variables.$maxColumnsGrid {
+        &.grid-columns-#{$i} {
+            grid-template-columns: repeat($i, 1fr);
+        }
+    }
 }
 
 /* Responsive */
 
 @each $breakpointLabel, $breakpointValue in variables.$breakpoints {
-  @media screen and (max-width: $breakpointValue) {
-    @for $i from 1 through variables.$maxColumnsGrid {
-      .d-grid.grid-columns-#{$breakpointLabel}-#{$i} {
-        grid-template-columns: repeat($i, 1fr);
-      }
+    @media screen and (min-width: $breakpointValue) {
+        @for $i from 1 through variables.$maxColumnsGrid {
+            .d-grid.grid-columns-#{$breakpointLabel}-#{$i} {
+                grid-template-columns: repeat($i, 1fr);
+            }
+        }
     }
-  }
 }

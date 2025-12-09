@@ -18,37 +18,32 @@ const PortfolioMasonryItem = ({
         <div
             className={`portfolio-masonry-item cursor-pointer w-100 h-auto position-relative ${
                 (hoverItemId && hoverItemId !== item.id) ||
-                (currentPortfolioItem?.item?.id &&
-                    currentPortfolioItem?.item?.id !== item.id)
+                (currentPortfolioItem?.id &&
+                    currentPortfolioItem?.id !== item.id)
                     ? "not-active"
                     : ""
             } ${
-                currentPortfolioItem?.item?.id &&
-                currentPortfolioItem?.item?.id === item.id
+                currentPortfolioItem?.id && currentPortfolioItem?.id === item.id
                     ? "active"
                     : ""
             }`}
             onMouseOver={() => {
                 setHoverItemId(item.id);
             }}
-            onMouseLeave={() => setHoverItemId(null)}
-            onClick={(e) => {
+            onMouseLeave={() => {
+                setHoverItemId(null);
+            }}
+            onClick={() => {
                 dispatchAppState({
                     type: "setCurrentPortfolioItem",
-                    payload: {
-                        item,
-                        rect: e.currentTarget.getBoundingClientRect(),
-                    },
+                    payload: item,
                 });
             }}
         >
             <div>
-                <div
-                    className={
-                        "portfolio-masonry-item-image-container overflow-hidden"
-                    }
-                >
+                <div className={"portfolio-masonry-item-image-container "}>
                     <ImagePlaceholder
+                        id={item.id}
                         src={item.thumbnailPath}
                         alt={item.alt}
                         aspectRatio={item.aspectRatio}

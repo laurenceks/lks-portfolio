@@ -4,93 +4,95 @@
 @use "sass:math";
 
 .d-flex {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 
-  &.flex-column {
-    flex-direction: column;
-  }
-
-  &.flex-row-reverse {
-    flex-direction: row-reverse;
-  }
-
-  &.flex-column-reverse {
-    flex-direction: column-reverse;
-  }
-
-  &.flex-wrap, &[class*="flex-columns-"]:not(.flex-no-wrap) {
-    flex-wrap: wrap;
-  }
-
-  @for $i from 1 through variables.$maxColumnsFlex {
-    &.flex-columns-#{$i} > * {
-      flex-basis: math.percentage(math.div(1, $i));
-    }
-    @for $gapLabel from 1 through length(variables.$gaps) {
-      $gap: nth(variables.$gaps, $gapLabel);
-
-      &.flex-columns-#{$i}.gap-#{$gapLabel} > *, &.flex-columns-#{$i}.gap-column-#{$gapLabel} > * {
-        @include flexBasis.flexBasisMixin($i, $gap)
-      }
-    }
-  }
-
-  @each $breakpointLabel, $breakpointValue in variables.$breakpoints {
-    @media screen and (max-width: $breakpointValue) {
-      &.flex-#{$breakpointLabel}-column {
+    &.flex-column {
         flex-direction: column;
-      }
-
-      &.flex-#{$breakpointLabel}-row-reverse {
-        flex-direction: row-reverse;
-      }
-
-      &.flex-#{$breakpointLabel}-column-reverse {
-        flex-direction: column-reverse;
-      }
-
-      @for $i from 1 through variables.$maxColumnsFlex {
-        &.flex-columns-#{$breakpointLabel}-#{$i} > * {
-          flex-basis: math.percentage(math.div(1, $i));
-        }
-        @for $gapLabel from 1 through length(variables.$gaps) {
-          $gap: nth(variables.$gaps, $gapLabel);
-
-          &.flex-columns-#{$i} {
-            &.gap-#{$breakpointLabel}-#{$gapLabel} > *,
-            &.gap-column-#{$breakpointLabel}-#{$gapLabel} {
-              @include flexBasis.flexBasisMixin($i, $gap);
-            }
-          }
-        }
-      }
-
-      @for $i from 1 through variables.$maxColumnsFlex {
-        @for $gapLabel from 1 through length(variables.$gaps) {
-          $gap: nth(variables.$gaps, $gapLabel);
-
-          &.flex-columns-#{$breakpointLabel}-#{$i} {
-            &.gap-#{$gapLabel} > *,
-            &.gap-column-#{$gapLabel} > * {
-              @include flexBasis.flexBasisMixin($i, $gap);
-            }
-          }
-        }
-      }
-
-      @for $i from 1 through variables.$maxColumnsFlex {
-        @for $gapLabel from 1 through length(variables.$gaps) {
-          $gap: nth(variables.$gaps, $gapLabel);
-
-          &.flex-columns-#{$breakpointLabel}-#{$i} {
-            &.gap-#{$breakpointLabel}-#{$gapLabel} > *,
-            &.gap-column-#{$breakpointLabel}-#{$gapLabel} > * {
-              @include flexBasis.flexBasisMixin($i, $gap);
-            }
-          }
-        }
-      }
     }
-  }
+
+    &.flex-row-reverse {
+        flex-direction: row-reverse;
+    }
+
+    &.flex-column-reverse {
+        flex-direction: column-reverse;
+    }
+
+    &.flex-wrap,
+    &[class*="flex-columns-"]:not(.flex-no-wrap) {
+        flex-wrap: wrap;
+    }
+
+    @for $i from 1 through variables.$maxColumnsFlex {
+        &.flex-columns-#{$i} > * {
+            flex-basis: math.percentage(math.div(1, $i));
+        }
+        @for $gapLabel from 1 through length(variables.$gaps) {
+            $gap: nth(variables.$gaps, $gapLabel);
+
+            &.flex-columns-#{$i}.gap-#{$gapLabel} > *,
+            &.flex-columns-#{$i}.gap-column-#{$gapLabel} > * {
+                @include flexBasis.flexBasisMixin($i, $gap);
+            }
+        }
+    }
+
+    @each $breakpointLabel, $breakpointValue in variables.$breakpoints {
+        @media screen and (min-width: $breakpointValue) {
+            &.flex-#{$breakpointLabel}-column {
+                flex-direction: column;
+            }
+
+            &.flex-#{$breakpointLabel}-row-reverse {
+                flex-direction: row-reverse;
+            }
+
+            &.flex-#{$breakpointLabel}-column-reverse {
+                flex-direction: column-reverse;
+            }
+
+            @for $i from 1 through variables.$maxColumnsFlex {
+                &.flex-columns-#{$breakpointLabel}-#{$i} > * {
+                    flex-basis: math.percentage(math.div(1, $i));
+                }
+                @for $gapLabel from 1 through length(variables.$gaps) {
+                    $gap: nth(variables.$gaps, $gapLabel);
+
+                    &.flex-columns-#{$i} {
+                        &.gap-#{$breakpointLabel}-#{$gapLabel} > *,
+                        &.gap-column-#{$breakpointLabel}-#{$gapLabel} {
+                            @include flexBasis.flexBasisMixin($i, $gap);
+                        }
+                    }
+                }
+            }
+
+            @for $i from 1 through variables.$maxColumnsFlex {
+                @for $gapLabel from 1 through length(variables.$gaps) {
+                    $gap: nth(variables.$gaps, $gapLabel);
+
+                    &.flex-columns-#{$breakpointLabel}-#{$i} {
+                        &.gap-#{$gapLabel} > *,
+                        &.gap-column-#{$gapLabel} > * {
+                            @include flexBasis.flexBasisMixin($i, $gap);
+                        }
+                    }
+                }
+            }
+
+            @for $i from 1 through variables.$maxColumnsFlex {
+                @for $gapLabel from 1 through length(variables.$gaps) {
+                    $gap: nth(variables.$gaps, $gapLabel);
+
+                    &.flex-columns-#{$breakpointLabel}-#{$i} {
+                        &.gap-#{$breakpointLabel}-#{$gapLabel} > *,
+                        &.gap-column-#{$breakpointLabel}-#{$gapLabel} > * {
+                            @include flexBasis.flexBasisMixin($i, $gap);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

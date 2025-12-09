@@ -1,14 +1,10 @@
 import { Dispatch } from "react";
-import {
-    PortfolioItemInterface,
-    PortfolioLightBoxItemInterface,
-} from "./portfolioTypes.ts";
+import { PortfolioItemInterface } from "./portfolioTypes.ts";
 
 export interface AppStateInterface {
     portfolioItems: PortfolioItemInterface[];
-    currentPortfolioItem: PortfolioLightBoxItemInterface | null;
+    currentPortfolioItem: PortfolioItemInterface | null;
     showLightbox: boolean;
-    scrollPadding: number;
 }
 
 interface setPortfolioItemsInterface {
@@ -18,7 +14,7 @@ interface setPortfolioItemsInterface {
 
 interface setCurrentPortfolioItemInterface {
     type: "setCurrentPortfolioItem";
-    payload: PortfolioLightBoxItemInterface;
+    payload: PortfolioItemInterface;
 }
 
 interface unsetCurrentPortfolioItemInterface {

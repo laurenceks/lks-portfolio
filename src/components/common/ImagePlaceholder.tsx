@@ -1,12 +1,15 @@
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const ImagePlaceholder = ({
+    id,
     src,
     alt,
     aspectRatio,
 }: {
+    id: number | string;
     src: string;
-    aspectRatio: number;
+    aspectRatio: string | number;
     alt?: string;
 }) => {
     const [imageLoaded, setImageLoaded] = useState(false);
@@ -17,10 +20,10 @@ const ImagePlaceholder = ({
     }, [src]);
 
     return (
-        <div className={"bg-light-2 position-relative"} style={{ aspectRatio }}>
+        <div className={"position-relative"} style={{ aspectRatio }}>
             <div
                 className={
-                    "portfolio-image-placeholder d-flex justify-content-center align-items-center h-100 w-100 position-absolute t-0 l-0"
+                    "portfolio-image-placeholder bg-light-2 d-flex justify-content-center align-items-center h-100 w-100 position-absolute t-0 l-0"
                 }
             >
                 <div></div>
@@ -28,10 +31,12 @@ const ImagePlaceholder = ({
                 <div></div>
             </div>
             {imageLoaded && (
-                <img
-                    className={"d-flex w-100 h-auto position-relative"}
+                <motion.img
+                    layoutId={`image-${id}`}
+                    className={"position-relative"}
                     src={src}
                     alt={alt}
+                    style={{ aspectRatio, zIndex: 20 }}
                 />
             )}
         </div>

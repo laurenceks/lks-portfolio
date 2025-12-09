@@ -7,30 +7,238 @@
 @forward "../utilities/margins";
 
 $propertyMap: (
-        ("label":"d", "property":display, "applyBreakpoints": true, "values":(grid, flex, inline, inline-block, inline-grid, inline-flex, block, none)),
-        ("label":"justify-content", "property":justify-content, "applyBreakpoints": true, "values": (start, center, end, space-evenly, space-around, space-between)),
-        ("label":"align-items", "property":align-items, "applyBreakpoints": true, "values": (start, center, end, baseline)),
-        ("label":"align-content", "property":align-content, "applyBreakpoints": true, "values": (start, center, end, baseline)),
-        ("label":"align-self", "property":align-self, "applyBreakpoints": true, "values": (start, center, end, baseline)),
-        ("label":"justify-self", "property":justify-self, "applyBreakpoints": true, "values": (start, center, end, baseline)),
-        ("label":"ta", "property":text-align, "applyBreakpoints": true, "values": (left, center, right, justify)),
-        ("label":"fw", "property":font-weight, "values": (100, 200, 300, 400, 500, 600, 700, 800, 900)),
-        ("label":"fs", "property":font-style, "values": (normal, italic)),
-        ("label":"w", "property":width, "values": (0, 25%, 50%, 75%, 100%, auto)),
-        ("label":"h", "property":height, "values": (25%, 50%, 75%, 100%, auto)),
-        ("label":"cursor", "property":cursor, "values": (pointer, auto)),
-        ("label":"overflow", "property":overflow, "values": (hidden, scroll)),
-        ("label":"overflow-x", "property":overflow-x, "values": (hidden, scroll)),
-        ("label":"overflow-y", "property":overflow-y, "values": (hidden, scroll)),
-        ("label":"position", "property":position, "values": (relative, absolute, fixed, static)),
-        ("label":"r", "property":right, "values": (0)),
-        ("label":"l", "property":left, "values": (0)),
-        ("label":"t", "property":top, "values": (0)),
-        ("label":"b", "property":bottom, "values": (0)),
-        ("label":"pointer-events", "property":pointer-events, "values": (auto, none)),
-        ("label":"tt", "property":text-transform, "values": (lowercase, uppercase, capitalize)),
-        ("label":"flex-grow", "property":flex-grow, "values": (1)),
-        ("label":"z", "property":z-index, "values": (-1, 0, 1)),
+    (
+        "label": "d",
+        "property": display,
+        "applyBreakpoints": true,
+        "values": (
+            grid,
+            flex,
+            inline,
+            inline-block,
+            inline-grid,
+            inline-flex,
+            block,
+            none,
+        ),
+    ),
+    (
+        "label": "justify-content",
+        "property": justify-content,
+        "applyBreakpoints": true,
+        "values": (
+            start,
+            center,
+            end,
+            space-evenly,
+            space-around,
+            space-between,
+        ),
+    ),
+    (
+        "label": "align-items",
+        "property": align-items,
+        "applyBreakpoints": true,
+        "values": (
+            start,
+            center,
+            end,
+            baseline,
+        ),
+    ),
+    (
+        "label": "align-content",
+        "property": align-content,
+        "applyBreakpoints": true,
+        "values": (
+            start,
+            center,
+            end,
+            baseline,
+        ),
+    ),
+    (
+        "label": "align-self",
+        "property": align-self,
+        "applyBreakpoints": true,
+        "values": (
+            start,
+            center,
+            end,
+            baseline,
+        ),
+    ),
+    (
+        "label": "justify-self",
+        "property": justify-self,
+        "applyBreakpoints": true,
+        "values": (
+            start,
+            center,
+            end,
+            baseline,
+        ),
+    ),
+    (
+        "label": "ta",
+        "property": text-align,
+        "applyBreakpoints": true,
+        "values": (
+            left,
+            center,
+            right,
+            justify,
+        ),
+    ),
+    (
+        "label": "fw",
+        "property": font-weight,
+        "values": (
+            100,
+            200,
+            300,
+            400,
+            500,
+            600,
+            700,
+            800,
+            900,
+        ),
+    ),
+    (
+        "label": "fs",
+        "property": font-style,
+        "values": (
+            normal,
+            italic,
+        ),
+    ),
+    (
+        "label": "w",
+        "property": width,
+        "values": (
+            0,
+            25%,
+            50%,
+            75%,
+            100%,
+            auto,
+        ),
+    ),
+    (
+        "label": "h",
+        "property": height,
+        "values": (
+            25%,
+            50%,
+            75%,
+            100%,
+            auto,
+        ),
+    ),
+    (
+        "label": "cursor",
+        "property": cursor,
+        "values": (
+            pointer,
+            auto,
+        ),
+    ),
+    (
+        "label": "overflow",
+        "property": overflow,
+        "values": (
+            hidden,
+            scroll,
+        ),
+    ),
+    (
+        "label": "overflow-x",
+        "property": overflow-x,
+        "values": (
+            hidden,
+            scroll,
+        ),
+    ),
+    (
+        "label": "overflow-y",
+        "property": overflow-y,
+        "values": (
+            hidden,
+            scroll,
+        ),
+    ),
+    (
+        "label": "position",
+        "property": position,
+        "values": (
+            relative,
+            absolute,
+            fixed,
+            static,
+        ),
+    ),
+    (
+        "label": "r",
+        "property": right,
+        "values": (
+            0,
+        ),
+    ),
+    (
+        "label": "l",
+        "property": left,
+        "values": (
+            0,
+        ),
+    ),
+    (
+        "label": "t",
+        "property": top,
+        "values": (
+            0,
+        ),
+    ),
+    (
+        "label": "b",
+        "property": bottom,
+        "values": (
+            0,
+        ),
+    ),
+    (
+        "label": "pointer-events",
+        "property": pointer-events,
+        "values": (
+            auto,
+            none,
+        ),
+    ),
+    (
+        "label": "tt",
+        "property": text-transform,
+        "values": (
+            lowercase,
+            uppercase,
+            capitalize,
+        ),
+    ),
+    (
+        "label": "flex-grow",
+        "property": flex-grow,
+        "values": (
+            1,
+        ),
+    ),
+    (
+        "label": "z",
+        "property": z-index,
+        "values": (
+            -1,
+            0,
+            1,
+        ),
+    )
 );
 
 @each $colour, $hex in colours.$colours {
@@ -63,34 +271,37 @@ $propertyMap: (
         max-width: none;
     }
 
-    &-content, &-page {
+    &-content,
+    &-page {
         max-width: variables.$maxWidth;
     }
 }
 
 @each $map in $propertyMap {
     @each $value in map-get($map, "values") {
-        $propertyLabel: functions.str-replace(functions.str-replace($value, " !important"), "%");
+        $propertyLabel: functions.str-replace(
+            functions.str-replace($value, " !important"),
+            "%"
+        );
         .#{map-get($map, "label")}-#{$propertyLabel} {
-            #{map-get($map, "property")} : $value;
+            #{map-get($map, "property")}: $value;
         }
     }
 }
 
 @each $breakpointLabel, $breakpointValue in variables.$breakpoints {
-
     //max-width-xs
     .max-width-#{$breakpointLabel} {
         max-width: $breakpointValue;
     }
 
-    @media screen and (max-width: $breakpointValue) {
+    @media screen and (min-width: $breakpointValue) {
         @each $map in $propertyMap {
             @if (map-get($map, "applyBreakpoints")) {
                 @each $value in map-get($map, "values") {
                     //d-sm-block
                     .#{map-get($map, "label")}-#{$breakpointLabel}-#{functions.str-replace(functions.str-replace($value, " !important"), "%")} {
-                        #{map-get($map, "property")} : $value;
+                        #{map-get($map, "property")}: $value;
                     }
                 }
             }
@@ -113,7 +324,7 @@ $propertyMap: (
 }
 
 .no-scroll {
-    overflow: hidden;
+    //overflow: hidden;
     touch-action: none;
 }
 
@@ -180,7 +391,26 @@ $propertyMap: (
     margin-right: variables.$paddingGutter;
 }
 
-.img-cover > img, .img-contain > img {
+@each $breakpointLabel, $breakpointValue in variables.$breakpoints {
+    @media screen and (min-width: $breakpointValue) {
+        //p-sm-none
+        .#{ms}-#{$breakpointLabel}-gutter {
+            margin-left: variables.$paddingGutter;
+        }
+        .#{me}-#{$breakpointLabel}-gutter {
+            margin-right: variables.$paddingGutter;
+        }
+        .#{ps}-#{$breakpointLabel}-gutter {
+            padding-left: variables.$paddingGutter;
+        }
+        .#{pe}-#{$breakpointLabel}-gutter {
+            padding-right: variables.$paddingGutter;
+        }
+    }
+}
+
+.img-cover > img,
+.img-contain > img {
     display: flex;
     width: 100%;
     height: 100%;
