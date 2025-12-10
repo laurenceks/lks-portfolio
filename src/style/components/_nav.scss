@@ -120,12 +120,14 @@ nav {
     }
 
     > div.nav-buttons {
+      visibility: hidden;;
       grid-column: 1/-1;
       width: 100vw;
       position: absolute;
       top: 100%;
       left: calc(#{variables.$paddingGutter} * -1);
       overflow: hidden;
+      transition: visibility variables.$defaultTransitionDuration;
 
       ul {
         flex-direction: column;
@@ -140,6 +142,10 @@ nav {
 
         > li {
           text-align: center;
+
+          &.nav-marker {
+            display: none;
+          }
         }
       }
 
@@ -147,9 +153,10 @@ nav {
         background-color: var(--light);
         clip-path: inset(0 0 100% 0);
         transition: clip-path variables.$defaultTransitionDuration variables.$defaultEasing;
+        pointer-events: none;
 
         > div.nav-background-mobile {
-          display: block;
+          visibility: visible;
           opacity: 0.25;
           background-image: url("navBgMaskColour.svg");
           background-position: center top;
@@ -172,12 +179,15 @@ nav {
 
     &:hover {
       div.nav-buttons {
+        visibility: visible;;
+
         > ul {
           transform: translateY(0);
         }
 
         > div.nav-background-mobile-container {
           clip-path: inset(0 0 0 0);
+          pointer-events: auto;
         }
       }
     }
