@@ -23,7 +23,9 @@ const PortfolioMasonryItem = ({
                     ? "not-active"
                     : ""
             } ${
-                currentPortfolioItem?.id && currentPortfolioItem?.id === item.id
+                (currentPortfolioItem?.id &&
+                    currentPortfolioItem?.id === item.id) ||
+                (hoverItemId && hoverItemId === item.id)
                     ? "active"
                     : ""
             }`}

@@ -16,19 +16,28 @@ const PortfolioLightbox = () => {
     return (
         <AnimatePresence>
             {showLightbox && currentPortfolioItem && (
-                <div className="portfolio-lightbox-wrapper position-fixed t-0 l-0 w-100 h-100">
-                    <div
+                <div
+                    className="portfolio-lightbox-wrapper position-fixed t-0 l-0 w-100 h-100"
+                    style={{ pointerEvents: "none" }}
+                >
+                    <motion.div
                         className={`portfolio-lightbox  text-light d-grid`}
-                        onClick={() =>
-                            dispatchAppState({ type: "hidePortfolioLightbox" })
-                        }
+                        onClick={() => {
+                            dispatchAppState({ type: "hidePortfolioLightbox" });
+                        }}
+                        initial={{
+                            pointerEvents: "none",
+                        }}
+                        animate={{
+                            pointerEvents: "auto",
+                        }}
+                        exit={{
+                            pointerEvents: "none",
+                        }}
                     >
                         <motion.div
                             className={"portfolio-lightbox-bg"}
-                            initial={{
-                                opacity: 0,
-                                x: "100%",
-                            }}
+                            initial={{ opacity: 0, x: "100%" }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: "100%" }}
                             transition={{
@@ -140,7 +149,7 @@ const PortfolioLightbox = () => {
                                 }
                             />
                         </motion.div>
-                    </div>
+                    </motion.div>
                 </div>
             )}
         </AnimatePresence>
