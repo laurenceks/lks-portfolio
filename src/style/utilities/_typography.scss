@@ -134,7 +134,7 @@ h6 {
 }
 
 @each $breakpointLabel, $breakPointValue in variables.$breakpoints {
-    @media screen and (min-width: $breakPointValue) {
+    @media screen and (max-width: $breakPointValue) {
         @each $label, $style in $styles {
             @if (map-has-key($style, $breakpointLabel)) {
                 #{$label} {
