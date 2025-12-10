@@ -13,7 +13,6 @@ const Experience = ({
         if (containerRef.current) {
             const observer = new IntersectionObserver(
                 ([entry]) => {
-                    console.log(entry);
                     if (entry.isIntersecting) {
                         setShowButtons(true);
                         observer.disconnect();
