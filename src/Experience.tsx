@@ -31,9 +31,13 @@ const Experience = ({
         <Section className="bg-light text-dark">
             <div ref={containerRef}></div>
             <h3 className={"ta-center"}>Experience where it counts</h3>
-            <p className={"max-width-md mx-auto mb-3"}>
-                A portfolio of a diverse range of projects from physical media
-                to full-stack web applications{" "}
+            <p className={"max-width-md mx-auto mb-3 ta-center"}>
+                15 years experience designing, developing and tinkering.
+                <br />
+                Completely unique real-world solutions and ideas.
+            </p>
+            <p className={"max-width-md mx-auto mb-3 ta-center"}>
+                See the cream of the crop below.
             </p>
             <div
                 className={`button-animation-staggered d-flex gap-column-2 z-1 align-self-start gap-2 justify-content-center flex-wrap`}

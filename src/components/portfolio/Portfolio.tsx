@@ -12,10 +12,9 @@ const Portfolio = ({
             <div ref={portfolioRef} className={"max-width-sm"}>
                 <h1>Portfolio</h1>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Architecto eaque eum iste nisi nobis nulla numquam obcaecati
-                    quasi sunt vitae! Dolorem eveniet id labore molestias quae
-                    quaerat soluta tempora voluptatem!
+                    A diverse range of projects from physical media to
+                    full-stack web applications. Click on a project to learn
+                    more.
                 </p>
             </div>
         </SectionMaxWidth>
