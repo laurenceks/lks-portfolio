@@ -27,7 +27,7 @@ const HeroTyping = ({
     };
 
     return (
-        <div className={"hero-typing-container py-5"}>
+        <div className={"hero-typing-container pt-md-5"}>
             <HeroStageDiv className="hero-typing">
                 {stageElements[heroTypingStage]}
                 <HeroHidden />

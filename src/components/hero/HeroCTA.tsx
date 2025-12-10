@@ -6,7 +6,7 @@ const HeroCTA = ({
     contactRef,
 }: HeroInterface) => (
     <div
-        className={`hero-cta button-animation-staggered d-flex flex-columns-1 gap-column-md-2 z-1 align-self-start mt-5 gap-2`}
+        className={`hero-cta button-animation-staggered d-flex flex-columns-1 flex-columns-md-2 gap-column-md-2 z-1 align-self-start mt-md-5 gap-2`}
     >
         <button
             className={`animation-fade-in-up ${
