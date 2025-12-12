@@ -7,10 +7,10 @@ import {
 } from "./reducers/appStateReducer.ts";
 import { AppContextInterface } from "./types/appStateTypes.ts";
 import About from "./About.tsx";
-import Section from "./components/wrappers/Section.tsx";
 import Experience from "./Experience.tsx";
 import Technologies from "./Technologies.tsx";
 import Hero from "./components/hero/Hero.tsx";
+import Contact from "./components/contact/Contact.tsx";
 
 export const AppContext = createContext<AppContextInterface>({
     appState: initialAppState,
@@ -44,11 +44,7 @@ function App() {
                 <Experience portfolioRef={portfolioRef} />
                 <Technologies />
                 <Portfolio portfolioRef={portfolioRef} />
-                <Section>
-                    <div ref={contactRef}>
-                        <h2>Contact</h2>
-                    </div>
-                </Section>
+                <Contact />
             </main>
             <footer></footer>
         </AppContext.Provider>

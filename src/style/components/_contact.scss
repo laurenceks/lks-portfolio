@@ -1,0 +1,131 @@
+@use "../utilities/colours";
+@use "../utilities/variables";
+@use "../utilities/typography";
+@use "../mixins/buttonGradient";
+@use "../mixins/pseudo";
+
+form {
+    $borderWidth: 0.4rem;
+
+    @each $prop, $val in map-get(map-get(typography.$styles, "p"), "style") {
+        #{$prop}: $val;
+    }
+
+    > div {
+        //form field container
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        position: relative;
+
+        & > div.contact-input-wrap {
+            position: relative;
+
+            > input {
+                max-width: 40rem;
+            }
+
+            > input,
+            > textarea {
+                @each $prop,
+                    $val in map-get(map-get(typography.$styles, "p"), "style")
+                {
+                    #{$prop}: $val;
+                }
+                margin: 0;
+                padding: 0.4rem 0.4rem;
+                border-radius: 1rem;
+                position: relative;
+                z-index: 1;
+                width: 100%;
+                border: none;
+                outline: none;
+            }
+
+            &:before {
+                @include buttonGradient.buttonGradientMixin();
+                @include pseudo.pseudoMixinAbsolute(
+                    $left: $borderWidth * -1,
+                    $width: calc(100% + ($borderWidth * 2)),
+                    $top: $borderWidth * -1,
+                    $height: calc(100% + ($borderWidth * 2))
+                );
+                border-radius: calc(1rem + #{$borderWidth});
+            }
+
+            &:hover,
+            &:has(:focus, :focus-within, :active) {
+                &:before {
+                    background-position: 100% 0;
+                }
+            }
+        }
+    }
+
+    .contact-tooltip {
+        position: absolute;
+        top: calc(100% + $borderWidth * 3);
+        left: 50%;
+        transform: translate(-50%, calc(-100% - $borderWidth * 3));
+        opacity: 0;
+        transition-property: opacity, transform;
+        transition-timing-function: variables.$defaultEasing;
+        transition-duration: variables.$defaultTransitionDuration;
+        z-index: 2;
+        width: max-content;
+        max-width: 100%;
+
+        > div {
+            position: relative;
+            z-index: 1;
+            background: var(--dark);
+            border-radius: 1rem;
+            padding: 0.4rem 0.8rem 0.4rem 0.4rem;
+            column-gap: 0.4rem;
+
+            > div.contact-tooltip-icon {
+                height: 2.2rem;
+                width: 2.2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                transform: translateY(-0.1rem);
+
+                > svg {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+
+        &:before {
+            @include pseudo.pseudoMixinAbsolute(
+                $left: $borderWidth * -1,
+                $width: calc(100% + ($borderWidth * 2)),
+                $top: $borderWidth * -1,
+                $height: calc(100% + ($borderWidth * 2))
+            );
+
+            --hdr-gradient: linear-gradient(
+                71deg in oklab,
+                oklch(50% 0.19 15),
+                oklch(61% 0.23 32),
+                oklch(63% 0.19 31)
+            );
+            --sdr-gradient: linear-gradient(71deg, #b6143f, #ed2b03, #e54f39);
+
+            background-image: var(--hdr-gradient);
+            background-size: 100%;
+
+            border-radius: calc(1rem + #{$borderWidth});
+            z-index: 0;
+        }
+
+        &.enter,
+        &.enter-done {
+            transform: translate(-50%, 0);
+            opacity: 1;
+        }
+    }
+}
