@@ -4,6 +4,8 @@ import { sortingDateToMonthYear } from "../../utils/formatDates.ts";
 import PortfolioLightboxStack from "./PortfolioLightboxStack.tsx";
 import PortfolioLightboxTimeline from "./timeline/PortfolioLightboxTimeline.tsx";
 import { AppContext } from "../../App.tsx";
+import PortfolioLightboxImageContainer from "./PortfolioLightboxImageContainer.tsx";
+import PortfolioLightboxImage from "./PortfolioLightboxImage.tsx";
 
 const PortfolioLightbox = () => {
     const {
@@ -16,23 +18,11 @@ const PortfolioLightbox = () => {
     return (
         <AnimatePresence>
             {showLightbox && currentPortfolioItem && (
-                <div
-                    className="portfolio-lightbox-wrapper position-fixed t-0 l-0 w-100 h-100"
-                    style={{ pointerEvents: "none" }}
-                >
+                <div className="portfolio-lightbox-wrapper position-fixed t-0 l-0 w-100 h-100">
                     <motion.div
                         className={`portfolio-lightbox  text-light d-grid`}
                         onClick={() => {
                             dispatchAppState({ type: "hidePortfolioLightbox" });
-                        }}
-                        initial={{
-                            pointerEvents: "none",
-                        }}
-                        animate={{
-                            pointerEvents: "auto",
-                        }}
-                        exit={{
-                            pointerEvents: "none",
                         }}
                     >
                         <motion.div
@@ -57,41 +47,12 @@ const PortfolioLightbox = () => {
                                 }
                             }}
                         ></motion.div>
-                        <div
-                            className="p-3 pe-lg-none d-flex"
-                            style={{
-                                maxHeight: "100vh",
-                                alignItems: "center",
-                                justifyContent: "center",
-                            }}
-                        >
-                            <motion.img
-                                layoutId={`image-${currentPortfolioItem?.id}`}
-                                sizes="(max-width: 920px) 100vw, calc(60vw - 3rem)"
-                                src={currentPortfolioItem?.thumbnailPath}
-                                srcSet={
-                                    entered
-                                        ? currentPortfolioItem?.srcSet
-                                        : undefined
-                                }
-                                alt={currentPortfolioItem?.alt}
-                                style={{
-                                    maxHeight: "100%",
-                                    maxWidth: "100%",
-                                    width:
-                                        currentPortfolioItem?.aspectRatio < 1
-                                            ? "auto"
-                                            : "100%",
-                                    height:
-                                        currentPortfolioItem?.aspectRatio < 1
-                                            ? "100%"
-                                            : "auto",
-                                    aspectRatio:
-                                        currentPortfolioItem?.aspectRatio,
-                                    zIndex: 1000,
-                                }}
+                        <PortfolioLightboxImageContainer>
+                            <PortfolioLightboxImage
+                                currentPortfolioItem={currentPortfolioItem}
+                                entered={entered}
                             />
-                        </div>
+                        </PortfolioLightboxImageContainer>
                         <motion.div
                             className={
                                 "portfolio-lightbox-content-container p-lg-3 p-2"
@@ -103,7 +64,7 @@ const PortfolioLightbox = () => {
                                 x: "75%",
                             }}
                             transition={{
-                                duration: 0.6,
+                                duration: 0.4,
                                 ease: [0.25, 1, 0.5, 1], // cubic-bezier
                             }}
                         >
@@ -114,7 +75,7 @@ const PortfolioLightbox = () => {
                                     x: "50%",
                                 }}
                                 transition={{
-                                    duration: 0.6,
+                                    duration: 0.4,
                                     ease: [0.25, 1, 0.5, 1], // cubic-bezier
                                 }}
                                 className={

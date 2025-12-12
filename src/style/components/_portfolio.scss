@@ -66,33 +66,20 @@ p.portfolio-info-panel-description {
 }
 
 div.portfolio-masonry-item {
-    transform: scale(1);
-    transition-property: transform;
-    transition-duration: variables.$defaultTransitionDuration;
-    transition-timing-function: variables.$defaultEasing;
-
-    &:hover,
-    &.active {
+    &:hover {
         z-index: 1;
-        transform: scale(1.05);
 
-        &:not(.active) {
-            div.portfolio-info-panel {
-                @extend .shown;
+        div.portfolio-info-panel {
+            @extend .shown;
 
-                &.left {
-                    transform: translateX(-100%);
-                }
+            &.left {
+                transform: translateX(-100%);
+            }
 
-                &.right {
-                    transform: translateX(100%);
-                }
+            &.right {
+                transform: translateX(100%);
             }
         }
-    }
-
-    &.not-active {
-        transform: scale(0.95);
     }
 
     img {
@@ -342,7 +329,6 @@ div.portfolio-lightbox {
 
     div.portfolio-lightbox-content-container:before {
         @include pseudo.pseudoMixinAbsolute($left: 0);
-        background-color: var(--dark);
         z-index: -1;
     }
 }

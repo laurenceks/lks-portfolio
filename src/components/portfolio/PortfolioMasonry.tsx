@@ -7,10 +7,11 @@ import PortfolioLightbox from "./PortfolioLightbox.tsx";
 import splitItemsIntoCols from "../../utils/splitItemsIntoCols.tsx";
 import remToPx from "../../utils/remToPx.ts";
 import { AppContext } from "../../App.tsx";
+import PortfolioLightboxSizer from "./PortfolioLightboxSizer.tsx";
 
 const PortfolioMasonry = () => {
     const {
-        appState: { portfolioItems, currentPortfolioItem },
+        appState: { portfolioItems },
     } = useContext(AppContext);
     const [hoverItemId, setHoverItemId] = useState<number | null>(null);
     const [masonryColumns, setMasonryColumns] = useState(3);
@@ -40,9 +41,7 @@ const PortfolioMasonry = () => {
         >
             <LayoutGroup>
                 <div
-                    className={`d-grid grid-columns-${masonryColumns} gap-3 align-items-start ${
-                        currentPortfolioItem ? "overflow-hidden" : ""
-                    }`}
+                    className={`portfolio-masonry-container d-grid grid-columns-${masonryColumns} gap-3 align-items-start`}
                     ref={masonryContainerRef}
                 >
                     {splitItemsIntoCols(portfolioItems, masonryColumns).map(
@@ -74,6 +73,7 @@ const PortfolioMasonry = () => {
                     )}
                 </div>
                 <PortfolioLightbox />
+                <PortfolioLightboxSizer />
             </LayoutGroup>
         </SectionMaxWidth>
     );

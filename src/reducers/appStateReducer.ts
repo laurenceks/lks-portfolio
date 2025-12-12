@@ -8,6 +8,7 @@ export const initialAppState: AppStateInterface = {
     portfolioItems,
     currentPortfolioItem: null,
     showLightbox: false,
+    lightboxSizerRef: null,
 };
 
 export const appStateReducer = (
@@ -33,6 +34,12 @@ export const appStateReducer = (
         }
         case "hidePortfolioLightbox": {
             return { ...prevState, showLightbox: false };
+        }
+        case "setPortfolioLightboxSizerRef": {
+            return {
+                ...prevState,
+                lightboxSizerRef: action.payload,
+            };
         }
         default:
             // eslint-disable-next-line no-console

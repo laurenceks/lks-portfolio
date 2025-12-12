@@ -36,7 +36,7 @@ const ImagePlaceholder = ({
                     className={"position-relative"}
                     src={src}
                     alt={alt}
-                    style={{ aspectRatio, zIndex: 20 }}
+                    style={{ aspectRatio }}
                 />
             )}
         </div>
