@@ -20,3 +20,6 @@ export const sortingDateToMonthYear = (timestamp = "") =>
             "December",
         ][parseInt(timestamp.slice(5, 7), 10)]
     } ${timestamp.slice(0, 4)}`;
+
+export const dateToMonthYear = (d: Date) =>
+    d.toLocaleDateString("en-GB", { month: "long", year: "numeric" });

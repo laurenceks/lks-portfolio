@@ -1,5 +1,5 @@
 import { PortfolioItemInterface } from "../../types/portfolioTypes.ts";
-import { sortingDateToMonthYear } from "../../utils/formatDates.ts";
+import { dateToMonthYear } from "../../utils/formatDates.ts";
 
 const PortfolioInfoPanel = ({
     item,
@@ -25,7 +25,7 @@ const PortfolioInfoPanel = ({
                         {item.media}
                     </p>
                 </div>
-                <p className={"mb-3"}>{sortingDateToMonthYear(item.date)}</p>
+                <p className={"mb-3"}>{dateToMonthYear(item.date)}</p>
                 <p className={"small"}>{item.blurb}</p>
                 <p className={"mt-auto smaller fs-italic"}>Click to see more</p>
             </>

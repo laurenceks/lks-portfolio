@@ -34,7 +34,7 @@ export interface PortfolioItemInterface {
     type: PortfolioItemType;
     media: PortfolioItemMedia;
     client: string;
-    date: string;
+    date: Date;
     stack: StackItem[];
     blurb: string;
     description: PortfolioItemDescriptionItemInterface[];

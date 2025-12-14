@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { sortingDateToMonthYear } from "../../utils/formatDates.ts";
+import { dateToMonthYear } from "../../utils/formatDates.ts";
 import PortfolioLightboxStack from "./PortfolioLightboxStack.tsx";
 import PortfolioLightboxTimeline from "./timeline/PortfolioLightboxTimeline.tsx";
 import { AppContext } from "../../App.tsx";
@@ -86,9 +86,7 @@ const PortfolioLightbox = () => {
                             </motion.h1>
                             <h1>{currentPortfolioItem?.title}</h1>
                             <h4>
-                                {sortingDateToMonthYear(
-                                    currentPortfolioItem?.date
-                                )}
+                                {dateToMonthYear(currentPortfolioItem.date)}
                             </h4>
                             <h5>{currentPortfolioItem?.client}</h5>
                             <PortfolioLightboxStack
