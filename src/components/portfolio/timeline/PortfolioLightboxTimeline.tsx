@@ -3,7 +3,7 @@ import { PortfolioItemDescriptionItemInterface } from "../../../types/portfolioT
 import PortfolioLightboxTimelineButtons from "./PortfolioLightboxTimelineButtons.tsx";
 
 const PortfolioLightboxTimeline = ({
-    portfolioDescription,
+    portfolioDescription = [],
 }: {
     portfolioDescription?: PortfolioItemDescriptionItemInterface[];
 }) => {
@@ -25,12 +25,14 @@ const PortfolioLightboxTimeline = ({
                 }
             >
                 <div
-                    className={"d-flex flex-column"}
+                    className={`${
+                        portfolioDescription.length > 1 ? "d-flex" : "d-none"
+                    } flex-column`}
                     style={{
                         transform: `translateY(${activeItemIndex * -2.75}rem)`,
                     }}
                 >
-                    {portfolioDescription?.map((_x, i) => (
+                    {portfolioDescription.map((_x, i) => (
                         <div
                             key={`portfolio-lightbox-timeline-segment-${i}`}
                             className={`portfolio-lightbox-timeline-segment position-relative d-flex cursor-pointer ${
@@ -48,11 +50,11 @@ const PortfolioLightboxTimeline = ({
                     style={{
                         transform: `translateY(${activeItemIndex * 2.75}rem)`,
                         paddingBottom: `${
-                            (portfolioDescription?.length || 0) * 2.75
+                            (portfolioDescription.length || 0) * 2.75
                         }rem`,
                     }}
                 >
-                    {portfolioDescription?.map((x, i) => {
+                    {portfolioDescription.map((x, i) => {
                         let activeClass = "";
                         if (activeItemIndex !== null) {
                             activeClass =
@@ -87,10 +89,6 @@ const PortfolioLightboxTimeline = ({
             </div>
         </div>
     );
-};
-
-PortfolioLightboxTimeline.defaultProps = {
-    timelineItems: [],
 };
 
 export default PortfolioLightboxTimeline;
