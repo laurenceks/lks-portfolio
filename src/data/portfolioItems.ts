@@ -2,6 +2,30 @@ import { PortfolioItemInterface } from "../types/portfolioTypes.ts";
 
 const portfolioItems: PortfolioItemInterface[] = [
     {
+        id: 7,
+        title: "Claudia summers performance",
+        date: "1905-07-07",
+        imgFileName: "claudiaSummersPerformance.png",
+        alt: "Claudia summers performance",
+        client: "Claudia summers performance",
+        stack: ["HTML", "CSS", "JavaScript", "PHP"],
+        type: "commission",
+        media: "web",
+        blurb: "A simple website showcasing my sister's many talents",
+        description: [
+            {
+                title: "A classic",
+                content:
+                    "When she was still starting out on her acting career, my sister needed a simple website to showcase her work. The design was intended to be professional and striking with simple but effective functionality.",
+            },
+        ],
+        url: "",
+        aspectRatio: 1.77777777777778,
+        srcSet: "images/portfolio/srcset/claudiaSummersPerformance@1920w.png 1920w, images/portfolio/srcset/claudiaSummersPerformance@1280w.png 1280w, images/portfolio/srcset/claudiaSummersPerformance@860w.png 860w, images/portfolio/srcset/claudiaSummersPerformance@450w.png 450w",
+        thumbnailPath:
+            "images/portfolio/srcset/claudiaSummersPerformance@450w.png",
+    },
+    {
         id: 6,
         title: "Stand with Sue",
         date: "1905-07-11",
@@ -69,6 +93,29 @@ const portfolioItems: PortfolioItemInterface[] = [
         thumbnailPath: "images/portfolio/srcset/gcfc@450w.png",
     },
     {
+        id: 8,
+        title: "Wild Nala Co.",
+        date: "1905-07-12",
+        imgFileName: "wildNalaCo.jpg",
+        alt: "Wild Nala Co.",
+        client: "Wild Nala Co.",
+        stack: ["Illustrator"],
+        type: "commission",
+        media: "graphic",
+        blurb: "A logo for a dog clothing company",
+        description: [
+            {
+                title: "Made to order",
+                content:
+                    "A friend was starting up a business and had a clear vision for her brand. I made a logo based on her concepts, reflecting the adventurous spirit and outdoorsy nature of the brand.",
+            },
+        ],
+        url: "https://https://www.facebook.com/WildNalaCo/",
+        aspectRatio: 1,
+        srcSet: "images/portfolio/srcset/wildNalaCo@1920w.jpg 1920w, images/portfolio/srcset/wildNalaCo@1280w.jpg 1280w, images/portfolio/srcset/wildNalaCo@860w.jpg 860w, images/portfolio/srcset/wildNalaCo@450w.jpg 450w",
+        thumbnailPath: "images/portfolio/srcset/wildNalaCo@450w.jpg",
+    },
+    {
         id: 3,
         title: "Shift Shop",
         date: "1905-07-15",
@@ -114,6 +161,29 @@ const portfolioItems: PortfolioItemInterface[] = [
         thumbnailPath: "images/portfolio/srcset/rrbmt@450w.png",
     },
     {
+        id: 9,
+        title: "Defib sim",
+        date: "1905-07-07",
+        imgFileName: "defibSim.png",
+        alt: "Defib sim",
+        client: "Defib sim",
+        stack: ["HTML", "CSS", "JavaScript"],
+        type: "personal",
+        media: "web",
+        blurb: "A advanced life support monitor-defibrillator simulator",
+        description: [
+            {
+                title: "If you want something done right…",
+                content:
+                    "A big part of my paramedic degree was relentless drills for simulation exams, the hardest of which was advanced life support. At the time there were no good free tools for simulating the equipment we would use, making the practice sessions less immersive. I took on the challenge of building my own to give my coursemates a bit of a hand with revision. (P.S. - I passed)",
+            },
+        ],
+        url: "https://defibsim.com",
+        aspectRatio: 1.5,
+        srcSet: "images/portfolio/srcset/defibSim@1920w.png 1920w, images/portfolio/srcset/defibSim@1280w.png 1280w, images/portfolio/srcset/defibSim@860w.png 860w, images/portfolio/srcset/defibSim@450w.png 450w",
+        thumbnailPath: "images/portfolio/srcset/defibSim@450w.png",
+    },
+    {
         id: 1,
         title: "NHS Pay Log",
         date: "2025-03-01",
@@ -140,6 +210,23 @@ const portfolioItems: PortfolioItemInterface[] = [
         aspectRatio: 1.33333333333333,
         srcSet: "images/portfolio/srcset/nhsPayLog@1920w.png 1920w, images/portfolio/srcset/nhsPayLog@1280w.png 1280w, images/portfolio/srcset/nhsPayLog@860w.png 860w, images/portfolio/srcset/nhsPayLog@450w.png 450w",
         thumbnailPath: "images/portfolio/srcset/nhsPayLog@450w.png",
+    },
+    {
+        id: 10,
+        title: "High Takeoff",
+        date: "1905-07-13",
+        imgFileName: "highTakeoff.png",
+        alt: "High Takeoff",
+        client: "High Takeoff",
+        stack: ["HTML", "CSS", "JavaScript", "PHP"],
+        type: "personal",
+        media: "web",
+        blurb: "A simple website advertising my private medical work",
+        description: [],
+        url: "",
+        aspectRatio: 1.5,
+        srcSet: "images/portfolio/srcset/highTakeoff@1920w.png 1920w, images/portfolio/srcset/highTakeoff@1280w.png 1280w, images/portfolio/srcset/highTakeoff@860w.png 860w, images/portfolio/srcset/highTakeoff@450w.png 450w",
+        thumbnailPath: "images/portfolio/srcset/highTakeoff@450w.png",
     },
 ];
 export default portfolioItems;
