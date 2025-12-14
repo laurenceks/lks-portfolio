@@ -4,7 +4,7 @@ const portfolioItems: PortfolioItemInterface[] = [
     {
         id: 7,
         title: "Claudia summers performance",
-        date: "1905-07-07",
+        date: new Date(2015, 1, 1),
         imgFileName: "claudiaSummersPerformance.png",
         alt: "Claudia summers performance",
         client: "Claudia summers performance",
@@ -28,7 +28,7 @@ const portfolioItems: PortfolioItemInterface[] = [
     {
         id: 6,
         title: "Stand with Sue",
-        date: "1905-07-11",
+        date: new Date(2019, 8, 31),
         imgFileName: "standBySue.png",
         alt: "Stand with Sue",
         client: "Stand with Sue",
@@ -45,7 +45,7 @@ const portfolioItems: PortfolioItemInterface[] = [
     {
         id: 4,
         title: "Movember 999",
-        date: "1905-07-14",
+        date: new Date(2022, 10, 1),
         imgFileName: "movember999.png",
         alt: "Movember 999",
         client: "Movember 999",
@@ -78,7 +78,7 @@ const portfolioItems: PortfolioItemInterface[] = [
     {
         id: 5,
         title: "Guildford and Chertsey Football club",
-        date: "1905-07-14",
+        date: new Date(2022, 5, 26),
         imgFileName: "gcfc.png",
         alt: "Guildford and Chertsey Football club",
         client: "Guildford and Chertsey Football club",
@@ -95,7 +95,7 @@ const portfolioItems: PortfolioItemInterface[] = [
     {
         id: 8,
         title: "Wild Nala Co.",
-        date: "1905-07-12",
+        date: new Date(2020, 9, 16),
         imgFileName: "wildNalaCo.jpg",
         alt: "Wild Nala Co.",
         client: "Wild Nala Co.",
@@ -118,7 +118,7 @@ const portfolioItems: PortfolioItemInterface[] = [
     {
         id: 3,
         title: "Shift Shop",
-        date: "1905-07-15",
+        date: new Date(2023, 5, 1),
         imgFileName: "shiftShop.png",
         alt: "Shift Shop",
         client: "Shift Shop",
@@ -146,7 +146,7 @@ const portfolioItems: PortfolioItemInterface[] = [
     {
         id: 2,
         title: "Really Really Big Modern TV",
-        date: "2016-06-12",
+        date: new Date(2016, 6, 12),
         imgFileName: "rrbmt.png",
         alt: "Really Really Big Modern TV",
         client: "Really Really Big Modern TV",
@@ -163,7 +163,7 @@ const portfolioItems: PortfolioItemInterface[] = [
     {
         id: 9,
         title: "Defib sim",
-        date: "1905-07-07",
+        date: new Date(2016, 5, 1),
         imgFileName: "defibSim.png",
         alt: "Defib sim",
         client: "Defib sim",
@@ -186,7 +186,7 @@ const portfolioItems: PortfolioItemInterface[] = [
     {
         id: 1,
         title: "NHS Pay Log",
-        date: "2025-03-01",
+        date: new Date(2025, 3, 1),
         imgFileName: "nhsPayLog.png",
         alt: "NHS Pay Log",
         client: "NHS Pay Log",
@@ -214,7 +214,7 @@ const portfolioItems: PortfolioItemInterface[] = [
     {
         id: 10,
         title: "High Takeoff",
-        date: "1905-07-13",
+        date: new Date(2021, 6, 24),
         imgFileName: "highTakeoff.png",
         alt: "High Takeoff",
         client: "High Takeoff",
@@ -227,6 +227,23 @@ const portfolioItems: PortfolioItemInterface[] = [
         aspectRatio: 1.5,
         srcSet: "images/portfolio/srcset/highTakeoff@1920w.png 1920w, images/portfolio/srcset/highTakeoff@1280w.png 1280w, images/portfolio/srcset/highTakeoff@860w.png 860w, images/portfolio/srcset/highTakeoff@450w.png 450w",
         thumbnailPath: "images/portfolio/srcset/highTakeoff@450w.png",
+    },
+    {
+        id: 11,
+        title: "Thorpe Nexus",
+        date: new Date(2016, 5, 1),
+        imgFileName: "thorpeNexus.png",
+        alt: "Thorpe Nexus",
+        client: "Thorpe Nexus",
+        stack: ["HTML", "CSS", "JavaScript", "PHP", "jQuery", "ChartJS"],
+        type: "personal",
+        media: "web",
+        blurb: "An all-in-one park management system",
+        description: [],
+        url: "https://nexusdemo.laurencesummers.com",
+        aspectRatio: 1.33333333333333,
+        srcSet: "images/portfolio/srcset/thorpeNexus@1920w.png 1920w, images/portfolio/srcset/thorpeNexus@1280w.png 1280w, images/portfolio/srcset/thorpeNexus@860w.png 860w, images/portfolio/srcset/thorpeNexus@450w.png 450w",
+        thumbnailPath: "images/portfolio/srcset/thorpeNexus@450w.png",
     },
 ];
 export default portfolioItems;
