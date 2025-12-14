@@ -5,7 +5,7 @@ import {
 import portfolioItems from "../data/portfolioItems.ts";
 
 export const initialAppState: AppStateInterface = {
-    portfolioItems: portfolioItems.sort((a, b) => (a.id > b.id ? 1 : -1)),
+    portfolioItems: portfolioItems.sort((a, b) => (a.date < b.date ? 1 : -1)),
     currentPortfolioItem: null,
     showLightbox: false,
     lightboxSizerRef: null,
