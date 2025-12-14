@@ -4,202 +4,194 @@
 @use "../mixins/media";
 
 nav {
-  display: flex;
-  position: sticky;
-  z-index: 5;
-  top: -1px;
-  align-items: center;
-  width: 100%;
-  padding: 0 variables.$paddingGutter;
-  background-color: var(--light);
-  color: var(--dark);
-  font-family: var(--font-body);
-  font-weight: 500;
-  letter-spacing: 0.01rem;
-
-  > img {
-    height: 60px;
-  }
-
-  > .nav-background {
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
+    display: flex;
+    position: sticky;
+    top: -1px;
+    align-items: center;
+    z-index: 5;
+    background-color: var(--light);
+    padding: 0 variables.$paddingGutter;
     width: 100%;
-    height: 100%;
-    opacity: 0.25;
-    background-color: var(--dark-blue-grey);
-    -webkit-mask-image: url("navBgMask.svg");
-    mask-image: url("navBgMask.svg");
-    -webkit-mask-position: center bottom;
-    mask-position: center bottom;
-    -webkit-mask-size: 65px;
-    mask-size: 65px;
+    letter-spacing: 0.01rem;
+    color: var(--dark);
+    font-family: var(--font-body);
+    font-weight: 500;
 
-    &:before {
-      @include pseudo.pseudoMixinAbsolute($left: 0);
-      background: radial-gradient(
-                      ellipse farthest-side at top right,
-                      transparent 0%,
-                      var(--light) 100%
-      );
-      background-size: 100% 26.4rem;
+    > img {
+        height: 60px;
     }
-  }
 
-  > div {
-    margin-left: auto;
+    > .nav-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.25;
+        z-index: -1;
+        background-color: var(--dark-blue-grey);
+        width: 100%;
+        height: 100%;
+        -webkit-mask-image: url("../../../public/masks/navBgMask.svg");
+        mask-image: url("../../../public/masks/navBgMask.svg");
+        -webkit-mask-position: center bottom;
+        mask-position: center bottom;
+        -webkit-mask-size: 65px;
+        mask-size: 65px;
 
-    > ul {
-      display: flex;
-      position: relative;
-      margin-left: auto;
-      padding: 2.4rem * 0.75 0;
-      list-style: none;
-      justify-self: end;
-
-      &:hover > li.nav-marker {
-        opacity: 1;
-      }
-
-      > li {
-        flex: 0 0 auto;
-        padding: 0 3.2rem;
-        font-size: 2.2rem;
-        text-transform: uppercase;
-        cursor: pointer;
-
-        &.nav-marker {
-          display: flex;
-          position: absolute;
-          z-index: -1;
-          top: 0;
-          left: 0;
-          width: auto;
-          height: 100%;
-          padding: 2.4rem * 0.75 1rem;
-          transition: transform 0.4s ease-out,
-          width 0.4s ease-out,
-          opacity 0.4s ease-out;
-          opacity: 0;
-          color: var(--primary);
-
-          > svg {
-            width: 1.5rem;
-            height: 100%;
-
-            &:nth-of-type(1) {
-              margin-right: auto;
-            }
-
-            > path {
-              fill: var(--primary);
-            }
-          }
+        &:before {
+            @include pseudo.pseudoMixinAbsolute($left: 0);
+            background: radial-gradient(
+                ellipse farthest-side at top right,
+                transparent 0%,
+                var(--light) 100%
+            );
+            background-size: 100% 26.4rem;
         }
-      }
     }
 
-    > div.nav-background-mobile {
-      display: none;
+    > div {
+        margin-left: auto;
+
+        > ul {
+            display: flex;
+            position: relative;
+            justify-self: end;
+            margin-left: auto;
+            padding: 2.4rem * 0.75 0;
+            list-style: none;
+
+            &:hover > li.nav-marker {
+                opacity: 1;
+            }
+
+            > li {
+                flex: 0 0 auto;
+                cursor: pointer;
+                padding: 0 3.2rem;
+                text-transform: uppercase;
+                font-size: 2.2rem;
+
+                &.nav-marker {
+                    display: flex;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    transition:
+                        transform 0.4s ease-out,
+                        width 0.4s ease-out,
+                        opacity 0.4s ease-out;
+                    opacity: 0;
+                    z-index: -1;
+                    padding: 2.4rem * 0.75 1rem;
+                    width: auto;
+                    height: 100%;
+                    color: var(--primary);
+
+                    > svg {
+                        width: 1.5rem;
+                        height: 100%;
+
+                        &:nth-of-type(1) {
+                            margin-right: auto;
+                        }
+
+                        > path {
+                            fill: var(--primary);
+                        }
+                    }
+                }
+            }
+        }
+
+        > div.nav-background-mobile {
+            display: none;
+        }
     }
-  }
 }
 
 @include media.media-down("md") {
-  nav {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    nav {
+        display: grid;
+        grid-template-columns: auto 1fr;
 
-    .nav-menu {
-      padding: 0 3.2rem;
-      font-size: 2.2rem;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
-
-    > div.nav-buttons {
-      visibility: hidden;;
-      grid-column: 1/-1;
-      width: 100vw;
-      position: absolute;
-      top: 100%;
-      left: calc(#{variables.$paddingGutter} * -1);
-      overflow: hidden;
-      transition: visibility variables.$defaultTransitionDuration;
-
-      ul {
-        flex-direction: column;
-        margin-left: 0;
-        gap: 1rem;
-        width: 100%;
-        transform: translateY(-100%);
-        transition-property: transform;
-        transition-duration: variables.$defaultTransitionDuration;
-        transition-timing-function: variables.$defaultEasing;
-        z-index: 1;
-
-        > li {
-          text-align: center;
-
-          &.nav-marker {
-            display: none;
-          }
+        .nav-menu {
+            cursor: pointer;
+            padding: 0 3.2rem;
+            text-transform: uppercase;
+            font-size: 2.2rem;
         }
-      }
 
-      > div.nav-background-mobile-container {
-        background-color: var(--light);
-        clip-path: inset(0 0 100% 0);
-        transition: clip-path variables.$defaultTransitionDuration variables.$defaultEasing;
-        pointer-events: none;
+        > div.nav-buttons {
+            position: absolute;
+            top: 100%;
+            left: calc(#{variables.$paddingGutter} * -1);
+            grid-column: 1/-1;
+            transition: visibility variables.$defaultTransitionDuration;
+            visibility: hidden;
+            width: 100vw;
+            overflow: hidden;
 
-        > div.nav-background-mobile {
-          visibility: visible;
-          opacity: 0.25;
-          background-image: url("navBgMaskColour.svg");
-          background-position: center top;
-          background-size: 65px;
-          width: 100%;
-          height: 100%;
+            ul {
+                flex-direction: column;
+                transform: translateY(-100%);
+                transition-duration: variables.$defaultTransitionDuration;
+                transition-property: transform;
+                transition-timing-function: variables.$defaultEasing;
+                z-index: 1;
+                margin-left: 0;
+                width: 100%;
+                gap: 1rem;
 
-          &:before {
-            @include pseudo.pseudoMixinAbsolute($left: 0);
-            background: radial-gradient(
+                > li {
+                    text-align: center;
+
+                    &.nav-marker {
+                        display: none;
+                    }
+                }
+            }
+
+            > div.nav-background-mobile-container {
+                transition: clip-path variables.$defaultTransitionDuration
+                    variables.$defaultEasing;
+                background-color: var(--light);
+                clip-path: inset(0 0 100% 0);
+                pointer-events: none;
+
+                > div.nav-background-mobile {
+                    visibility: visible;
+                    opacity: 0.25;
+                    background-image: url("../../../public/masks/navBgMaskColour.svg");
+                    background-position: center top;
+                    background-size: 65px;
+                    width: 100%;
+                    height: 100%;
+
+                    &:before {
+                        @include pseudo.pseudoMixinAbsolute($left: 0);
+                        background: radial-gradient(
                             ellipse farthest-side at top right,
                             transparent 0%,
                             var(--light) 100%
-            );
-            background-size: 100% 26.4rem;
-          }
+                        );
+                        background-size: 100% 26.4rem;
+                    }
+                }
+            }
         }
-      }
+
+        &:hover {
+            div.nav-buttons {
+                visibility: visible;
+
+                > ul {
+                    transform: translateY(0);
+                }
+
+                > div.nav-background-mobile-container {
+                    clip-path: inset(0 0 0 0);
+                    pointer-events: auto;
+                }
+            }
+        }
     }
-
-    &:hover {
-      div.nav-buttons {
-        visibility: visible;;
-
-        > ul {
-          transform: translateY(0);
-        }
-
-        > div.nav-background-mobile-container {
-          clip-path: inset(0 0 0 0);
-          pointer-events: auto;
-        }
-      }
-    }
-  }
 }
-
-//@include media.media-down("sm") {
-//    nav {
-//        > ul {
-//            > li {
-//                font-size: 1rem;
-//            }
-//        }
-//    }
-//}

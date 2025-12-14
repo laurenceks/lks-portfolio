@@ -3,25 +3,33 @@
 @use "../mixins/backgroundMask";
 
 .heading-grid {
-
     &.nav-background {
         position: relative;
 
         &:before {
             @include pseudo.pseudoMixinAbsolute($right: 0);
-            @include backgroundMask.backgroundMaskMixin("navBgMask.svg", $repeat: repeat, $size: 65px, $maskPosition: center top);
-            height: 20rem;
+            @include backgroundMask.backgroundMaskMixin(
+                "public/images/masks/navBgMask.svg",
+                $repeat: repeat,
+                $size: 65px,
+                $maskPosition: center top
+            );
             background-color: var(--light);
+            height: 20rem;
         }
 
         &:after {
             @include pseudo.pseudoMixinAbsolute($right: 0);
             z-index: 0;
-            height: 20rem;
-            background: radial-gradient(ellipse farthest-side at top right, transparent 0%, var(--dark) 100%);
-            background-repeat: no-repeat;
+            background: radial-gradient(
+                ellipse farthest-side at top right,
+                transparent 0%,
+                var(--dark) 100%
+            );
             background-position: center -6.4rem;
+            background-repeat: no-repeat;
             background-size: 100% 26.4rem;
+            height: 20rem;
         }
 
         > * {

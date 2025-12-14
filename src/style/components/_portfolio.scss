@@ -8,13 +8,13 @@
 @forward "../utilities/classes";
 
 div.portfolio-info-panel {
+    transition-duration: variables.$defaultTransitionDuration;
+    transition-property: opacity, visibility, transform;
+    transition-timing-function: variables.$defaultEasing;
     z-index: -1;
     height: max-content;
     min-height: 100%;
     overflow: hidden;
-    transition-property: opacity, visibility, transform;
-    transition-duration: variables.$defaultTransitionDuration;
-    transition-timing-function: variables.$defaultEasing;
 
     &:before,
     &:after {
@@ -27,15 +27,15 @@ div.portfolio-info-panel {
     }
 
     &:before {
-        z-index: -2;
         opacity: 0.25;
-        background-color: var(--dark-blue-grey);
-        -webkit-mask-image: url("navBgMask.svg");
-        mask-image: url("navBgMask.svg");
+        z-index: -2;
+        background-color: var(--light);
+        -webkit-mask-image: url("../../../public/masks/navBgMask.svg");
+        mask-image: url("../../../public/masks/navBgMask.svg");
         -webkit-mask-position: center bottom;
         mask-position: center bottom;
         -webkit-mask-size: 65px;
-        mask-size: auto;
+        mask-size: 65px;
     }
 
     &:after {
@@ -88,17 +88,17 @@ div.portfolio-masonry-item {
 }
 
 .portfolio-image-placeholder {
-    z-index: 0;
     column-gap: 0.5rem;
+    z-index: 0;
 
     > div {
+        opacity: 0;
+        border-radius: 50%;
+        background-color: var(--light);
         width: 1rem;
         height: 1rem;
         animation: placeholderEllipsis
             variables.$placeholderEllipsisAnimationDuration infinite;
-        border-radius: 50%;
-        opacity: 0;
-        background-color: var(--light);
 
         &:nth-of-type(2) {
             animation-delay: 0.25s;
@@ -110,10 +110,10 @@ div.portfolio-masonry-item {
     }
 
     &:has(~ img) {
-        opacity: 0;
         transition: opacity;
         transition-delay: 2s;
         transition-duration: 0s;
+        opacity: 0;
     }
 }
 
@@ -132,14 +132,14 @@ div.portfolio-lightbox-wrapper {
 }
 
 div.portfolio-lightbox {
-    min-height: 100%;
     grid-template-columns: 3fr 2fr;
     column-gap: 3rem;
+    min-height: 100%;
 
     .portfolio-lightbox-bg {
         @include pseudo.pseudoMixinAbsolute($left: 0);
-        background-color: var(--dark);
         z-index: -2;
+        background-color: var(--dark);
     }
 }
 
@@ -148,12 +148,12 @@ div.portfolio-lightbox {
 }
 
 .portfolio-lightbox-content-back-text {
-    z-index: -1;
     left: -15rem;
-    width: max-content;
     opacity: 0.1;
-    font-size: 20rem;
+    z-index: -1;
+    width: max-content;
     line-height: 65%;
+    font-size: 20rem;
     background-blend-mode: lighten;
     mix-blend-mode: lighten;
 }
@@ -178,8 +178,8 @@ div.portfolio-lightbox {
             $width: auto,
             $height: auto
         );
-        width: max-content;
         transform: translate(-50%, 125%);
+        width: max-content;
         font-size: 1.5rem;
     }
 
@@ -263,11 +263,11 @@ div.portfolio-lightbox {
         //dot
         @include pseudo.pseudoMixin($width: 1rem, $height: 1rem, $top: 1.8rem);
         flex-shrink: 0;
+        transition-duration: variables.$defaultTransitionDuration;
+        transition-property: transform;
+        transition-timing-function: variables.$defaultEasing;
         margin-right: 1.5rem;
         margin-left: 1.5rem;
-        transition-property: transform;
-        transition-duration: variables.$defaultTransitionDuration;
-        transition-timing-function: variables.$defaultEasing;
         border-radius: 50%;
         background-color: var(--light);
     }
