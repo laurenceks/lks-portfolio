@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import ContactFormTooltip from "./ContactFormTooltip.tsx";
 
 const ContactForm = () => {
@@ -8,7 +8,7 @@ const ContactForm = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => {
+    const onSubmit = (data: FieldValues) => {
         console.log("Form submitted:", data);
     };
 
