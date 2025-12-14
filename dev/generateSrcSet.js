@@ -42,6 +42,7 @@ fs.mkdirSync(outDir);
 
 portfolioItems.forEach((x, i) => {
     const [name, ext] = x.imgFileName.split(".");
+    console.log(`Generating srcSet for ${name}`);
     x.srcSet = srcSetWidths.reduce(
         (acc, val, j) =>
             acc +
