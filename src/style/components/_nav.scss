@@ -30,8 +30,8 @@ nav {
         background-color: var(--dark-blue-grey);
         width: 100%;
         height: 100%;
-        -webkit-mask-image: url("../../../public/masks/navBgMask.svg");
-        mask-image: url("../../../public/masks/navBgMask.svg");
+        -webkit-mask-image: url("/images/masks/navBgMask.svg");
+        mask-image: url("/images/masks/navBgMask.svg");
         -webkit-mask-position: center bottom;
         mask-position: center bottom;
         -webkit-mask-size: 65px;
@@ -160,7 +160,7 @@ nav {
                 > div.nav-background-mobile {
                     visibility: visible;
                     opacity: 0.25;
-                    background-image: url("../../../public/masks/navBgMaskColour.svg");
+                    background-image: url("/images/masks/navBgMaskColour.svg");
                     background-position: center top;
                     background-size: 65px;
                     width: 100%;
