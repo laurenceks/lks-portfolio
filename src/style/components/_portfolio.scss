@@ -145,6 +145,21 @@ div.portfolio-lightbox {
 
 .portfolio-lightbox-content-container {
     position: relative;
+    max-height: 100vh;
+
+    > div {
+        min-height: 0;
+        max-height: 100vh;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
 }
 
 .portfolio-lightbox-content-back-text {
@@ -319,16 +334,56 @@ div.portfolio-lightbox {
 
 @include media.media-down("lg") {
     div.portfolio-lightbox-wrapper {
+        min-height: 0;
         overflow-x: hidden;
         overflow-y: scroll;
-    }
-    div.portfolio-lightbox {
-        grid-template-columns: 100%;
-        grid-template-rows: auto 1fr;
+        -webkit-overflow-scrolling: touch;
     }
 
-    div.portfolio-lightbox-content-container:before {
-        @include pseudo.pseudoMixinAbsolute($left: 0);
-        z-index: -1;
+    div.portfolio-lightbox {
+        grid-template-rows: auto 1fr;
+        grid-template-columns: 100%;
+
+        > div {
+            grid-column: 1;
+
+            &.portfolio-lightbox-bg {
+                position: static;
+                grid-row: 1/-1;
+            }
+
+            @for $n from 2 through 3 {
+                &:nth-of-type(#{$n}) {
+                    grid-row: $n - 1;
+                }
+            }
+        }
+    }
+
+    div.portfolio-lightbox-content-container {
+        &:before {
+            @include pseudo.pseudoMixinAbsolute($left: 0);
+            z-index: -1;
+        }
+
+        max-height: none;
+
+        > div {
+            max-height: none;
+            overflow-x: visible;
+            overflow-y: visible;
+        }
+    }
+
+    @media screen and (orientation: landscape) {
+        div.portfolio-lightbox {
+            grid-template-rows: 100dvh max-content;
+            height: max-content;
+        }
+
+        img.portfolio-lightbox-image {
+            width: auto !important;
+            height: 100% !important;
+        }
     }
 }

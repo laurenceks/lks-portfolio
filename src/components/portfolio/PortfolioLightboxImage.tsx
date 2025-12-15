@@ -28,6 +28,7 @@ const PortfolioLightboxImage = ({
     }
     return (
         <motion.img
+            className="portfolio-lightbox-image"
             layoutId={`image-${currentPortfolioItem?.id}`}
             sizes="(max-width: 920px) 100vw, calc(60vw - 3rem)"
             src={currentPortfolioItem?.thumbnailPath}
@@ -40,6 +41,7 @@ const PortfolioLightboxImage = ({
                 aspectRatio: currentPortfolioItem?.aspectRatio,
                 zIndex: 1000,
             }}
+            data-portrait={currentPortfolioItem?.aspectRatio < 1}
         />
     );
 };

@@ -22,7 +22,11 @@ const PortfolioLightbox = () => {
                     <motion.div
                         className={`portfolio-lightbox  text-light d-grid`}
                         onClick={() => {
-                            dispatchAppState({ type: "hidePortfolioLightbox" });
+                            if (entered) {
+                                dispatchAppState({
+                                    type: "hidePortfolioLightbox",
+                                });
+                            }
                         }}
                     >
                         <motion.div
@@ -55,7 +59,7 @@ const PortfolioLightbox = () => {
                         </PortfolioLightboxImageContainer>
                         <motion.div
                             className={
-                                "portfolio-lightbox-content-container p-lg-3 p-2"
+                                "portfolio-lightbox-content-container p-lg-3 p-2 pt-none pe-none"
                             }
                             initial={{ opacity: 0, x: "75%" }}
                             animate={{ opacity: 1, x: 0 }}
@@ -84,29 +88,32 @@ const PortfolioLightbox = () => {
                             >
                                 {currentPortfolioItem?.title}
                             </motion.h1>
-                            <h1>{currentPortfolioItem?.title}</h1>
-                            <h4>
-                                {dateToMonthYear(currentPortfolioItem.date)}
-                            </h4>
-                            <h5>{currentPortfolioItem?.client}</h5>
-                            <PortfolioLightboxStack
-                                itemId={currentPortfolioItem?.id}
-                                stack={currentPortfolioItem?.stack}
-                            />
-                            {currentPortfolioItem?.url && (
-                                <a
-                                    className="button url mb-2"
-                                    href={currentPortfolioItem?.url}
-                                    target="_blank"
-                                >
-                                    See live
-                                </a>
-                            )}
-                            <PortfolioLightboxTimeline
-                                portfolioDescription={
-                                    currentPortfolioItem?.description
-                                }
-                            />
+                            <div className="pt-lg-3 pt-2 pe-lg-3 pe-2">
+                                <h1>{currentPortfolioItem?.title}</h1>
+                                <h4>
+                                    {dateToMonthYear(currentPortfolioItem.date)}
+                                </h4>
+                                <h5>{currentPortfolioItem?.client}</h5>
+                                <PortfolioLightboxStack
+                                    itemId={currentPortfolioItem?.id}
+                                    stack={currentPortfolioItem?.stack}
+                                />{" "}
+                                {currentPortfolioItem?.url && (
+                                    <a
+                                        className="button url mb-2"
+                                        href={currentPortfolioItem?.url}
+                                        target="_blank"
+                                    >
+                                        {" "}
+                                        See live{" "}
+                                    </a>
+                                )}{" "}
+                                <PortfolioLightboxTimeline
+                                    portfolioDescription={
+                                        currentPortfolioItem?.description
+                                    }
+                                />
+                            </div>
                         </motion.div>
                     </motion.div>
                 </div>
