@@ -257,14 +257,14 @@ div.portfolio-lightbox {
 
         &.down {
             @include backgroundMask.backgroundMaskMixin(
-                "public/images/icons/timelineNext.svg",
+                "images/icons/timelineNext.svg",
                 100%
             );
         }
 
         &.up {
             @include backgroundMask.backgroundMaskMixin(
-                "public/images/icons/timelinePrevious.svg",
+                "images/icons/timelinePrevious.svg",
                 100%
             );
         }
