@@ -4,7 +4,7 @@ import SectionMaxWidth from "../wrappers/SectionMaxWidth.tsx";
 import { PanelPositionType } from "../../types/portfolioTypes.ts";
 import PortfolioMasonryItem from "./PortfolioMasonryItem.tsx";
 import PortfolioLightbox from "./PortfolioLightbox.tsx";
-import splitItemsIntoCols from "../../utils/splitItemsIntoCols.tsx";
+import splitItemsIntoCols from "../../utils/splitItemsIntoCols.ts";
 import remToPx from "../../utils/remToPx.ts";
 import { AppContext } from "../../App.tsx";
 import PortfolioLightboxSizer from "./PortfolioLightboxSizer.tsx";
