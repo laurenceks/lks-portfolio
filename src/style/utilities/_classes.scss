@@ -150,6 +150,7 @@ $propertyMap: (
         "values": (
             hidden,
             scroll,
+            visible,
         ),
     ),
     (
@@ -329,8 +330,8 @@ $propertyMap: (
 }
 
 .tag {
-    padding: 0.4rem 0.8rem;
     border-radius: 10000px;
+    padding: 0.4rem 0.8rem;
     font-size: 1.2rem;
 }
 
@@ -340,8 +341,8 @@ $propertyMap: (
 }
 
 .hidden-transition {
-    transition-property: opacity, visibility;
     transition-duration: variables.$defaultTransitionDuration;
+    transition-property: opacity, visibility;
     transition-timing-function: variables.$defaultEasing;
 }
 
