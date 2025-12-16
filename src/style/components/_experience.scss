@@ -1,0 +1,51 @@
+@use "../utilities/colours";
+@use "../utilities/variables";
+@use "../mixins/pseudo";
+@use "../mixins/hiddenTransition";
+@use "../mixins/backgroundMask";
+@use "../mixins/buttonGradient";
+@use "../mixins/media";
+
+.experience {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    > * {
+        z-index: 1;
+    }
+
+    &:before,
+    &:after {
+        @include pseudo.pseudoMixinAbsolute(
+            $left: 0,
+            $bottom: 0,
+            $top: unset,
+            $right: unset,
+            $width: 500px
+        );
+        z-index: -1;
+    }
+
+    &:before {
+        @include backgroundMask.backgroundMaskMixin(
+            "/images/masks/qqquad.svg",
+            200px,
+            left bottom,
+            repeat
+        );
+        background-color: var(--dark);
+    }
+
+    &:after {
+        background-image: radial-gradient(
+            ellipse farthest-side at bottom left,
+            transparent 0%,
+            var(--light) min(400px, 50vw)
+        );
+        background-position: bottom left;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        height: 100%;
+    }
+}
