@@ -1,15 +1,37 @@
 import { FieldValues, useForm } from "react-hook-form";
+import { useState } from "react";
 import ContactFormTooltip from "./ContactFormTooltip.tsx";
+import ContactFormFeedback from "./ContactFormFeedback.tsx";
+import "altcha";
 
 const ContactForm = () => {
+    const [sendStatus, setSendStatus] = useState<
+        "idle" | "clientError" | "serverError" | "sent"
+    >("idle");
+    const [fetching, setFetching] = useState(false);
     const {
         register,
         handleSubmit,
         formState: { errors },
+        reset,
     } = useForm();
 
     const onSubmit = (data: FieldValues) => {
-        console.log("Form submitted:", data);
+        // TODO ALTCHA
+        setFetching(true);
+
+        fetch("php/mail.php", {
+            method: "POST",
+            body: JSON.stringify(data),
+        })
+            .then(() => {
+                setSendStatus("sent");
+                reset();
+            })
+            .catch(() => {
+                setSendStatus("serverError");
+            })
+            .finally(() => setFetching(false));
     };
 
     return (
@@ -67,10 +89,26 @@ const ContactForm = () => {
                     message={errors.message?.message as string | undefined}
                 />
             </div>
-
-            <button type="submit" className="small mt-1 mt-md-none">
-                Send
+            <altcha-widget challengeurl="php/challenge.php"></altcha-widget>
+            <button
+                type="submit"
+                className="small mt-1 mt-md-none grid-span-columns"
+                disabled={fetching}
+            >
+                {fetching ? "Sending..." : "Send"}
             </button>
+            <div className="d-grid grid-stack grid-span-columns">
+                <ContactFormFeedback
+                    message="There was a problem sending your message"
+                    isError={true}
+                    show={sendStatus === "serverError"}
+                />
+                <ContactFormFeedback
+                    message="Your message was sent"
+                    isError={false}
+                    show={sendStatus === "sent"}
+                />
+            </div>
         </form>
     );
 };
