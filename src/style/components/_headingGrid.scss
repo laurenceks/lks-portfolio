@@ -9,7 +9,7 @@
         &:before {
             @include pseudo.pseudoMixinAbsolute($right: 0);
             @include backgroundMask.backgroundMaskMixin(
-                "images/masks/navBgMask.svg",
+                "/images/masks/navBgMask.svg",
                 $repeat: repeat,
                 $size: 65px,
                 $maskPosition: center top
