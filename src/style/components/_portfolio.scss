@@ -7,6 +7,37 @@
 @use "../mixins/media";
 @forward "../utilities/classes";
 
+.portfolio {
+    position: relative;
+    z-index: 5;
+
+    &:before,
+    &:after {
+        @include pseudo.pseudoMixinAbsolute($top: 0, $left: unset, $right: 0);
+        z-index: -1;
+        width: min(500px, 100%);
+        height: auto;
+        aspect-ratio: 1;
+    }
+
+    &:before {
+        background-image: url("images/masks/ffflurry.svg");
+        background-position: top right;
+        background-repeat: no-repeat;
+    }
+
+    &:after {
+        background-image: radial-gradient(
+            circle farthest-side at top right,
+            transparent 0%,
+            var(--light) 100%
+        );
+        background-position: top right;
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+}
+
 div.portfolio-info-panel {
     transition-duration: variables.$defaultTransitionDuration;
     transition-property: opacity, visibility, transform;
@@ -257,14 +288,14 @@ div.portfolio-lightbox {
 
         &.down {
             @include backgroundMask.backgroundMaskMixin(
-                "images/icons/timelineNext.svg",
+                "/images/icons/timelineNext.svg",
                 100%
             );
         }
 
         &.up {
             @include backgroundMask.backgroundMaskMixin(
-                "images/icons/timelinePrevious.svg",
+                "/images/icons/timelinePrevious.svg",
                 100%
             );
         }
@@ -361,12 +392,12 @@ div.portfolio-lightbox {
     }
 
     div.portfolio-lightbox-content-container {
+        max-height: none;
+
         &:before {
             @include pseudo.pseudoMixinAbsolute($left: 0);
             z-index: -1;
         }
-
-        max-height: none;
 
         > div {
             max-height: none;
@@ -384,6 +415,18 @@ div.portfolio-lightbox {
         img.portfolio-lightbox-image {
             width: auto !important;
             height: 100% !important;
+        }
+    }
+}
+
+@include media.media-down("sm") {
+    .portfolio {
+        &:after {
+            background-image: radial-gradient(
+                circle farthest-side at top right,
+                transparent 0%,
+                var(--light) 60%
+            );
         }
     }
 }
