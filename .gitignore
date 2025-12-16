@@ -25,5 +25,7 @@ dist-ssr
 
 src/mockData.ts
 devAssets
-public
+public/images
+public/php/smtpCredentials.php
+public/php/PHPMailer-master
 dev
