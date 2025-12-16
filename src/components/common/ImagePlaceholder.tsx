@@ -33,7 +33,7 @@ const ImagePlaceholder = ({
             {imageLoaded && (
                 <motion.img
                     layoutId={`image-${id}`}
-                    className={"position-relative"}
+                    className={"position-relative w-100"}
                     src={src}
                     alt={alt}
                     style={{ aspectRatio }}

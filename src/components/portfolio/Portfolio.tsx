@@ -8,8 +8,8 @@ const Portfolio = ({
     portfolioRef: RefObject<HTMLDivElement>;
 }) => (
     <>
-        <SectionMaxWidth className={"bg-light text-dark"}>
-            <div ref={portfolioRef} className={"max-width-sm"}>
+        <SectionMaxWidth className={"bg-light text-dark portfolio"}>
+            <div ref={portfolioRef} className={"max-width-sm pb-5"}>
                 <h1>Portfolio</h1>
                 <p>
                     A diverse range of projects from physical media to
@@ -17,8 +17,8 @@ const Portfolio = ({
                     more.
                 </p>
             </div>
+            <PortfolioMasonry />
         </SectionMaxWidth>
-        <PortfolioMasonry />
     </>
 );
 export default Portfolio;
