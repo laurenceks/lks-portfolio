@@ -27,7 +27,7 @@ const Experience = ({
     }, []);
 
     return (
-        <Section className="bg-light text-dark">
+        <Section className="bg-light text-dark experience">
             <div ref={containerRef}></div>
             <h3 className={"ta-center"}>Experience where it counts</h3>
             <p className={"max-width-md mx-auto mb-3 ta-center"}>

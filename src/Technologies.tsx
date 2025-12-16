@@ -33,7 +33,7 @@ import { SlClock } from "react-icons/sl";
 import Section from "./components/wrappers/Section.tsx";
 
 const Technologies = () => (
-    <Section>
+    <Section className="technologies">
         <div className={"px-3 py-4 py-sm-7 ta-center mx-auto max-width-page"}>
             <h4 className={"mb-6"}>Technologies I'm experienced with </h4>
             <div
