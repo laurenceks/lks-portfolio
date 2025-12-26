@@ -18,7 +18,7 @@ const Portfolio = ({
                 </p>
             </div>
             <PortfolioMasonry />
-            <div className="portfolio-bg dark" />
+            <div className="bg-ffflurry bottom-part" />
         </SectionMaxWidth>
     </>
 );

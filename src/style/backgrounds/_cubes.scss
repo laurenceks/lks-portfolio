@@ -1,0 +1,67 @@
+@use "../mixins/pseudo";
+@use "../mixins/backgroundMask";
+
+.bg-cubes {
+    &:before,
+    &:after {
+        z-index: -1;
+    }
+
+    &:before {
+        @include backgroundMask.backgroundMaskMixin(
+            "/images/masks/cubes-bg.svg",
+            65px,
+            bottom left,
+            repeat
+        );
+    }
+
+    &.top-part {
+        &:before,
+        &:after {
+            @include pseudo.pseudoMixinAbsolute(
+                $left: 0,
+                $top: 0,
+                $width: 500px
+            );
+        }
+
+        &:before {
+            background-color: var(--dark);
+        }
+
+        &:after {
+            background-image: radial-gradient(
+                ellipse farthest-side at bottom left,
+                transparent 0%,
+                var(--light) min(400px, 50vw)
+            );
+            background-position: bottom left;
+        }
+    }
+
+    &.bottom-part {
+        &:before,
+        &:after {
+            @include pseudo.pseudoMixinAbsolute(
+                $left: 0,
+                $bottom: 0,
+                $width: 500px
+            );
+        }
+
+        &:before {
+            background-color: var(--light);
+            mask-position: top left;
+        }
+
+        &:after {
+            background-image: radial-gradient(
+                ellipse farthest-side at top left,
+                transparent 0%,
+                var(--dark) min(400px, 50vw)
+            );
+            background-position: top left;
+        }
+    }
+}

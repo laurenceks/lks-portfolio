@@ -1,0 +1,19 @@
+@use "../mixins/pseudo";
+@use "../mixins/backgroundMask";
+
+.bg-constellation {
+    @include pseudo.pseudoMixinAbsolute(
+        $left: 0,
+        $bottom: 0,
+        $top: unset,
+        $height: min(50%, 350px)
+    );
+    background-image: url("/images/masks/endless-constellation.svg");
+    background-position: bottom left;
+    background-size: 150px;
+    mask-image: radial-gradient(
+        ellipse farthest-side at bottom right,
+        black 0%,
+        transparent 100%
+    );
+}

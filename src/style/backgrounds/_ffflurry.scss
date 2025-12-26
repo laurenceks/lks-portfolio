@@ -1,0 +1,52 @@
+@use "../mixins/pseudo";
+@use "../mixins/backgroundMask";
+
+.bg-ffflurry {
+    position: absolute;
+    right: 0;
+    z-index: 6;
+    width: min(500px, 100%);
+    height: min(500px, 100%);
+    overflow: hidden;
+
+    &:before {
+        @include pseudo.pseudoMixinAbsolute($top: 0, $left: unset, $right: 0);
+        z-index: -1;
+
+        background-position: top right;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+        mask-image: radial-gradient(
+            ellipse farthest-side at 100% 50%,
+            black 0%,
+            transparent 100%
+        );
+        mask-repeat: no-repeat;
+        mask-size: 100% 100%;
+    }
+
+    &.top-part {
+        bottom: 0;
+
+        &:before {
+            transform: translateY(min(350px, 70%));
+        }
+
+        &:before {
+            background-image: url("/images/masks/ffflurry-light.svg");
+        }
+    }
+
+    &.bottom-part {
+        top: 0;
+
+        &:before {
+            transform: translateY(max(-150px, -30%));
+        }
+
+        &:before {
+            background-image: url("/images/masks/ffflurry.svg");
+        }
+    }
+}

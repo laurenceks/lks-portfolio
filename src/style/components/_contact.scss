@@ -6,6 +6,8 @@
 
 form {
     $borderWidth: 0.4rem;
+    position: relative;
+    z-index: 1;
 
     @each $prop, $val in map-get(map-get(typography.$styles, "p"), "style") {
         #{$prop}: $val;

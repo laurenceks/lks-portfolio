@@ -2,13 +2,16 @@
 @use "animations";
 @use "common";
 @use "utilities";
+@use "backgrounds";
 //components last to allow overriding of classes
 @use "components";
 
-body, html, #root {
+body,
+html,
+#root {
+    background-color: var(--dark);
     width: 100%;
     min-height: 100%;
-    background-color: var(--dark);
     color: var(--light);
 }
 
@@ -25,6 +28,6 @@ body {
 
 main {
     display: grid;
-    grid-auto-rows: auto;
     grid-template-columns: 1fr;
+    grid-auto-rows: auto;
 }

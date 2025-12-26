@@ -31,12 +31,11 @@ const Experience = ({
             <div ref={containerRef}></div>
             <h3 className={"ta-center"}>Experience where it counts</h3>
             <p className={"max-width-md mx-auto mb-3 ta-center"}>
-                15 years experience designing, developing and tinkering.
-                <br />
+                15 years experience designing, developing and tinkering. <br />{" "}
                 Completely unique real-world solutions and ideas.
             </p>
             <p className={"max-width-md mx-auto mb-3 ta-center"}>
-                See the cream of the crop below.
+                See the cream of the crop below.{" "}
             </p>
             <div
                 className={`button-animation-staggered d-flex gap-column-2 z-1 align-self-start gap-2 justify-content-center flex-wrap`}
@@ -57,6 +56,7 @@ const Experience = ({
                     Contact
                 </button>
             </div>
+            <div className="bg-cubes top-part" />
         </Section>
     );
 };
