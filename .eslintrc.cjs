@@ -18,5 +18,13 @@ module.exports = {
     "prettier/prettier": [2, { tabWidth: 4 }],
     "no-plusplus": [2, { allowForLoopAfterthoughts: true }],
     "no-underscore-dangle": 0,
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
   },
 }
