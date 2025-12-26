@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { PortfolioItemDescriptionItemInterface } from "../../../types/portfolioTypes.ts";
 import PortfolioLightboxTimelineButtons from "./PortfolioLightboxTimelineButtons.tsx";
 
@@ -75,7 +77,9 @@ const PortfolioLightboxTimeline = ({
                                         "portfolio-lightbox-timeline-content pt-1"
                                     }
                                 >
-                                    <p>{x.content}</p>
+                                    <Markdown remarkPlugins={[remarkGfm]}>
+                                        {x.content}
+                                    </Markdown>
                                     <PortfolioLightboxTimelineButtons
                                         i={i}
                                         setActiveItemIndex={setActiveItemIndex}

@@ -1,11 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
-export interface PortfolioItemDescriptionItemInterface {
-    title: string;
-    content: string;
-}
-
-export type PortfolioItemType = "personal" | "commission" | "employment";
+export type PortfolioItemProjectType = "personal" | "commission" | "employment";
 export type PortfolioItemMedia = "web" | "graphic" | "video";
 export type StackItem =
     | "MongoDB"
@@ -28,10 +23,86 @@ export type StackItem =
     | "NodeJS"
     | "MySQL"
     | "Express";
+
+export interface PortfolioItemDescriptionItemInterface {
+    title: string;
+    content: string;
+}
+
+export interface FormattedImage {
+    name: string;
+    hash: string;
+    ext: string;
+    mime: string;
+    path: string;
+    width: number;
+    height: number;
+    size: number;
+    sizeInBytes: number;
+    url: string;
+}
+export type FormatKey = "thumbnail" | "small" | "medium" | "large";
+
+export type Formats = {
+    [_key in FormatKey]: FormattedImage;
+};
+
+export interface PortfolioImg {
+    id: number;
+    documentId: string;
+    name: string;
+    alternativeText: string;
+    caption: string;
+    width: number;
+    height: number;
+    formats: Formats;
+    hash: string;
+    ext: string;
+    mime: string;
+    size: number;
+    url: string;
+    previewUrl: string;
+    provider: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+}
+
+export interface PortfolioCmsApiParsedResponseData {
+    id: number;
+    documentId: string;
+    slug: string;
+    title: string;
+    projectType: PortfolioItemProjectType;
+    media: PortfolioItemMedia;
+    client: string;
+    date: string;
+    blurb: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    url: string;
+    img: PortfolioImg;
+    stack: { id: number; stackItem: StackItem }[];
+    description: PortfolioItemDescriptionItemInterface[];
+}
+
+export interface PortfolioCmsApiParsedResponse {
+    data: PortfolioCmsApiParsedResponseData[];
+    meta: {
+        pagination: {
+            page: number;
+            pageSize: number;
+            pageCount: number;
+            total: number;
+        };
+    };
+}
+
 export interface PortfolioItemInterface {
     id: number;
     title: string;
-    type: PortfolioItemType;
+    projectType: PortfolioItemProjectType;
     media: PortfolioItemMedia;
     client: string;
     date: Date;

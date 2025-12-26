@@ -10,6 +10,11 @@ export default defineConfig({
                 target: "http://localhost:80",
                 changeOrigin: true,
             },
+            "/cms": {
+                target: "http://localhost:1337",
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/cms/, ""),
+            },
         },
     },
 });

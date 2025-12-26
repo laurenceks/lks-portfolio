@@ -18,7 +18,7 @@ const PortfolioInfoPanel = ({
                 <div className={"d-flex flex-wrap gap-column-1 mb-2"}>
                     <p className={"tag text-dark bg-light m-none"}>
                         {">_"}
-                        {item.type}
+                        {item.projectType}
                     </p>
                     <p className={"tag text-dark bg-light m-none"}>
                         {">_"}
