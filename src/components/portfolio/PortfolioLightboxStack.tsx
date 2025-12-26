@@ -4,6 +4,7 @@ import {
     SiAdobepremierepro,
     SiChartdotjs,
     SiCss3,
+    SiExpress,
     SiGimp,
     SiHtml5,
     SiInkscape,
@@ -12,8 +13,10 @@ import {
     SiMicrosoftexcel,
     SiMongodb,
     SiMysql,
+    SiNodedotjs,
     SiPhp,
     SiReact,
+    SiSass,
     SiTypescript,
 } from "react-icons/si";
 import { SlClock } from "react-icons/sl";
@@ -64,6 +67,9 @@ const iconMap: {
     ChartJS: { icon: <SiChartdotjs />, url: "https://www.chartjs.org/" },
     GIMP: { icon: <SiGimp />, url: "https://www.gimp.org/" },
     Inkscape: { icon: <SiInkscape />, url: "https://inkscape.org/" },
+    Express: { icon: <SiExpress />, url: "https://expressjs.com/" },
+    NodeJS: { icon: <SiNodedotjs />, url: "https://nodejs.org/" },
+    SASS: { icon: <SiSass />, url: "https://sass-lang.com/" },
 };
 const PortfolioLightboxStack = ({
     itemId,
@@ -73,28 +79,30 @@ const PortfolioLightboxStack = ({
     stack?: string[];
 }) => (
     <div className={"d-flex gap-2 flex-wrap my-3"}>
-        {stack?.map((x, i) => (
-            <div
-                className={
-                    "portfolio-lightbox-stack-icon icon-container cursor-pointer"
-                }
-                key={`${itemId}-stack-${i}`}
-                onClick={(e) => {
-                    e.stopPropagation();
-                    iconMap[x].url && window.open(iconMap[x]?.url, "_blank");
-                }}
-            >
-                {iconMap[x]?.icon || ""}
+        {stack?.map((x, i) =>
+            x ? (
                 <div
                     className={
-                        "hidden hidden-transition tag bg-light text-dark z-1"
+                        "portfolio-lightbox-stack-icon icon-container cursor-pointer"
                     }
+                    key={`${itemId}-stack-${i}`}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        iconMap[x].url &&
+                            window.open(iconMap[x]?.url, "_blank");
+                    }}
                 >
-                    {">_"}
-                    {x.toLowerCase()}
+                    {iconMap[x]?.icon || ""}
+                    <div
+                        className={
+                            "hidden hidden-transition tag bg-light text-dark z-1"
+                        }
+                    >
+                        {">_"} {x.toLowerCase()}
+                    </div>
                 </div>
-            </div>
-        ))}
+            ) : null
+        )}
     </div>
 );
 
