@@ -169,6 +169,7 @@ const Technologies = () => (
                 </div>
             </div>
         </div>
+        <div className="portfolio-bg light" />
     </Section>
 );
 

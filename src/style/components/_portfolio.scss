@@ -10,31 +10,55 @@
 .portfolio {
     position: relative;
     z-index: 5;
+}
 
-    &:before,
-    &:after {
-        @include pseudo.pseudoMixinAbsolute($top: 0, $left: unset, $right: 0);
-        z-index: -1;
-        width: min(500px, 100%);
-        height: auto;
-        aspect-ratio: 1;
+.portfolio-bg {
+    position: absolute;
+    right: 0;
+    z-index: 6;
+    width: min(500px, 100%);
+    height: min(500px, 100%);
+    overflow: hidden;
+
+    &.light {
+        bottom: 0;
+
+        &:before {
+            transform: translateY(min(350px, 70%));
+        }
+
+        &:before {
+            background-image: url("/images/masks/ffflurry-light.svg");
+        }
+    }
+
+    &.dark {
+        top: 0;
+
+        &:before {
+            transform: translateY(max(-150px, -30%));
+        }
+
+        &:before {
+            background-image: url("/images/masks/ffflurry.svg");
+        }
     }
 
     &:before {
-        background-image: url("images/masks/ffflurry.svg");
-        background-position: top right;
-        background-repeat: no-repeat;
-    }
+        @include pseudo.pseudoMixinAbsolute($top: 0, $left: unset, $right: 0);
+        z-index: -1;
 
-    &:after {
-        background-image: radial-gradient(
-            circle farthest-side at top right,
-            transparent 0%,
-            var(--light) 100%
-        );
         background-position: top right;
         background-repeat: no-repeat;
-        background-size: 100%;
+        width: 100%;
+        height: 100%;
+        mask-image: radial-gradient(
+            ellipse farthest-side at 100% 50%,
+            black 0%,
+            transparent 100%
+        );
+        mask-repeat: no-repeat;
+        mask-size: 100% 100%;
     }
 }
 
