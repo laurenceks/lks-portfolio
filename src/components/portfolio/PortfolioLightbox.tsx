@@ -20,7 +20,7 @@ const PortfolioLightbox = () => {
             {showLightbox && currentPortfolioItem && (
                 <div className="portfolio-lightbox-wrapper position-fixed t-0 l-0 w-100 h-100">
                     <motion.div
-                        className={`portfolio-lightbox  text-light d-grid`}
+                        className={`portfolio-lightbox text-light d-grid`}
                         onClick={() => {
                             if (entered) {
                                 dispatchAppState({
@@ -58,9 +58,7 @@ const PortfolioLightbox = () => {
                             />
                         </PortfolioLightboxImageContainer>
                         <motion.div
-                            className={
-                                "portfolio-lightbox-content-container p-lg-3 p-2 pt-none pe-none"
-                            }
+                            className={"portfolio-lightbox-content-container"}
                             initial={{ opacity: 0, x: "75%" }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{
@@ -88,7 +86,7 @@ const PortfolioLightbox = () => {
                             >
                                 {currentPortfolioItem?.title}
                             </motion.h1>
-                            <div className="pt-lg-3 pt-2 pe-lg-3 pe-2">
+                            <div className="p-lg-3 p-2">
                                 <h1>{currentPortfolioItem?.title}</h1>
                                 <h4>
                                     {dateToMonthYear(currentPortfolioItem.date)}
