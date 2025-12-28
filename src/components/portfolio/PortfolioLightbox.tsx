@@ -95,17 +95,16 @@ const PortfolioLightbox = () => {
                                 <PortfolioLightboxStack
                                     itemId={currentPortfolioItem?.id}
                                     stack={currentPortfolioItem?.stack}
-                                />{" "}
+                                />
                                 {currentPortfolioItem?.url && (
                                     <a
                                         className="button url mb-2"
                                         href={currentPortfolioItem?.url}
                                         target="_blank"
                                     >
-                                        {" "}
-                                        See live{" "}
+                                        See live
                                     </a>
-                                )}{" "}
+                                )}
                                 <PortfolioLightboxTimeline
                                     portfolioDescription={
                                         currentPortfolioItem?.description

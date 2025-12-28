@@ -1,36 +1,5 @@
-import {
-    SiAdobeillustrator,
-    SiAdobephotoshop,
-    SiAdobepremierepro,
-    SiAtom,
-    SiChartdotjs,
-    SiCss3,
-    SiFigma,
-    SiGimp,
-    SiGit,
-    SiGithub,
-    SiHtml5,
-    SiInkscape,
-    SiJavascript,
-    SiJquery,
-    SiMapbox,
-    SiMicrosoftexcel,
-    SiMongodb,
-    SiMysql,
-    SiPassport,
-    SiPhp,
-    SiPhpstorm,
-    SiReact,
-    SiSass,
-    SiSlack,
-    SiTypescript,
-    SiVisualbasic,
-    SiVisualstudiocode,
-    SiWebpack,
-    SiWebstorm,
-} from "react-icons/si";
-import { SlClock } from "react-icons/sl";
 import Section from "./components/wrappers/Section.tsx";
+import StackIcon from "./components/common/StackIcon.tsx";
 
 const Technologies = () => (
     <Section className="technologies">
@@ -48,27 +17,13 @@ const Technologies = () => (
                             "d-flex gap-2 flex-wrap justify-content-center align-items-center"
                         }
                     >
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiHtml5 />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiCss3 />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiSass />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiJavascript />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiTypescript />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiPhp />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiVisualbasic />
-                        </div>
+                        <StackIcon stackItemId="HTML" />
+                        <StackIcon stackItemId="CSS" />
+                        <StackIcon stackItemId="SASS" />
+                        <StackIcon stackItemId="JavaScript" />
+                        <StackIcon stackItemId="TypeScript" />
+                        <StackIcon stackItemId="PHP" />
+                        <StackIcon stackItemId="VBA" />
                     </div>
                 </div>
                 <div>
@@ -78,27 +33,13 @@ const Technologies = () => (
                             "d-flex gap-2 flex-wrap justify-content-center align-items-center"
                         }
                     >
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiReact />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiJquery />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiChartdotjs />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiMapbox />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SlClock />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiWebpack />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiPassport />
-                        </div>
+                        <StackIcon stackItemId="ReactJS" />
+                        <StackIcon stackItemId="jQuery" />
+                        <StackIcon stackItemId="ChartJS" />
+                        <StackIcon stackItemId="Mapbox" />
+                        <StackIcon stackItemId="MomentJS" />
+                        <StackIcon stackItemId="Webpack" />
+                        <StackIcon stackItemId="Passport" />
                     </div>
                 </div>
                 <div>
@@ -108,12 +49,8 @@ const Technologies = () => (
                             "d-flex gap-2 flex-wrap justify-content-center align-items-center"
                         }
                     >
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiMysql />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiMongodb />
-                        </div>
+                        <StackIcon stackItemId="MySQL" />
+                        <StackIcon stackItemId="MongoDB" />
                     </div>
                 </div>
                 <div>
@@ -123,48 +60,20 @@ const Technologies = () => (
                             "d-flex gap-2 flex-wrap justify-content-center align-items-center"
                         }
                     >
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiGit />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiGithub />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiVisualstudiocode />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiWebstorm />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiPhpstorm />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiAtom />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiMicrosoftexcel />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiAdobeillustrator />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiAdobephotoshop />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiAdobepremierepro />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiGimp />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiInkscape />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiFigma />
-                        </div>
-                        <div className="portfolio-lightbox-stack-icon icon-container">
-                            <SiSlack />
-                        </div>
+                        <StackIcon stackItemId="Git" />
+                        <StackIcon stackItemId="Github" />
+                        <StackIcon stackItemId="VSC" />
+                        <StackIcon stackItemId="WebStorm" />
+                        <StackIcon stackItemId="PhpStorm" />
+                        <StackIcon stackItemId="Atom" />
+                        <StackIcon stackItemId="Excel" />
+                        <StackIcon stackItemId="Illustrator" />
+                        <StackIcon stackItemId="Photoshop" />
+                        <StackIcon stackItemId="Premiere Pro" />
+                        <StackIcon stackItemId="GIMP" />
+                        <StackIcon stackItemId="Inkscape" />
+                        <StackIcon stackItemId="Figma" />
+                        <StackIcon stackItemId="Slack" />
                     </div>
                 </div>
             </div>

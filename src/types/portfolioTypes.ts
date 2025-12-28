@@ -8,7 +8,9 @@ export type StackItem =
     | "JavaScript"
     | "TypeScript"
     | "PHP"
+    | "VBA"
     | "CSS"
+    | "SASS"
     | "HTML"
     | "Photoshop"
     | "Illustrator"
@@ -22,7 +24,18 @@ export type StackItem =
     | "ChartJS"
     | "NodeJS"
     | "MySQL"
-    | "Express";
+    | "Express"
+    | "Mapbox"
+    | "Webpack"
+    | "Passport"
+    | "Git"
+    | "Github"
+    | "VSC"
+    | "WebStorm"
+    | "PhpStorm"
+    | "Atom"
+    | "Figma"
+    | "Slack";
 
 export interface PortfolioItemDescriptionItemInterface {
     title: string;
