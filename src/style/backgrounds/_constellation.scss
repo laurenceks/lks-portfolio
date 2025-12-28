@@ -2,15 +2,16 @@
 @use "../mixins/backgroundMask";
 
 .bg-constellation {
+    background-image: url("/images/masks/endless-constellation.svg");
     @include pseudo.pseudoMixinAbsolute(
         $left: 0,
         $bottom: 0,
         $top: unset,
         $height: min(50%, 350px)
     );
-    background-image: url("/images/masks/endless-constellation.svg");
     background-position: bottom left;
     background-size: 150px;
+    pointer-events: none;
     mask-image: radial-gradient(
         ellipse farthest-side at bottom right,
         black 0%,

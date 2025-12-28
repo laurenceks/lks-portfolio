@@ -2,15 +2,16 @@
 @use "../mixins/backgroundMask";
 
 .bg-random {
+    background-image: url("/images/masks/pattern-randomized.svg");
     @include pseudo.pseudoMixinAbsolute(
         $left: 0,
         $bottom: 0,
         $top: unset,
         $height: min(50%, 350px)
     );
-    background-image: url("/images/masks/pattern-randomized.svg");
     background-position: bottom left;
     background-size: 500px;
+    pointer-events: none;
     mask-image: radial-gradient(
         ellipse farthest-side at bottom right,
         black 0%,

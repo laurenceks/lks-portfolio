@@ -2,6 +2,8 @@
 @use "../mixins/backgroundMask";
 
 .bg-cubes {
+    pointer-events: none;
+
     &:before,
     &:after {
         z-index: -1;

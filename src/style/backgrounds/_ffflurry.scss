@@ -8,6 +8,7 @@
     width: min(500px, 100%);
     height: min(500px, 100%);
     overflow: hidden;
+    pointer-events: none;
 
     &:before {
         @include pseudo.pseudoMixinAbsolute($top: 0, $left: unset, $right: 0);
