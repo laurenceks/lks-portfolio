@@ -27,5 +27,5 @@ src/mockData.ts
 devAssets
 public/images
 public/php/smtpCredentials.php
-public/php/PHPMailer-master
+public/php/vendor
 dev

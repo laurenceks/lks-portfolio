@@ -1,5 +1,5 @@
 import { FieldValues, useForm } from "react-hook-form";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ContactFormTooltip from "./ContactFormTooltip.tsx";
 import ContactFormFeedback from "./ContactFormFeedback.tsx";
 import "altcha";
@@ -16,22 +16,39 @@ const ContactForm = () => {
         reset,
     } = useForm();
 
-    const onSubmit = (data: FieldValues) => {
-        // TODO ALTCHA
-        setFetching(true);
+    const altchaRef = useRef<HTMLInputElement>(null);
 
-        fetch("php/mail.php", {
-            method: "POST",
-            body: JSON.stringify(data),
-        })
-            .then(() => {
-                setSendStatus("sent");
-                reset();
-            })
-            .catch(() => {
-                setSendStatus("serverError");
-            })
-            .finally(() => setFetching(false));
+    const onSubmit = (data: FieldValues) => {
+        if (altchaRef.current) {
+            const altcha = altchaRef.current.querySelector<HTMLInputElement>(
+                "input[name='altcha']"
+            )?.value;
+
+            if (altcha) {
+                setFetching(true);
+
+                fetch("php/mail.php", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        ...data,
+                        altcha,
+                    }),
+                })
+                    .then(async (response) => {
+                        const json = await response.json();
+                        if (json.success) {
+                            setSendStatus("sent");
+                            reset();
+                        } else {
+                            setSendStatus("serverError");
+                        }
+                    })
+                    .catch(() => {
+                        setSendStatus("serverError");
+                    })
+                    .finally(() => setFetching(false));
+            }
+        }
     };
 
     return (
@@ -89,7 +106,10 @@ const ContactForm = () => {
                     message={errors.message?.message as string | undefined}
                 />
             </div>
-            <altcha-widget challengeurl="php/challenge.php"></altcha-widget>
+            <altcha-widget
+                ref={altchaRef}
+                challengeurl="php/challenge.php"
+            ></altcha-widget>
             <button
                 type="submit"
                 className="small mt-1 mt-md-none grid-span-columns"

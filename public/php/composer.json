@@ -1,0 +1,6 @@
+{
+    "require": {
+        "altcha-org/altcha": "^1.3",
+        "phpmailer/phpmailer": "^7.0"
+    }
+}
