@@ -15,6 +15,10 @@ export default defineConfig({
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/cms/, ""),
             },
+            "/uploads": {
+                target: "http://localhost:1337",
+                changeOrigin: true,
+            },
         },
     },
 });
