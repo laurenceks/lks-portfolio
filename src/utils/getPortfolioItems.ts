@@ -32,7 +32,7 @@ const getPortfolioItems = async (): Promise<PortfolioItemInterface[]> => {
 
             const srcSet = images
                 .sort((a, b) => a.width - b.width)
-                .map((i) => `/cms${i.url} ${i.width}w`)
+                .map((i) => `${i.url} ${i.width}w`)
                 .join(", ");
 
             const aspectRatio = item.img.width / item.img.height;
@@ -46,8 +46,8 @@ const getPortfolioItems = async (): Promise<PortfolioItemInterface[]> => {
                 date: new Date(item.date),
                 blurb: item.blurb,
                 url: item.url,
-                imgFileName: `/cms${item.img.url}`,
-                thumbnailPath: `/cms${item.img.formats.small.url}`,
+                imgFileName: `${item.img.url}`,
+                thumbnailPath: `${item.img.formats.small.url}`,
                 srcSet,
                 aspectRatio,
                 stack: item.stack.map((x) => x.stackItem),
@@ -57,7 +57,7 @@ const getPortfolioItems = async (): Promise<PortfolioItemInterface[]> => {
         });
     } catch (_e) {
         // something went wrong - return empty array to prevent crash
-        console.error("Unable to fetch portoflio content");
+        console.error("Unable to fetch portfolio content");
         return [];
     }
 };

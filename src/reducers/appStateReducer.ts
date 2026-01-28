@@ -2,10 +2,9 @@ import {
     AppReducerActionType,
     AppStateInterface,
 } from "../types/appStateTypes.ts";
-import getPortfolioItems from "../utils/getPortfolioItems.ts";
 
 export const initialAppState: AppStateInterface = {
-    portfolioItems: await getPortfolioItems(),
+    portfolioItems: [],
     currentPortfolioItem: null,
     showLightbox: false,
     lightboxSizerRef: null,

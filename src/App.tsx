@@ -11,6 +11,7 @@ import Experience from "./Experience.tsx";
 import Technologies from "./Technologies.tsx";
 import Hero from "./components/hero/Hero.tsx";
 import Contact from "./components/contact/Contact.tsx";
+import getPortfolioItems from "./utils/getPortfolioItems.ts";
 
 export const AppContext = createContext<AppContextInterface>({
     appState: initialAppState,
@@ -32,6 +33,15 @@ function App() {
             ? "no-scroll"
             : "";
     }, [appState.currentPortfolioItem]);
+
+    useEffect(() => {
+        (async () => {
+            dispatchAppState({
+                type: "setPortfolioItems",
+                payload: await getPortfolioItems(),
+            });
+        })();
+    }, []);
 
     return (
         <AppContext.Provider value={{ appState, dispatchAppState }}>
