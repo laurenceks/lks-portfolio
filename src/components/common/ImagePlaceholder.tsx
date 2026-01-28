@@ -13,6 +13,7 @@ const ImagePlaceholder = ({
     alt?: string;
 }) => {
     const [imageLoaded, setImageLoaded] = useState(false);
+    const [imageEntered, setImageEntered] = useState(false);
     useEffect(() => {
         const img = new Image();
         img.src = src;
@@ -20,7 +21,13 @@ const ImagePlaceholder = ({
     }, [src]);
 
     return (
-        <div className={"position-relative"} style={{ aspectRatio }}>
+        <div
+            className={"position-relative"}
+            style={{
+                aspectRatio,
+                overflow: imageEntered ? "initial" : "hidden",
+            }}
+        >
             <div
                 className={
                     "portfolio-image-placeholder bg-light-2 d-flex justify-content-center align-items-center h-100 w-100 position-absolute t-0 l-0"
@@ -37,6 +44,9 @@ const ImagePlaceholder = ({
                     src={src}
                     alt={alt}
                     style={{ aspectRatio }}
+                    onAnimationEnd={() => {
+                        setImageEntered(true);
+                    }}
                 />
             )}
         </div>
