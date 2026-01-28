@@ -42,7 +42,7 @@ const PortfolioMasonryItem = ({
             }}
         >
             <div>
-                <div className={"portfolio-masonry-item-image-container "}>
+                <div className={"portfolio-masonry-item-image-container"}>
                     <ImagePlaceholder
                         id={item.id}
                         src={item.thumbnailPath}
