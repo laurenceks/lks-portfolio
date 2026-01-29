@@ -6,8 +6,17 @@ export interface AppStateInterface {
     currentPortfolioItem: PortfolioItemInterface | null;
     showLightbox: boolean;
     lightboxSizerRef: MutableRefObject<HTMLDivElement | undefined> | null;
+    fetching: boolean;
+    fetchError: boolean;
+    fetchedOnce: boolean;
 }
 
+interface fetchPortfolioItemsInterface {
+    type: "fetchPortfolioItems";
+}
+interface portfolioItemsFetchErrorInterface {
+    type: "portfolioItemsFetchError";
+}
 interface setPortfolioItemsInterface {
     type: "setPortfolioItems";
     payload: PortfolioItemInterface[];
@@ -31,6 +40,8 @@ interface setPortfolioLightboxSizerRefInterface {
 }
 
 export type AppReducerActionType =
+    | fetchPortfolioItemsInterface
+    | portfolioItemsFetchErrorInterface
     | setPortfolioItemsInterface
     | setCurrentPortfolioItemInterface
     | unsetCurrentPortfolioItemInterface

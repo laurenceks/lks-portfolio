@@ -1,4 +1,12 @@
-$colours: ("primary": #006633, "dark" : #0c0c0c, "light": #f5f5f5, "light-2": #dddddd, "dark-blue-grey": #666a86, "shadow-blue": #788aa3);
+$colours: (
+    "primary": #006633,
+    "dark": #0c0c0c,
+    "light": #f5f5f5,
+    "light-2": #dddddd,
+    "dark-blue-grey": #666a86,
+    "shadow-blue": #788aa3,
+    "red": #c23616,
+);
 
 :root {
     @each $colour, $hex in $colours {

@@ -8,6 +8,9 @@ export const initialAppState: AppStateInterface = {
     currentPortfolioItem: null,
     showLightbox: false,
     lightboxSizerRef: null,
+    fetching: false,
+    fetchError: false,
+    fetchedOnce: false,
 };
 
 export const appStateReducer = (
@@ -15,8 +18,25 @@ export const appStateReducer = (
     action: AppReducerActionType
 ): AppStateInterface => {
     switch (action.type) {
+        case "fetchPortfolioItems": {
+            return { ...prevState, fetching: true, fetchError: false };
+        }
+        case "portfolioItemsFetchError": {
+            return {
+                ...prevState,
+                fetching: false,
+                fetchError: true,
+                fetchedOnce: true,
+            };
+        }
         case "setPortfolioItems": {
-            return { ...prevState, portfolioItems: action.payload };
+            return {
+                ...prevState,
+                portfolioItems: action.payload,
+                fetching: false,
+                fetchedOnce: true,
+                fetchError: false,
+            };
         }
         case "setCurrentPortfolioItem": {
             return {

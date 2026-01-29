@@ -12,6 +12,10 @@
     position: relative;
     z-index: 5;
     min-height: 500px;
+
+    &:not(.fetched) {
+        min-height: 1250px;
+    }
 }
 
 div.portfolio-info-panel {
@@ -97,6 +101,14 @@ div.portfolio-masonry-item {
 .portfolio-image-placeholder {
     column-gap: 0.5rem;
     z-index: 0;
+
+    &.portfolio-fetching {
+        height: max-content;
+
+        > div {
+            background-color: var(--dark-blue-grey);
+        }
+    }
 
     > div {
         opacity: 0;

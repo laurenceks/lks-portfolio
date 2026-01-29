@@ -265,6 +265,9 @@ $propertyMap: (
     .gap-row-#{$gapLabel} {
         row-gap: #{$gap};
     }
+    .rounded-#{$gapLabel} {
+        border-radius: #{$gap};
+    }
 }
 
 .max-width {
