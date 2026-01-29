@@ -53,7 +53,7 @@ function App() {
                 <Experience portfolioRef={portfolioRef} />
                 <Technologies />
                 <Portfolio portfolioRef={portfolioRef} />
-                <Contact />
+                <Contact contactRef={contactRef} />
             </main>
             <footer></footer>
         </AppContext.Provider>

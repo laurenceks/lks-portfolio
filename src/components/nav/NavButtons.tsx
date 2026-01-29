@@ -44,7 +44,12 @@ const NavButtons = ({ refs }: { refs: ScrollIntoViewRefType[] }) => {
                     key={`nav-li-${label}`}
                     onMouseEnter={liMouseOver}
                     onMouseLeave={liMouseOut}
-                    onClick={() => refs[i].current?.scrollIntoView()}
+                    onClick={() =>
+                        refs[i].current?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                        })
+                    }
                 >
                     {label}
                 </li>
