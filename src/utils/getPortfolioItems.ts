@@ -6,17 +6,15 @@ import {
 } from "../types/portfolioTypes.ts";
 
 const getPortfolioItems = async (): Promise<PortfolioItemInterface[]> => {
-    try {
-        const response = await fetch(
-            "/cms/api/portfolio-items?populate=*&sort=date:desc",
-            {
-                method: "GET",
-            }
-        );
+    const response = await fetch(
+        "/cms/api/portfolio-items?populate=*&sort=date:desc",
+        {
+            method: "GET",
+        }
+    );
 
-        return (
-            (await response.json()) as PortfolioCmsApiParsedResponse
-        ).data.map((item: PortfolioCmsApiParsedResponseData) => {
+    return ((await response.json()) as PortfolioCmsApiParsedResponse).data.map(
+        (item: PortfolioCmsApiParsedResponseData) => {
             const { formats, ...original } = item.img;
 
             const formatVariants: { url: string; width: number }[] =
@@ -54,12 +52,8 @@ const getPortfolioItems = async (): Promise<PortfolioItemInterface[]> => {
                 description: item.description,
                 alt: original.alternativeText,
             };
-        });
-    } catch (_e) {
-        // something went wrong - return empty array to prevent crash
-        console.error("Unable to fetch portfolio content");
-        return [];
-    }
+        }
+    );
 };
 
 export default getPortfolioItems;
