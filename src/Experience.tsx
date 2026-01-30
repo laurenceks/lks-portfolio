@@ -44,7 +44,12 @@ const Experience = ({
                     className={`animation-fade-in-up ${
                         showButtons ? "animation-start" : ""
                     }`}
-                    onClick={() => portfolioRef.current?.scrollIntoView()}
+                    onClick={() =>
+                        portfolioRef.current?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                        })
+                    }
                 >
                     Portfolio
                 </button>
