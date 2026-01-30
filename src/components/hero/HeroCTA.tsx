@@ -12,7 +12,12 @@ const HeroCTA = ({
             className={`animation-fade-in-up ${
                 heroTypingStage > 3 ? "animation-start" : ""
             }`}
-            onClick={() => learnMoreRef.current?.scrollIntoView()}
+            onClick={() =>
+                learnMoreRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                })
+            }
         >
             More
         </button>
@@ -20,7 +25,12 @@ const HeroCTA = ({
             className={`outline animation-fade-in-up ${
                 heroTypingStage > 3 ? "animation-start" : ""
             }`}
-            onClick={() => contactRef.current?.scrollIntoView()}
+            onClick={() =>
+                contactRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                })
+            }
         >
             Contact
         </button>

@@ -1,21 +1,15 @@
 import { TypeAnimation } from "react-type-animation";
 import heroConfig from "../heroConfig.ts";
 
-const HeroTypingBodyLoop = () => (
+const HeroTypingBodyEnd = () => (
     <TypeAnimation
         sequence={[
-            "I'm Laurence and I make websites",
-            1000,
-            "I'm Laurence and I make tools",
-            1000,
             "I'm Laurence and I make solutions",
-            2000,
-            "",
-            2000,
+            1000,
             "What can I make you?",
         ]}
         {...heroConfig}
         preRenderFirstString={true}
     />
 );
-export default HeroTypingBodyLoop;
+export default HeroTypingBodyEnd;

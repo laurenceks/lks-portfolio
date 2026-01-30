@@ -7,10 +7,13 @@ import HeroStageThree from "../stages/HeroStageThree.tsx";
 import HeroStageFour from "../stages/HeroStageFour.tsx";
 import { HeroTypingInterface } from "../../../types/heroTypes.ts";
 import HeroStageDiv from "../stages/HeroStageDiv.tsx";
+import HeroStageFive from "../stages/HeroStageFive.tsx";
+import HeroStageSix from "../stages/HeroStageSix.tsx";
 
 const HeroTyping = ({
     heroTypingStage,
     setHeroTypingStage,
+    setShowImage,
 }: HeroTypingInterface) => {
     const nextHeroTypingStage = () => {
         if (setHeroTypingStage) {
@@ -21,9 +24,15 @@ const HeroTyping = ({
     const stageElements: { [key: number]: ReactNode } = {
         0: <HeroStageOne nextHeroTypingStage={nextHeroTypingStage} />,
         1: <HeroStageTwo nextHeroTypingStage={nextHeroTypingStage} />,
-        2: <HeroStageThree nextHeroTypingStage={nextHeroTypingStage} />,
-        3: <HeroStageThree nextHeroTypingStage={nextHeroTypingStage} />,
-        4: <HeroStageFour />,
+        2: (
+            <HeroStageThree
+                nextHeroTypingStage={nextHeroTypingStage}
+                setShowImage={setShowImage}
+            />
+        ),
+        3: <HeroStageFour nextHeroTypingStage={nextHeroTypingStage} />,
+        4: <HeroStageFive nextHeroTypingStage={nextHeroTypingStage} />,
+        5: <HeroStageSix />,
     };
 
     return (

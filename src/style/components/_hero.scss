@@ -4,9 +4,9 @@
 @use "../mixins/media";
 
 section.hero {
-    min-height: 50vw;
     padding-right: variables.$paddingGutter;
     padding-left: variables.$paddingGutter;
+    min-height: 50vw;
 
     div.hero-content {
         grid-template-areas: "typing image" "buttons empty";
@@ -23,9 +23,9 @@ section.hero {
         grid-template-columns: 1fr;
         max-width: 70rem;
 
-        > div {
-            grid-column: 1/-1;
+        > div:not(.hero-main) {
             grid-row: 1/-1;
+            grid-column: 1/-1;
         }
 
         > p {
@@ -34,14 +34,17 @@ section.hero {
                 font-size: 2.4rem;
                 font-weight: 300;
             }
+        }
 
+        > p,
+        > div {
             &.hero-main {
                 margin-bottom: 0;
                 padding: 2.4rem 2.4rem 2.4rem 5.4rem;
+                line-height: unset;
                 font-family: var(--font-headings);
                 font-size: 4.8rem;
                 font-weight: 600;
-                line-height: unset;
             }
         }
     }
@@ -54,14 +57,14 @@ section.hero {
     }
 
     div.hero-typing-background {
-        grid-column: auto;
         grid-row: auto;
+        grid-column: auto;
         opacity: 0.65;
-        font-family: var(--font-code);
-        font-size: 0.8rem;
-        white-space: pre;
         padding-left: variables.$paddingGutter;
         width: calc(100% - #{variables.$paddingGutter});
+        white-space: pre;
+        font-family: var(--font-code);
+        font-size: 0.8rem;
     }
 
     div.hero-particles-background {
@@ -76,16 +79,16 @@ div.hero-image {
     position: relative;
     grid-area: image;
     align-self: center;
-    max-width: 25rem;
-    min-width: 15rem;
     justify-self: center;
+    min-width: 15rem;
+    max-width: 25rem;
     aspect-ratio: 1;
 
     > img {
         position: relative;
         z-index: 1;
-        overflow: hidden;
         border-radius: 50%;
+        overflow: hidden;
     }
 
     &:before {
@@ -103,16 +106,16 @@ div.hero-image {
 
 @include media.media-down(md) {
     section.hero {
-        min-height: 100vh;
         align-items: start;
+        min-height: 100vh;
 
         div.hero-content {
-            row-gap: 1rem;
-            grid-template-columns: 100%;
             grid-template-areas:
                 "image"
                 "typing"
                 "buttons";
+            grid-template-columns: 100%;
+            row-gap: 1rem;
         }
 
         div.hero-typing,
@@ -122,14 +125,17 @@ div.hero-image {
                     margin: 0;
                     margin-bottom: 0;
                 }
+            }
 
+            > p,
+            > div {
                 &.hero-main {
                     margin-bottom: 0;
                     padding: 2rem 2rem 2rem 4.5rem;
+                    line-height: unset;
                     font-family: var(--font-headings);
                     font-size: 4rem;
                     font-weight: 600;
-                    line-height: unset;
                 }
             }
         }

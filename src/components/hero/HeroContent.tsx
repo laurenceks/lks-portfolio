@@ -6,6 +6,7 @@ import { HeroRefInterface } from "../../types/heroTypes.ts";
 
 const HeroContent = ({ learnMoreRef, contactRef }: HeroRefInterface) => {
     const [heroStage, setHeroStage] = useState(0);
+    const [showImage, setShowImage] = useState(false);
 
     return (
         <div
@@ -16,13 +17,14 @@ const HeroContent = ({ learnMoreRef, contactRef }: HeroRefInterface) => {
             <HeroTyping
                 heroTypingStage={heroStage}
                 setHeroTypingStage={setHeroStage}
+                setShowImage={setShowImage}
             />
             <HeroCTA
                 heroTypingStage={heroStage}
                 learnMoreRef={learnMoreRef}
                 contactRef={contactRef}
             />
-            <HeroImage heroTypingStage={heroStage} />
+            <HeroImage showImage={showImage} />
         </div>
     );
 };

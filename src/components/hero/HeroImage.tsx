@@ -1,9 +1,7 @@
-import { HeroTypingInterface } from "../../types/heroTypes.ts";
-
-const HeroImage = ({ heroTypingStage }: HeroTypingInterface) => (
+const HeroImage = ({ showImage }: { showImage: boolean }) => (
     <div
         className={`hero-image animation-fade-in-up fade-in-up-25 mt-4 mt-lg-none ${
-            heroTypingStage > 2 ? "animation-start" : ""
+            showImage ? "animation-start" : ""
         }`}
     >
         <img

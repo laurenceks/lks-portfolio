@@ -1,14 +1,15 @@
-import HeroTypingBodyLoop from "../typing/HeroTypingBodyLoop.tsx";
 import HeroStageDiv from "./HeroStageDiv.tsx";
+import { TypingHeroInterface } from "../../../types/heroTypes.ts";
+import HeroTypingBodyMiddle from "../typing/HeroTypingBodyMiddle.tsx";
 
-const HeroStageThree = () => (
+const HeroStageFour = ({ nextHeroTypingStage }: TypingHeroInterface) => (
     <HeroStageDiv>
         <p className={"hero-tag"}>{"<hello> "}</p>
         <p className={"hero-main"}>
-            <HeroTypingBodyLoop />
+            <HeroTypingBodyMiddle nextHeroTypingStage={nextHeroTypingStage} />
         </p>
         <p className={"hero-tag"}>{"</hello>"}</p>
     </HeroStageDiv>
 );
 
-export default HeroStageThree;
+export default HeroStageFour;
