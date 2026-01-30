@@ -52,14 +52,14 @@ function App() {
                 <LayoutGroup>
                     <Hero learnMoreRef={learnMoreRef} contactRef={contactRef} />
                     <div ref={learnMoreRef} />
-                    <Nav refs={[aboutRef, portfolioRef, contactRef]} />{" "}
+                    <Nav refs={[aboutRef, portfolioRef, contactRef]} />
                     <About aboutRef={aboutRef} />
                     <Experience portfolioRef={portfolioRef} />
                     <Technologies />
                     <Portfolio portfolioRef={portfolioRef} />
-                    <Contact
-                        contactRef={contactRef}
-                    /> <PortfolioLightbox /> <PortfolioLightboxSizer />
+                    <Contact contactRef={contactRef} />
+                    <PortfolioLightbox />
+                    <PortfolioLightboxSizer />
                 </LayoutGroup>
             </main>
             <footer></footer>
