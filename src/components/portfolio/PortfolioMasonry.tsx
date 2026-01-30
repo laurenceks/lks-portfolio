@@ -1,12 +1,9 @@
 import { RefObject, useContext, useEffect, useRef, useState } from "react";
-import { LayoutGroup } from "framer-motion";
 import { PanelPositionType } from "../../types/portfolioTypes.ts";
 import PortfolioMasonryItem from "./PortfolioMasonryItem.tsx";
-import PortfolioLightbox from "./PortfolioLightbox.tsx";
 import splitItemsIntoCols from "../../utils/splitItemsIntoCols.ts";
 import remToPx from "../../utils/remToPx.ts";
 import { AppContext } from "../../App.tsx";
-import PortfolioLightboxSizer from "./PortfolioLightboxSizer.tsx";
 
 const PortfolioMasonry = () => {
     const {
@@ -35,42 +32,35 @@ const PortfolioMasonry = () => {
     }, []);
 
     return (
-        <LayoutGroup>
-            <div
-                className={`portfolio-masonry-container d-grid grid-columns-${masonryColumns} gap-3 align-items-start`}
-                ref={masonryContainerRef}
-            >
-                {splitItemsIntoCols(portfolioItems, masonryColumns).map(
-                    (col, i, a) => {
-                        let panelPosition: PanelPositionType = "none";
-                        if (a.length > 1) {
-                            panelPosition =
-                                i === a.length - 1 ? "left" : "right";
-                        }
-                        return (
-                            <div
-                                key={`masonry-col-${i}`}
-                                className={
-                                    "d-grid gap-row-3 align-content-start"
-                                }
-                            >
-                                {col?.map((item) => (
-                                    <PortfolioMasonryItem
-                                        key={item.id}
-                                        item={item}
-                                        hoverItemId={hoverItemId}
-                                        setHoverItemId={setHoverItemId}
-                                        panelPosition={panelPosition}
-                                    />
-                                ))}
-                            </div>
-                        );
+        <div
+            className={`portfolio-masonry-container d-grid grid-columns-${masonryColumns} gap-3 align-items-start`}
+            ref={masonryContainerRef}
+        >
+            {splitItemsIntoCols(portfolioItems, masonryColumns).map(
+                (col, i, a) => {
+                    let panelPosition: PanelPositionType = "none";
+                    if (a.length > 1) {
+                        panelPosition = i === a.length - 1 ? "left" : "right";
                     }
-                )}
-            </div>
-            <PortfolioLightbox />
-            <PortfolioLightboxSizer />
-        </LayoutGroup>
+                    return (
+                        <div
+                            key={`masonry-col-${i}`}
+                            className={"d-grid gap-row-3 align-content-start"}
+                        >
+                            {col?.map((item) => (
+                                <PortfolioMasonryItem
+                                    key={item.id}
+                                    item={item}
+                                    hoverItemId={hoverItemId}
+                                    setHoverItemId={setHoverItemId}
+                                    panelPosition={panelPosition}
+                                />
+                            ))}
+                        </div>
+                    );
+                }
+            )}
+        </div>
     );
 };
 export default PortfolioMasonry;

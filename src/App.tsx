@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer, useRef } from "react";
+import { LayoutGroup } from "framer-motion";
 import Portfolio from "./components/portfolio/Portfolio.tsx";
 import Nav from "./components/nav/Nav.tsx";
 import {
@@ -12,6 +13,8 @@ import Technologies from "./Technologies.tsx";
 import Hero from "./components/hero/Hero.tsx";
 import Contact from "./components/contact/Contact.tsx";
 import fetchPortfolioItems from "./utils/fetchPortfolioItems.ts";
+import PortfolioLightbox from "./components/portfolio/PortfolioLightbox.tsx";
+import PortfolioLightboxSizer from "./components/portfolio/PortfolioLightboxSizer.tsx";
 
 export const AppContext = createContext<AppContextInterface>({
     appState: initialAppState,
@@ -46,14 +49,19 @@ function App() {
         <AppContext.Provider value={{ appState, dispatchAppState }}>
             <header></header>
             <main>
-                <Hero learnMoreRef={learnMoreRef} contactRef={contactRef} />
-                <div ref={learnMoreRef} />
-                <Nav refs={[aboutRef, portfolioRef, contactRef]} />
-                <About aboutRef={aboutRef} />
-                <Experience portfolioRef={portfolioRef} />
-                <Technologies />
-                <Portfolio portfolioRef={portfolioRef} />
-                <Contact contactRef={contactRef} />
+                <LayoutGroup>
+                    <Hero learnMoreRef={learnMoreRef} contactRef={contactRef} />
+                    <div ref={learnMoreRef} />
+                    <Nav refs={[aboutRef, portfolioRef, contactRef]} />{" "}
+                    <About aboutRef={aboutRef} />
+                    <Experience
+                        portfolioRef={portfolioRef}
+                    /> <Technologies />{" "}
+                    <Portfolio portfolioRef={portfolioRef} />
+                    <Contact
+                        contactRef={contactRef}
+                    /> <PortfolioLightbox /> <PortfolioLightboxSizer />
+                </LayoutGroup>
             </main>
             <footer></footer>
         </AppContext.Provider>

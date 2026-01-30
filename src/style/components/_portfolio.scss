@@ -10,11 +10,17 @@
 
 .portfolio {
     position: relative;
-    z-index: 5;
     min-height: 500px;
 
     &:not(.fetched) {
         min-height: 1250px;
+    }
+
+    > div {
+        > *:not(.bg-ffflurry) {
+            position: relative;
+            z-index: 1;
+        }
     }
 }
 
