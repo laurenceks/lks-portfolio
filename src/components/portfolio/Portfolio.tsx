@@ -30,7 +30,10 @@ const Portfolio = ({
                     fetchedOnce && !fetchError ? "fetched" : ""
                 }`}
             >
-                <div ref={portfolioRef} className={"max-width-sm pb-5"}>
+                <div
+                    ref={portfolioRef}
+                    className={"max-width-sm pb-5 scroll-margin"}
+                >
                     <h1>Portfolio</h1>
                     <p>
                         A diverse range of projects from physical media to
