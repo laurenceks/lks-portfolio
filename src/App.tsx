@@ -54,9 +54,8 @@ function App() {
                     <div ref={learnMoreRef} />
                     <Nav refs={[aboutRef, portfolioRef, contactRef]} />{" "}
                     <About aboutRef={aboutRef} />
-                    <Experience
-                        portfolioRef={portfolioRef}
-                    /> <Technologies />{" "}
+                    <Experience portfolioRef={portfolioRef} />
+                    <Technologies />
                     <Portfolio portfolioRef={portfolioRef} />
                     <Contact
                         contactRef={contactRef}
