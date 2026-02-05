@@ -39,7 +39,7 @@ const PortfolioLightboxImage = ({
                 maxHeight: "100%",
                 maxWidth: "100%",
                 aspectRatio: currentPortfolioItem?.aspectRatio,
-                zIndex: 1000,
+                // zIndex: 1000,
             }}
             data-portrait={currentPortfolioItem?.aspectRatio < 1}
         />

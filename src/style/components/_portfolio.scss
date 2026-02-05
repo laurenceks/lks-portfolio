@@ -373,26 +373,29 @@ div.portfolio-lightbox {
     .portfolio-lightbox-timeline-heading {
         min-height: 5.5rem;
     }
+}
 
-    .portfolio-lightbox-timeline-button {
-        @include buttonGradient.buttonGradientMixin();
-        position: relative;
-        width: 4rem;
-        height: 4rem;
+.portfolio-lightbox-timeline-button,
+.portfolio-lightbox-extra-images-button {
+    @include buttonGradient.buttonGradientMixin();
+    position: relative;
+    width: 4rem;
+    height: 4rem;
 
-        &.down {
-            @include backgroundMask.backgroundMaskMixin(
-                "/images/icons/timelineNext.svg",
-                100%
-            );
-        }
+    &.down,
+    &.next {
+        @include backgroundMask.backgroundMaskMixin(
+            "/images/icons/timelineNext.svg",
+            100%
+        );
+    }
 
-        &.up {
-            @include backgroundMask.backgroundMaskMixin(
-                "/images/icons/timelinePrevious.svg",
-                100%
-            );
-        }
+    &.up,
+    &.prev {
+        @include backgroundMask.backgroundMaskMixin(
+            "/images/icons/timelinePrevious.svg",
+            100%
+        );
     }
 }
 
@@ -449,6 +452,97 @@ div.portfolio-lightbox {
     @include hiddenTransition.hiddenTransitionMixin;
     visibility: hidden;
     opacity: 0;
+}
+
+.portfolio-lightbox-extra-images-button {
+    width: 5rem;
+    height: 5rem;
+
+    &.next {
+        transform: rotate(-90deg);
+    }
+
+    &.prev {
+        transform: rotate(-90deg);
+    }
+}
+
+.portfolio-lightbox-extra-images-dots {
+    &:before {
+        @include pseudo.pseudoMixinAbsolute($left: 0);
+        opacity: 0.5;
+        border-radius: 1000px;
+        background-color: var(--dark);
+    }
+
+    > .dot {
+        transform: scale(1);
+        transition-duration: transform variables.$defaultTransitionDuration;
+        transition-property: transform, background-color;
+        transition-timing-function: variables.$defaultEasing;
+        border-radius: 50%;
+        width: 1rem;
+        height: 1rem;
+
+        &.active {
+            transform: scale(1.25);
+        }
+
+        &:hover {
+            transform: scale(1.1);
+            background-color: lighten(
+                map-get(colours.$colours, "light"),
+                25%
+            ) !important;
+        }
+    }
+}
+
+.portfolio-lightbox-extra-images {
+    .portfolio-lightbox-extra-images-dots,
+    .portfolio-lightbox-extra-images-button {
+        transition: opacity variables.$defaultTransitionDuration
+            variables.$defaultEasing;
+        transition-delay: 1s;
+        opacity: 0;
+    }
+
+    &:hover {
+        .portfolio-lightbox-extra-images-dots,
+        .portfolio-lightbox-extra-images-button {
+            transition-delay: 0s;
+            opacity: 1;
+        }
+    }
+}
+
+.portfolio-lightbox-extra-images-item {
+    flex-shrink: 0;
+    transition: none;
+    visibility: hidden;
+    opacity: 0;
+
+    &.active {
+        transform: translateX(0);
+        visibility: visible;
+        opacity: 1;
+    }
+
+    &:not(.active) {
+        &.left {
+            transform: translateX(-100%);
+        }
+
+        &.right {
+            transform: translateX(100%);
+        }
+    }
+
+    &.animate {
+        transition-duration: variables.$defaultTransitionDuration;
+        transition-property: opacity, visibility, transform;
+        transition-timing-function: variables.$defaultEasing;
+    }
 }
 
 @include media.media-up("lg") {

@@ -6,6 +6,7 @@ import PortfolioLightboxTimeline from "./timeline/PortfolioLightboxTimeline.tsx"
 import { AppContext } from "../../App.tsx";
 import PortfolioLightboxImageContainer from "./PortfolioLightboxImageContainer.tsx";
 import PortfolioLightboxImage from "./PortfolioLightboxImage.tsx";
+import PortfolioLightboxExtraImages from "./PortfolioLightboxExtraImages.tsx";
 
 const PortfolioLightbox = () => {
     const {
@@ -51,12 +52,24 @@ const PortfolioLightbox = () => {
                                 }
                             }}
                         ></motion.div>
-                        <PortfolioLightboxImageContainer>
-                            <PortfolioLightboxImage
-                                currentPortfolioItem={currentPortfolioItem}
-                                entered={entered}
-                            />
-                        </PortfolioLightboxImageContainer>
+                        <div className="d-grid grid-stack">
+                            <PortfolioLightboxImageContainer>
+                                <PortfolioLightboxImage
+                                    currentPortfolioItem={currentPortfolioItem}
+                                    entered={entered}
+                                />
+                            </PortfolioLightboxImageContainer>{" "}
+                            {!!currentPortfolioItem.extraImages.length && (
+                                <PortfolioLightboxImageContainer>
+                                    <PortfolioLightboxExtraImages
+                                        currentPortfolioItem={
+                                            currentPortfolioItem
+                                        }
+                                        entered={entered}
+                                    />
+                                </PortfolioLightboxImageContainer>
+                            )}
+                        </div>
                         <motion.div
                             className={"portfolio-lightbox-content-container"}
                             initial={{ opacity: 0, x: "75%" }}

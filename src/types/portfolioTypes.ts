@@ -98,6 +98,7 @@ export interface PortfolioCmsApiParsedResponseData {
     img: PortfolioImg;
     stack: { id: number; stackItem: StackItem }[];
     description: PortfolioItemDescriptionItemInterface[];
+    extraImages: null | PortfolioImg[];
 }
 
 export interface PortfolioCmsApiParsedResponse {
@@ -128,6 +129,12 @@ export interface PortfolioItemInterface {
     aspectRatio: number;
     srcSet: string;
     thumbnailPath: string;
+    extraImages: {
+        srcSet: string;
+        src: string;
+        alt: string;
+        caption: string;
+    }[];
 }
 
 export type PanelPositionType = "none" | "left" | "right";

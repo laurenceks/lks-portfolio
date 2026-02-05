@@ -2,9 +2,30 @@ import {
     FormattedImage,
     PortfolioCmsApiParsedResponse,
     PortfolioCmsApiParsedResponseData,
+    PortfolioImg,
     PortfolioItemInterface,
 } from "../types/portfolioTypes.ts";
 
+const strapiImgToSrcSet = (img: PortfolioImg) => {
+    const { formats, ...original } = img;
+
+    const formatVariants: { url: string; width: number }[] = Object.values(
+        formats ?? {}
+    ).map((f: FormattedImage) => ({
+        url: f.url,
+        width: f.width,
+    }));
+
+    const images: Pick<FormattedImage, "url" | "width">[] = [
+        ...formatVariants,
+        { ...original },
+    ];
+
+    return images
+        .sort((a, b) => a.width - b.width)
+        .map((i) => `${i.url} ${i.width}w`)
+        .join(", ");
+};
 const getPortfolioItems = async (): Promise<PortfolioItemInterface[]> => {
     const response = await fetch(
         "/cms/api/portfolio-items?populate=*&sort=date:desc",
@@ -15,24 +36,6 @@ const getPortfolioItems = async (): Promise<PortfolioItemInterface[]> => {
 
     return ((await response.json()) as PortfolioCmsApiParsedResponse).data.map(
         (item: PortfolioCmsApiParsedResponseData) => {
-            const { formats, ...original } = item.img;
-
-            const formatVariants: { url: string; width: number }[] =
-                Object.values(formats ?? {}).map((f: FormattedImage) => ({
-                    url: f.url,
-                    width: f.width,
-                }));
-
-            const images: Pick<FormattedImage, "url" | "width">[] = [
-                ...formatVariants,
-                { ...original },
-            ];
-
-            const srcSet = images
-                .sort((a, b) => a.width - b.width)
-                .map((i) => `${i.url} ${i.width}w`)
-                .join(", ");
-
             const aspectRatio = item.img.width / item.img.height;
 
             return {
@@ -46,11 +49,18 @@ const getPortfolioItems = async (): Promise<PortfolioItemInterface[]> => {
                 url: item.url,
                 imgFileName: `${item.img.url}`,
                 thumbnailPath: `${item.img.formats.small.url}`,
-                srcSet,
+                srcSet: strapiImgToSrcSet(item.img),
                 aspectRatio,
                 stack: item.stack.map((x) => x.stackItem),
                 description: item.description,
-                alt: original.alternativeText,
+                alt: item.img.alternativeText,
+                extraImages:
+                    item.extraImages?.map((x) => ({
+                        src: x.url,
+                        srcSet: strapiImgToSrcSet(x),
+                        alt: x.alternativeText,
+                        caption: x.caption || "",
+                    })) || [],
             };
         }
     );
