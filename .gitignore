@@ -29,3 +29,4 @@ public/images
 public/php/smtpCredentials.php
 public/php/vendor
 dev
+src/data/portfolioItems.ts
