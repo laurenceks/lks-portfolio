@@ -115,6 +115,7 @@ export interface PortfolioCmsApiParsedResponse {
 
 export interface PortfolioItemInterface {
     id: number;
+    slug: string;
     title: string;
     projectType: PortfolioItemProjectType;
     media: PortfolioItemMedia;
@@ -130,6 +131,7 @@ export interface PortfolioItemInterface {
     srcSet: string;
     thumbnailPath: string;
     extraImages: {
+        id: number;
         srcSet: string;
         src: string;
         alt: string;

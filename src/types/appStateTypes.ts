@@ -26,6 +26,10 @@ interface setCurrentPortfolioItemInterface {
     type: "setCurrentPortfolioItem";
     payload: PortfolioItemInterface;
 }
+interface setPortfolioItemsAndCurrentPortfolioItemInterface {
+    type: "setPortfolioItemsAndCurrentPortfolioItem";
+    payload: { item: PortfolioItemInterface; items: PortfolioItemInterface[] };
+}
 
 interface unsetCurrentPortfolioItemInterface {
     type: "unsetCurrentPortfolioItem";
@@ -44,6 +48,7 @@ export type AppReducerActionType =
     | portfolioItemsFetchErrorInterface
     | setPortfolioItemsInterface
     | setCurrentPortfolioItemInterface
+    | setPortfolioItemsAndCurrentPortfolioItemInterface
     | unsetCurrentPortfolioItemInterface
     | hidePortfolioLightboxInterface
     | setPortfolioLightboxSizerRefInterface;

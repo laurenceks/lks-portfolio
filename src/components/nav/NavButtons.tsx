@@ -2,6 +2,7 @@ import { MouseEvent, useState } from "react";
 import { useSpring } from "react-spring";
 import NavBracketSVG from "./NavBracketSVG.tsx";
 import { ScrollIntoViewRefType } from "../../types/heroTypes.ts";
+import updateSlug from "../../utils/updateSlug.ts";
 
 interface LiMouseOverInterface {
     touchedOnce: boolean;
@@ -9,6 +10,7 @@ interface LiMouseOverInterface {
     translateX: number;
     width: number;
 }
+
 const NavButtons = ({ refs }: { refs: ScrollIntoViewRefType[] }) => {
     const [bracketTranslation, setBracketTranslation] =
         useState<LiMouseOverInterface>({
@@ -36,6 +38,7 @@ const NavButtons = ({ refs }: { refs: ScrollIntoViewRefType[] }) => {
     };
 
     const labels = ["About", "Portfolio", "Contact"];
+    const slugs = ["/about", "/portfolio", "/contact"];
 
     return (
         <ul>
@@ -44,12 +47,13 @@ const NavButtons = ({ refs }: { refs: ScrollIntoViewRefType[] }) => {
                     key={`nav-li-${label}`}
                     onMouseEnter={liMouseOver}
                     onMouseLeave={liMouseOut}
-                    onClick={() =>
+                    onClick={() => {
                         refs[i].current?.scrollIntoView({
                             behavior: "smooth",
                             block: "start",
-                        })
-                    }
+                        });
+                        updateSlug(slugs[i]);
+                    }}
                 >
                     {label}
                 </li>

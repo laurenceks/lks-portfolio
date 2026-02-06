@@ -1,4 +1,10 @@
-import { createContext, useEffect, useReducer, useRef } from "react";
+import {
+    createContext,
+    useCallback,
+    useEffect,
+    useReducer,
+    useRef,
+} from "react";
 import { LayoutGroup } from "framer-motion";
 import Portfolio from "./components/portfolio/Portfolio.tsx";
 import Nav from "./components/nav/Nav.tsx";
@@ -30,6 +36,43 @@ function App() {
     const aboutRef = useRef<HTMLDivElement>(null);
     const portfolioRef = useRef<HTMLDivElement>(null);
     const contactRef = useRef<HTMLDivElement>(null);
+    const lastPath = useRef<string | null>(null);
+
+    const routeChangeHandler = useCallback(() => {
+        const path = window.location.pathname;
+        if (path === lastPath.current) return;
+        const [section, itemSlug] = path.split("/").filter(Boolean);
+
+        if (section === "about") {
+            aboutRef.current?.scrollIntoView({ behavior: "smooth" });
+        }
+
+        if (section === "contact") {
+            contactRef.current?.scrollIntoView({ behavior: "smooth" });
+        }
+
+        if (section === "portfolio") {
+            const item = appState.portfolioItems.find(
+                (x) => x.slug === itemSlug
+            );
+            if (item && item.id !== appState.currentPortfolioItem?.id) {
+                dispatchAppState({
+                    type: "setCurrentPortfolioItem",
+                    payload: item,
+                });
+            } else if (!item && appState.currentPortfolioItem) {
+                dispatchAppState({
+                    type: "unsetCurrentPortfolioItem",
+                });
+            } else if (
+                !item &&
+                lastPath.current?.split("/").filter(Boolean)[0] !== "portfolio"
+            ) {
+                portfolioRef.current?.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+        lastPath.current = path;
+    }, [appState.currentPortfolioItem, appState.portfolioItems]);
 
     useEffect(() => {
         document.body.className = appState.currentPortfolioItem
@@ -45,6 +88,15 @@ function App() {
         fetchPortfolioItems(dispatchAppState);
     }, []);
 
+    useEffect(() => {
+        routeChangeHandler();
+    }, [routeChangeHandler]);
+
+    useEffect(() => {
+        window.addEventListener("popstate", routeChangeHandler);
+        return () => window.removeEventListener("popstate", routeChangeHandler);
+    }, [routeChangeHandler]);
+
     return (
         <AppContext.Provider value={{ appState, dispatchAppState }}>
             <header></header>
@@ -54,7 +106,10 @@ function App() {
                     <div ref={learnMoreRef} />
                     <Nav refs={[aboutRef, portfolioRef, contactRef]} />
                     <About aboutRef={aboutRef} />
-                    <Experience portfolioRef={portfolioRef} />
+                    <Experience
+                        portfolioRef={portfolioRef}
+                        contactRef={contactRef}
+                    />
                     <Technologies />
                     <Portfolio portfolioRef={portfolioRef} />
                     <Contact contactRef={contactRef} />

@@ -1,4 +1,5 @@
 import { HeroInterface } from "../../types/heroTypes.ts";
+import updateSlug from "../../utils/updateSlug.ts";
 
 const HeroCTA = ({
     heroTypingStage,
@@ -12,12 +13,13 @@ const HeroCTA = ({
             className={`animation-fade-in-up ${
                 heroTypingStage > 3 ? "animation-start" : ""
             }`}
-            onClick={() =>
+            onClick={() => {
                 learnMoreRef.current?.scrollIntoView({
                     behavior: "smooth",
                     block: "start",
-                })
-            }
+                });
+                updateSlug("/about");
+            }}
         >
             More
         </button>
@@ -25,12 +27,13 @@ const HeroCTA = ({
             className={`outline animation-fade-in-up ${
                 heroTypingStage > 3 ? "animation-start" : ""
             }`}
-            onClick={() =>
+            onClick={() => {
                 contactRef.current?.scrollIntoView({
                     behavior: "smooth",
                     block: "start",
-                })
-            }
+                });
+                updateSlug("/contact");
+            }}
         >
             Contact
         </button>

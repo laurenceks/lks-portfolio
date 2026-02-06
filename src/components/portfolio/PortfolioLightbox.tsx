@@ -7,6 +7,7 @@ import { AppContext } from "../../App.tsx";
 import PortfolioLightboxImageContainer from "./PortfolioLightboxImageContainer.tsx";
 import PortfolioLightboxImage from "./PortfolioLightboxImage.tsx";
 import PortfolioLightboxExtraImages from "./PortfolioLightboxExtraImages.tsx";
+import updateSlug from "../../utils/updateSlug.ts";
 
 const PortfolioLightbox = () => {
     const {
@@ -49,6 +50,7 @@ const PortfolioLightbox = () => {
                                     dispatchAppState({
                                         type: "unsetCurrentPortfolioItem",
                                     });
+                                    updateSlug("/portfolio");
                                 }
                             }}
                         ></motion.div>

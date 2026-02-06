@@ -38,6 +38,11 @@ const PortfolioMasonryItem = ({
                         type: "setCurrentPortfolioItem",
                         payload: item,
                     });
+                    window.history.pushState(
+                        { slug: item.slug },
+                        "",
+                        `/portfolio/${item.slug}`
+                    );
                 }
             }}
         >

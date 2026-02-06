@@ -45,6 +45,17 @@ export const appStateReducer = (
                 showLightbox: true,
             };
         }
+        case "setPortfolioItemsAndCurrentPortfolioItem": {
+            return {
+                ...prevState,
+                portfolioItems: action.payload.items,
+                fetching: false,
+                fetchedOnce: true,
+                fetchError: false,
+                currentPortfolioItem: action.payload.item,
+                showLightbox: true,
+            };
+        }
         case "unsetCurrentPortfolioItem": {
             return {
                 ...prevState,

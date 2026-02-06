@@ -1,10 +1,13 @@
 import { RefObject, useEffect, useRef, useState } from "react";
 import Section from "./components/wrappers/Section.tsx";
+import updateSlug from "./utils/updateSlug.ts";
 
 const Experience = ({
     portfolioRef,
+    contactRef,
 }: {
     portfolioRef: RefObject<HTMLDivElement>;
+    contactRef: RefObject<HTMLDivElement>;
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [showButtons, setShowButtons] = useState(false);
@@ -44,12 +47,13 @@ const Experience = ({
                     className={`animation-fade-in-up ${
                         showButtons ? "animation-start" : ""
                     }`}
-                    onClick={() =>
+                    onClick={() => {
                         portfolioRef.current?.scrollIntoView({
                             behavior: "smooth",
                             block: "start",
-                        })
-                    }
+                        });
+                        updateSlug("/portfolio");
+                    }}
                 >
                     Portfolio
                 </button>
@@ -57,6 +61,13 @@ const Experience = ({
                     className={`outline text-primary fw-400 animation-fade-in-up ${
                         showButtons ? "animation-start" : ""
                     }`}
+                    onClick={() => {
+                        contactRef.current?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                        });
+                        updateSlug("/contact");
+                    }}
                 >
                     Contact
                 </button>

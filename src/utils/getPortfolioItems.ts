@@ -40,6 +40,7 @@ const getPortfolioItems = async (): Promise<PortfolioItemInterface[]> => {
 
             return {
                 id: item.id,
+                slug: item.slug,
                 title: item.title,
                 projectType: item.projectType,
                 media: item.media,
@@ -56,6 +57,7 @@ const getPortfolioItems = async (): Promise<PortfolioItemInterface[]> => {
                 alt: item.img.alternativeText,
                 extraImages:
                     item.extraImages?.map((x) => ({
+                        id: x.id,
                         src: x.url,
                         srcSet: strapiImgToSrcSet(x),
                         alt: x.alternativeText,
