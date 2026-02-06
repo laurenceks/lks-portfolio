@@ -77,6 +77,9 @@ const PortfolioLightboxExtraImages = ({
             >
                 {allImages.map((x, i) => (
                     <PortfolioLightboxExtraImagesItem
+                        key={`${currentPortfolioItem.id}-extra-image-${
+                            x?.id || "blank"
+                        }-${i}`}
                         item={x}
                         currentIndex={currentIndex}
                         i={i}
