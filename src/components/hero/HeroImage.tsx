@@ -5,7 +5,7 @@ const HeroImage = ({ showImage }: { showImage: boolean }) => (
         }`}
     >
         <img
-            src={"images/profilePicture.jpeg"}
+            src={"/images/profilePicture.jpeg"}
             alt={"A picture of me, Laurence Summers. Hello!"}
         />
     </div>
