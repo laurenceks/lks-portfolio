@@ -24,6 +24,7 @@ const PortfolioLightboxExtraImages = ({
     const [currentIndex, setCurrentIndex] = useState(1);
     const [dotIndex, setDotIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
+    const [fadeOpacity, setFadeOpacity] = useState(true);
 
     const setIndex = (
         e: MouseEvent<HTMLButtonElement | HTMLDivElement>,
@@ -32,6 +33,7 @@ const PortfolioLightboxExtraImages = ({
         e.stopPropagation();
         if (!animating) {
             setAnimating(true);
+            const prevDotIndex = dotIndex;
             setDotIndex((prevState) => {
                 if (typeof dir === "number") {
                     return dir;
@@ -47,6 +49,13 @@ const PortfolioLightboxExtraImages = ({
                 }
                 return dir === "next" ? prevState + 1 : prevState - 1;
             });
+            // if next or previous image is actually blank (i.e. show main image), then fade in/out
+            setFadeOpacity(
+                !prevDotIndex ||
+                    (typeof dir === "number" && !dir) ||
+                    (dir === "next" && dotIndex === dots.length - 1) ||
+                    (dir === "prev" && dotIndex === 1)
+            );
         }
     };
     const handleTransitionEnd = () => {
@@ -84,6 +93,7 @@ const PortfolioLightboxExtraImages = ({
                         currentIndex={currentIndex}
                         i={i}
                         animating={animating}
+                        fadeOpacity={fadeOpacity}
                         handleTransitionEnd={handleTransitionEnd}
                     />
                 ))}

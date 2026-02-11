@@ -519,8 +519,11 @@ div.portfolio-lightbox {
 .portfolio-lightbox-extra-images-item {
     flex-shrink: 0;
     transition: none;
-    visibility: hidden;
-    opacity: 0;
+
+    &.fade-opacity {
+        visibility: hidden;
+        opacity: 0;
+    }
 
     &.active {
         transform: translateX(0);
@@ -540,8 +543,12 @@ div.portfolio-lightbox {
 
     &.animate {
         transition-duration: variables.$defaultTransitionDuration;
-        transition-property: opacity, visibility, transform;
+        transition-property: transform;
         transition-timing-function: variables.$defaultEasing;
+
+        &.fade-opacity {
+            transition-property: opacity, visibility, transform;
+        }
     }
 }
 
