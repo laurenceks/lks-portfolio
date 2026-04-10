@@ -95,6 +95,7 @@ const PortfolioLightboxExtraImages = ({
                         animating={animating}
                         fadeOpacity={fadeOpacity}
                         handleTransitionEnd={handleTransitionEnd}
+                        aspectRatio={currentPortfolioItem.aspectRatio}
                     />
                 ))}
             </div>

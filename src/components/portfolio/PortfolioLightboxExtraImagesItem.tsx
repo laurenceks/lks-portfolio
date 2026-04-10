@@ -7,6 +7,7 @@ const PortfolioLightboxExtraImagesItem = ({
     i,
     animating,
     fadeOpacity,
+    aspectRatio,
 }: {
     item: PortfolioItemInterface["extraImages"][0] | null;
     handleTransitionEnd: () => void;
@@ -14,6 +15,7 @@ const PortfolioLightboxExtraImagesItem = ({
     i: number;
     animating: boolean;
     fadeOpacity: boolean;
+    aspectRatio: number;
 }) => (
     <div
         onTransitionEnd={handleTransitionEnd}
@@ -26,6 +28,14 @@ const PortfolioLightboxExtraImagesItem = ({
     >
         {!!item && (
             <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                <div className="w-100 h-100 position-absolute t-0 l-0 d-flex align-items-center justify-content-center z--1">
+                    <div
+                        style={{
+                            aspectRatio,
+                        }}
+                        className="w-100 bg-dark"
+                    ></div>
+                </div>
                 <img srcSet={item.srcSet} src={item.src} alt={item.alt} />
             </div>
         )}
