@@ -41,80 +41,50 @@ export interface PortfolioItemDescriptionItemInterface {
     title: string;
     content: string;
 }
-
-export interface FormattedImage {
-    name: string;
-    hash: string;
-    ext: string;
-    mime: string;
-    path: string;
-    width: number;
-    height: number;
-    size: number;
-    sizeInBytes: number;
-    url: string;
-}
-export type FormatKey = "thumbnail" | "small" | "medium" | "large";
-
-export type Formats = {
-    [_key in FormatKey]: FormattedImage;
-};
-
 export interface PortfolioImg {
-    id: number;
-    documentId: string;
-    name: string;
-    alternativeText: string;
-    caption: string;
+    path: string;
+    title: string;
+    mime: string;
+    type: string;
+    description: string;
+    tags: string[];
+    size: number;
+    colors: string[];
     width: number;
     height: number;
-    formats: Formats;
-    hash: string;
-    ext: string;
-    mime: string;
-    size: number;
-    url: string;
-    previewUrl: string;
-    provider: string;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
+    _hash: string;
+    _created: number;
+    _modified: number;
+    _cby: string;
+    altText: string;
+    thumbhash: string;
+    folder: string;
+    _id: string;
 }
 
-export interface PortfolioCmsApiParsedResponseData {
-    id: number;
-    documentId: string;
-    slug: string;
-    title: string;
-    projectType: PortfolioItemProjectType;
-    media: PortfolioItemMedia;
-    client: string;
+export interface PortfolioCmsApiResponseItem {
+    _cby: string;
+    _created: number;
+    _id: string;
+    _mby: string;
+    _modified: number;
+    _state: number;
+    blurb: null | string;
+    client: null | string;
     date: string;
-    blurb: string;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-    url: string;
-    img: PortfolioImg;
-    stack: { id: number; stackItem: StackItem }[];
     description: PortfolioItemDescriptionItemInterface[];
     extraImages: null | PortfolioImg[];
-}
-
-export interface PortfolioCmsApiParsedResponse {
-    data: PortfolioCmsApiParsedResponseData[];
-    meta: {
-        pagination: {
-            page: number;
-            pageSize: number;
-            pageCount: number;
-            total: number;
-        };
-    };
+    img: PortfolioImg;
+    media: PortfolioItemMedia;
+    projectType: PortfolioItemProjectType;
+    slug: string;
+    stack: null | StackItem[];
+    title: string;
+    url: null | string;
 }
 
 export interface PortfolioItemInterface {
-    id: number;
+    id: string;
     slug: string;
     title: string;
     projectType: PortfolioItemProjectType;
@@ -131,7 +101,7 @@ export interface PortfolioItemInterface {
     srcSet: string;
     thumbnailPath: string;
     extraImages: {
-        id: number;
+        id: string;
         srcSet: string;
         src: string;
         alt: string;
@@ -143,8 +113,10 @@ export type PanelPositionType = "none" | "left" | "right";
 
 export interface PortfolioMasonryItemInterface {
     item: PortfolioItemInterface;
-    hoverItemId?: number | null;
+    hoverItemId?: PortfolioItemInterface["id"] | null;
     showLightbox?: boolean | null;
-    setHoverItemId: Dispatch<SetStateAction<number | null>>;
+    setHoverItemId: Dispatch<
+        SetStateAction<PortfolioItemInterface["id"] | null>
+    >;
     panelPosition: PanelPositionType;
 }

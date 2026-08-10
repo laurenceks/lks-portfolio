@@ -11,13 +11,9 @@ export default defineConfig({
                 changeOrigin: true,
             },
             "/cms": {
-                target: "http://localhost:1337",
+                target: "https://cms.laurencesummers.com",
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/cms/, ""),
-            },
-            "/uploads": {
-                target: "http://localhost:1337",
-                changeOrigin: true,
             },
         },
     },

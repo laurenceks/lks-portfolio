@@ -1,11 +1,14 @@
 import StackIcon from "../common/StackIcon.tsx";
-import { StackItem } from "../../types/portfolioTypes.ts";
+import {
+    PortfolioItemInterface,
+    StackItem,
+} from "../../types/portfolioTypes.ts";
 
 const PortfolioLightboxStack = ({
     itemId,
     stack = [],
 }: {
-    itemId?: number;
+    itemId?: PortfolioItemInterface["id"];
     stack?: StackItem[];
 }) => (
     <div className={"d-flex gap-2 flex-wrap my-3"}>

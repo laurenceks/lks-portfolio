@@ -1,67 +1,53 @@
 import {
-    FormattedImage,
-    PortfolioCmsApiParsedResponse,
-    PortfolioCmsApiParsedResponseData,
+    PortfolioCmsApiResponseItem,
     PortfolioImg,
     PortfolioItemInterface,
 } from "../types/portfolioTypes.ts";
 
-const strapiImgToSrcSet = (img: PortfolioImg) => {
-    const { formats, ...original } = img;
+const srcSetWidths = [1920, 1280, 860, 450];
 
-    const formatVariants: { url: string; width: number }[] = Object.values(
-        formats ?? {}
-    ).map((f: FormattedImage) => ({
-        url: f.url,
-        width: f.width,
-    }));
-
-    const images: Pick<FormattedImage, "url" | "width">[] = [
-        ...formatVariants,
-        { ...original },
-    ];
-
-    return images
-        .sort((a, b) => a.width - b.width)
-        .map((i) => `${i.url} ${i.width}w`)
+const generateCockpitResizePath = (img: PortfolioImg, width: number) =>
+    `/cms/api/assets/image/${img._id}?o=1&m=resizeToWidth&w=${width}`;
+const cockpitImgToSrcSet = (img: PortfolioImg) =>
+    srcSetWidths
+        .map((width) => `${generateCockpitResizePath(img, width)} ${width}w`)
         .join(", ");
-};
 const getPortfolioItems = async (): Promise<PortfolioItemInterface[]> => {
     const response = await fetch(
-        "/cms/api/portfolio-items?populate=*&sort=date:desc",
+        `/cms/api/content/items/portfolio?sort={"date":-1}`,
         {
             method: "GET",
         }
     );
 
-    return ((await response.json()) as PortfolioCmsApiParsedResponse).data.map(
-        (item: PortfolioCmsApiParsedResponseData) => {
+    return ((await response.json()) as PortfolioCmsApiResponseItem[]).map(
+        (item: PortfolioCmsApiResponseItem) => {
             const aspectRatio = item.img.width / item.img.height;
 
             return {
-                id: item.id,
+                id: item._id,
                 slug: item.slug,
                 title: item.title,
                 projectType: item.projectType,
                 media: item.media,
-                client: item.client,
+                client: item.client || "",
                 date: new Date(item.date),
-                blurb: item.blurb,
-                url: item.url,
-                imgFileName: `${item.img.url}`,
-                thumbnailPath: `${item.img.formats.small.url}`,
-                srcSet: strapiImgToSrcSet(item.img),
+                blurb: item.blurb || "",
+                url: item.url || "",
+                imgFileName: `${item.img.path}`,
+                thumbnailPath: generateCockpitResizePath(item.img, 450),
+                srcSet: cockpitImgToSrcSet(item.img),
                 aspectRatio,
-                stack: item.stack.map((x) => x.stackItem),
+                stack: item.stack || [],
                 description: item.description,
-                alt: item.img.alternativeText,
+                alt: item.img.altText,
                 extraImages:
                     item.extraImages?.map((x) => ({
-                        id: x.id,
-                        src: x.url,
-                        srcSet: strapiImgToSrcSet(x),
-                        alt: x.alternativeText,
-                        caption: x.caption || "",
+                        id: x._id,
+                        src: x.path,
+                        srcSet: cockpitImgToSrcSet(x),
+                        alt: x.altText,
+                        caption: x.description || "",
                     })) || [],
             };
         }

@@ -1,5 +1,8 @@
 import { RefObject, useContext, useEffect, useRef, useState } from "react";
-import { PanelPositionType } from "../../types/portfolioTypes.ts";
+import {
+    PanelPositionType,
+    PortfolioItemInterface,
+} from "../../types/portfolioTypes.ts";
 import PortfolioMasonryItem from "./PortfolioMasonryItem.tsx";
 import splitItemsIntoCols from "../../utils/splitItemsIntoCols.ts";
 import remToPx from "../../utils/remToPx.ts";
@@ -9,7 +12,9 @@ const PortfolioMasonry = () => {
     const {
         appState: { portfolioItems },
     } = useContext(AppContext);
-    const [hoverItemId, setHoverItemId] = useState<number | null>(null);
+    const [hoverItemId, setHoverItemId] = useState<
+        PortfolioItemInterface["id"] | null
+    >(null);
     const [masonryColumns, setMasonryColumns] = useState(3);
     const masonryContainerRef = useRef(null) as
         | RefObject<HTMLDivElement>
