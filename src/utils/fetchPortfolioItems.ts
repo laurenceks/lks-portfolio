@@ -12,7 +12,6 @@ const fetchPortfolioItems = (
                 .split("/")
                 .filter(Boolean);
             const item = items.find((x) => x.slug === itemSlug);
-            console.log(section, itemSlug, item);
             if (section === "portfolio" && itemSlug && item) {
                 dispatchAppState({
                     type: "setPortfolioItemsAndCurrentPortfolioItem",
