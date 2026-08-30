@@ -81,6 +81,7 @@ export interface PortfolioCmsApiResponseItem {
     stack: null | StackItem[];
     title: string;
     url: null | string;
+    repo: null | string;
 }
 
 export interface PortfolioItemInterface {
@@ -89,13 +90,14 @@ export interface PortfolioItemInterface {
     title: string;
     projectType: PortfolioItemProjectType;
     media: PortfolioItemMedia;
-    client: string;
+    client: null | string;
     date: Date;
     stack: StackItem[];
-    blurb: string;
+    blurb: null | string;
     description: PortfolioItemDescriptionItemInterface[];
     alt: string;
-    url: string;
+    url: null | string;
+    repo: null | string;
     imgFileName: string;
     aspectRatio: number;
     srcSet: string;
