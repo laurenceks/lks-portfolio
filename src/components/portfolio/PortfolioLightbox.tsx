@@ -111,15 +111,26 @@ const PortfolioLightbox = () => {
                                     itemId={currentPortfolioItem?.id}
                                     stack={currentPortfolioItem?.stack}
                                 />
-                                {currentPortfolioItem?.url && (
-                                    <a
-                                        className="button url mb-2"
-                                        href={currentPortfolioItem?.url}
-                                        target="_blank"
-                                    >
-                                        See live
-                                    </a>
-                                )}
+                                <div className="d-flex gap-column-1">
+                                    {currentPortfolioItem?.url && (
+                                        <a
+                                            className="button url mb-2"
+                                            href={currentPortfolioItem?.url}
+                                            target="_blank"
+                                        >
+                                            See live
+                                        </a>
+                                    )}
+                                    {currentPortfolioItem?.repo && (
+                                        <a
+                                            className="button url mb-2 outline"
+                                            href={currentPortfolioItem?.repo}
+                                            target="_blank"
+                                        >
+                                            See repo
+                                        </a>
+                                    )}
+                                </div>
                                 <PortfolioLightboxTimeline
                                     portfolioDescription={
                                         currentPortfolioItem?.description
